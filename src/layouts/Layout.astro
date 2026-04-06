@@ -1,0 +1,20 @@
+---
+const lang = Astro.props?.lang ?? "es";
+import "../assets/main.css";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon4.png" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="stylesheet" href="/src/assets/css/main.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/swf1vlo.css" />
+    <title>Antal24</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

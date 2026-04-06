@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* Variables globales */
+:root {
+    --primary-color: #006ab7;
+    --secondary-color: #54c0e8;
+}
+
+/* Tokens de Tailwind v4 */
+@theme {
+    --color-primary-color: var(--primary-color);
+    --color-secondary-color: var(--secondary-color);
+    --color-test: red;
+
+    /* Fonts (equivalente a fontFamily) */
+    --font-lindsey: "lindsey-signature", sans-serif;
+    --font-alverata: "alverata", sans-serif;
+    --font-bebas: "bebas", sans-serif;
+    --font-bebasBold: "bebas-bold", sans-serif;
+    --font-lato: "lato", sans-serif;
+    --font-latoBold: "lato-bold", sans-serif;
+
+    /* Breakpoints (screens) */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1025px;
+    --breakpoint-xl: 1600px;
+}
