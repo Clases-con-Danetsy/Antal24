@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Headers/Header.astro";
 export const prerender = true;
 export function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -8,7 +9,5 @@ const lang = Astro.params.lang || "es";
 ---
 
 <Layout lang={lang}>
-  <h1 class="text-xl md:text-3xl lg:text-5xl text-secondary-color">
-    Hola mundo
-  </h1>
+  <Header lang={lang} />
 </Layout>

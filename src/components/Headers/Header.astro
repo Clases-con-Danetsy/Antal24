@@ -1,0 +1,11 @@
+---
+import { translations } from "../../locales.js";
+const lang = Astro.props?.lang ?? "es";
+const t = translations[lang as keyof typeof translations] ?? translations["es"];
+---
+
+<header>
+  <div class="bg-blue-500 md:bg-green-500 lg:bg-red-500 xl:bg-amber-500">
+    {t.header.title}
+  </div>
+</header>
