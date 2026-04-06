@@ -2,10 +2,55 @@
 import { translations } from "../../locales.js";
 const lang = Astro.props?.lang ?? "es";
 const t = translations[lang as keyof typeof translations] ?? translations["es"];
+const otherLang = lang === "es" ? "en" : "es";
+const otherLangLabel = lang === "es" ? "EN" : "ES";
 ---
 
-<header>
-  <div class="bg-blue-500 md:bg-green-500 lg:bg-red-500 xl:bg-amber-500">
-    {t.header.title}
+<header class="fixed top-0 left-0 w-full z-50 bg-secondary-color shadow-lg">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href={`/${lang}/home`}>
+      <img src="/src/assets/antal24.jpeg" alt="Antal 24" class="h-12 w-auto" />
+    </a>
+
+    <!-- Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a
+        href={`/${lang}/home`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.home}</a
+      >
+      <a
+        href={`/${lang}/services`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.services}</a
+      >
+      <a
+        href={`/${lang}/about`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.about}</a
+      >
+      <a
+        href={`/${lang}/contact`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.contact}</a
+      >
+    </nav>
+
+    <!-- Lang switcher + CTA -->
+    <div class="flex items-center gap-4">
+      <a
+        href={`/${otherLang}/home`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+      >
+        {otherLangLabel}
+      </a>
+      <a
+        href={`/${lang}/contact`}
+        class="bg-primary-color text-white px-5 py-2 rounded font-bold hover:opacity-90 transition-opacity"
+      >
+        {t.header.contact}
+      </a>
+    </div>
   </div>
 </header>

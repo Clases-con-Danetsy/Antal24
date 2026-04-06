@@ -6,8 +6,178 @@ export function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
 }
 const lang = Astro.params.lang || "es";
+import { translations } from "../../locales.js";
+const t = translations[lang as keyof typeof translations] ?? translations["es"];
 ---
 
 <Layout lang={lang}>
   <Header lang={lang} />
+
+  <!-- HERO -->
+  <section
+    class="relative min-h-screen flex items-center justify-center bg-secondary-color overflow-hidden"
+  >
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600"
+        alt="hero"
+        class="w-full h-full object-cover opacity-30"
+      />
+    </div>
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+        {t.hero.title}
+      </h1>
+      <p class="text-xl md:text-2xl text-white mb-10 opacity-90">
+        {t.hero.subtitle}
+      </p>
+      <a
+        href={`/${lang}/contact`}
+        class="bg-primary-color text-white px-10 py-4 rounded font-bold text-lg hover:opacity-90 transition-opacity"
+      >
+        {t.hero.cta}
+      </a>
+    </div>
+  </section>
+
+  <!-- 3 PILARES -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div
+        class="bg-secondary-color text-white rounded-xl p-10 text-center shadow-lg hover:scale-105 transition-transform"
+      >
+        <div class="text-5xl mb-4">🏢</div>
+        <h3 class="text-2xl font-bold">{t.pillars.comercializadora}</h3>
+      </div>
+
+      <div
+        class="bg-primary-color text-white rounded-xl p-10 text-center shadow-lg hover:scale-105 transition-transform"
+      >
+        <div class="text-5xl mb-4">🚚</div>
+        <h3 class="text-2xl font-bold">{t.pillars.logistica}</h3>
+      </div>
+
+      <div
+        class="bg-secondary-color text-white rounded-xl p-10 text-center shadow-lg hover:scale-105 transition-transform"
+      >
+        <div class="text-5xl mb-4">📋</div>
+        <h3 class="text-2xl font-bold">{t.pillars.aduanal}</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
+        {t.services.title}
+      </h2>
+      <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          t.services.items.map(
+            (service: { title: string; desc: string }, i: number) => (
+              <div class="relative rounded-xl overflow-hidden shadow-lg group h-64">
+                <img
+                  src={`https://images.unsplash.com/photo-${["1494412574643-ff11b0a5c1c3", "1578575437130-527eed3abbec", "1566633806827-5db022039827", "1521737852567-6949f3f9f2b5", "1586528116311-ad8dd3c8310d", "1601584672943-7e23070b7bc1"][i % 6]}?w=600`}
+                  alt={service.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-secondary-color opacity-70" />
+                <div class="absolute inset-0 flex flex-col justify-end p-6">
+                  <h3 class="text-white font-bold text-xl mb-2">
+                    {service.title}
+                  </h3>
+                  <p class="text-white text-sm opacity-90">{service.desc}</p>
+                  <span class="text-primary-color font-bold mt-3 text-sm">
+                    LEER MÁS →
+                  </span>
+                </div>
+              </div>
+            ),
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- COBERTURA -->
+  <section class="py-20 bg-secondary-color">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-white text-center mb-4">
+        {t.coverage.title}
+      </h2>
+      <div class="w-24 h-1 bg-primary-color mx-auto mb-10"></div>
+      <p
+        class="text-white text-center text-lg max-w-2xl mx-auto mb-12 opacity-90"
+      >
+        {t.coverage.desc}
+      </p>
+      <div class="rounded-xl overflow-hidden shadow-2xl">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7470280.918283!2d-102.5527878!3d23.6259932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x84043a3b88685353%3A0xed64b4be6b099811!2sM%C3%A9xico!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
+        {t.news.title}
+      </h2>
+      <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {
+          [1, 2, 3].map((n) => (
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <img
+                src={`https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600`}
+                alt="noticia"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <span class="text-xs text-primary-color font-bold uppercase">
+                  Abril 2026
+                </span>
+                <h3 class="text-secondary-color font-bold text-lg mt-2 mb-3">
+                  Título de noticia placeholder {n}
+                </h3>
+                <p class="text-gray-500 text-sm">
+                  Descripción breve de la noticia. Este contenido será
+                  actualizado desde el sistema de gestión.
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO CTA -->
+  <section class="py-20 bg-secondary-color relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=1600"
+        alt="contact bg"
+        class="w-full h-full object-cover opacity-20"
+      />
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto text-center px-6">
+      <h2 class="text-4xl font-bold text-white mb-6">{t.contact.title}</h2>
+      <p class="text-white text-lg mb-10 opacity-90">{t.contact.desc}</p>
+      <a
+        href={`/${lang}/contact`}
+        class="bg-primary-color text-white px-12 py-4 rounded font-bold text-lg hover:opacity-90 transition-opacity"
+      >
+        {t.contact.cta}
+      </a>
+    </div>
+  </section>
 </Layout>
