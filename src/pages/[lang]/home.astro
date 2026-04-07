@@ -15,7 +15,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
 
   <!-- HERO -->
   <section
-    class="relative min-h-screen flex items-center justify-center bg-secondary-color overflow-hidden"
+    class="relative min-h-[700px] md:min-h-screen flex items-center justify-center bg-secondary-color overflow-hidden"
   >
     <div class="absolute inset-0">
       <img
@@ -25,7 +25,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       />
     </div>
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+      <h1 class="text-3xl md:text-7xl font-bold text-white mb-6 leading-tight">
         {t.hero.title}
       </h1>
       <p class="text-xl md:text-2xl text-white mb-10 opacity-90">
@@ -177,7 +177,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     }
   </style>
 
-  <!-- COBERTURA -->
+  <!-- COBERTURA MAPA-->
   <section class="py-20 bg-secondary-color">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-4xl font-bold text-white text-center mb-4">
@@ -191,15 +191,20 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       </p>
 
       <div class="bg-white rounded-xl p-8 shadow-2xl">
-        <div class="relative w-full" style="padding-bottom: 60%">
+        <div
+          class="relative w-full rounded-lg overflow-hidden pb-[80%] md:pb-[60%]"
+        >
           <iframe
-            class="absolute inset-0 w-full h-full rounded-lg"
+            class="absolute inset-0 w-full h-full"
             src="https://www.google.com/maps/d/embed?mid=1OCzcRGtfFUAl_Ie1rz0WqofWERhC4zk"
             style="border:0;"
             allowfullscreen=""
-            loading="lazy"
+            loading="lazy"></iframe>
+          <div
+            class="absolute top-0 left-0 w-full bg-white"
+            style="height: 60px; z-index: 10;"
           >
-          </iframe>
+          </div>
         </div>
 
         <!-- Leyenda -->
@@ -226,19 +231,19 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
 
   <!-- NOTICIAS -->
   <section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-5xl mx-auto px-6 overflow-hidden">
       <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
         {t.news.title}
       </h2>
       <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="news-track flex gap-6">
         {
-          [1, 2, 3].map((n) => (
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          [1, 2, 3, 1, 2, 3].map((n) => (
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-4 transition-all duration-500 group w-[260px] md:w-[380px]">
               <img
                 src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
                 alt="noticia"
-                class="w-full h-48 object-cover"
+                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-125"
               />
               <div class="p-6">
                 <span class="text-xs text-primary-color font-bold uppercase">
@@ -258,6 +263,38 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       </div>
     </div>
   </section>
+  <style>
+    .carousel-track {
+      animation: scroll 20s linear infinite;
+      width: max-content;
+    }
+    .carousel-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    .news-track {
+      animation: scrollNews 20s linear infinite;
+      width: max-content;
+    }
+    .news-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scrollNews {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
 
   <!-- CONTACTO CTA -->
   <section class="py-20 bg-secondary-color relative overflow-hidden">
