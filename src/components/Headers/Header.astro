@@ -6,11 +6,18 @@ const otherLang = lang === "es" ? "en" : "es";
 const otherLangLabel = lang === "es" ? "EN" : "ES";
 ---
 
-<header class="fixed top-0 left-0 w-full z-50 bg-secondary-color shadow-lg">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+<header
+  class="fixed top-0 left-0 w-full z-50 bg-secondary-color shadow-lg h-20"
+>
+  <div class="w-full px-6 flex items-center justify-between h-full">
     <!-- Logo -->
-    <a href={`/${lang}/home`}>
-      <img src="/src/assets/antal24.jpeg" alt="Antal 24" class="h-12 w-auto" />
+    <a href={`/${lang}/home`} class="mr-auto">
+      <img
+        src="/src/assets/ANTAL-NEGATIVO.svg"
+        alt="Antal 24"
+        class="h-50
+         w-auto"
+      />
     </a>
 
     <!-- Nav -->
@@ -38,10 +45,10 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
     </nav>
 
     <!-- Lang switcher + CTA -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-6">
       <a
         href={`/${otherLang}/home`}
-        class="text-white font-bold hover:text-primary-color transition-colors"
+        class="text-white font-bold hover:text-primary-color transition-colors ml-4"
       >
         {otherLangLabel}
       </a>
