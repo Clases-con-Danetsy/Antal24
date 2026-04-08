@@ -42,26 +42,50 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
 
   <!-- 3 PILARES -->
   <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div
-        class="bg-secondary-color text-white rounded-xl p-10 text-center shadow-lg hover:scale-105 transition-transform"
+        class="relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
-        <div class="text-5xl mb-4">🏢</div>
-        <h3 class="text-2xl font-bold">{t.pillars.comercializadora}</h3>
+        <img
+          src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600"
+          alt="Comercializadora"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div class="absolute inset-0 opacity-40"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <div class="text-5xl mb-4"></div>
+          <h3 class="text-2xl font-bold">{t.pillars.comercializadora}</h3>
+        </div>
       </div>
 
       <div
-        class="bg-primary-color text-white rounded-xl p-10 text-center shadow-lg hover:scale-105 transition-transform"
+        class="relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
-        <div class="text-5xl mb-4">🚚</div>
-        <h3 class="text-2xl font-bold">{t.pillars.logistica}</h3>
+        <img
+          src="https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=600"
+          alt="Logística"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div class="absolute inset-0 opacity-40"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <div class="text-5xl mb-4"></div>
+          <h3 class="text-2xl font-bold">{t.pillars.logistica}</h3>
+        </div>
       </div>
 
       <div
-        class="bg-secondary-color text-white rounded-xl p-10 text-center shadow-lg hover:scale-105 transition-transform"
+        class="relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
-        <div class="text-5xl mb-4">📋</div>
-        <h3 class="text-2xl font-bold">{t.pillars.aduanal}</h3>
+        <img
+          src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600"
+          alt="Despacho Aduanal"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div class="absolute inset-0 opacity-40"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+          <div class="text-5xl mb-4"></div>
+          <h3 class="text-2xl font-bold">{t.pillars.aduanal}</h3>
+        </div>
       </div>
     </div>
   </section>
@@ -88,15 +112,13 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                   alt={service.title}
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
                 />
-                <div class="absolute inset-0 bg-secondary-color opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                <div class="absolute inset-0 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
                 <div class="absolute inset-0 flex flex-col justify-end p-6">
                   <h3 class="text-white font-bold text-xl mb-2">
                     {service.title}
                   </h3>
                   <p class="text-white text-sm opacity-90">{service.desc}</p>
-                  <span class="text-primary-color font-bold mt-3 text-sm">
-                    LEER MÁS →
-                  </span>
+                  <span class="text-primary-color font-bold mt-3 text-sm" />
                 </div>
               </div>
             ),
@@ -123,15 +145,13 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                   alt={service.title}
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
                 />
-                <div class="absolute inset-0 bg-secondary-color opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                 <div class="absolute inset-0 flex flex-col justify-end p-6">
                   <h3 class="text-white font-bold text-xl mb-2">
                     {service.title}
                   </h3>
                   <p class="text-white text-sm opacity-90">{service.desc}</p>
-                  <span class="text-primary-color font-bold mt-3 text-sm">
-                    LEER MÁS →
-                  </span>
+                  <span class="text-primary-color font-bold mt-3 text-sm" />
                 </div>
               </div>
             ),
@@ -203,7 +223,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       <div class="news-track flex gap-6">
         {
           [1, 2, 3, 1, 2, 3].map((n) => (
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-4 transition-all duration-500 group w-[260px] md:w-[380px]">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-13 transition-all duration-500 group w-[260px] md:w-[380px]">
               <img
                 src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
                 alt="noticia"
