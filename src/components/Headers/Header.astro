@@ -45,7 +45,13 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
         href={`/${otherLang}/home`}
         class="text-white font-bold hover:text-primary-color transition-colors ml-4"
       >
-        {otherLangLabel}
+        <span class={lang === "es" ? "text-primary-color" : "text-white"}
+          >ES</span
+        >
+        <span class="text-white mx-1">|</span>
+        <span class={lang === "en" ? "text-primary-color" : "text-white"}
+          >EN</span
+        >
       </a>
       <a
         href={`/${lang}/contact`}
