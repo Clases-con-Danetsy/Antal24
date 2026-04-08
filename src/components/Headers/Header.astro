@@ -15,8 +15,7 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
       <img
         src="/src/assets/ANTAL-NEGATIVO.svg"
         alt="Antal 24"
-        class="h-50
-         w-auto"
+        class="h-50 w-auto"
       />
     </a>
 
@@ -39,8 +38,8 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
       >
     </nav>
 
-    <!-- Lang switcher + CTA -->
-    <div class="flex items-center gap-6">
+    <!-- Lang switcher + CTA desktop -->
+    <div class="hidden md:flex items-center gap-6">
       <a
         href={`/${otherLang}/home`}
         class="text-white font-bold hover:text-primary-color transition-colors ml-4"
@@ -60,5 +59,68 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
         {t.header.contact}
       </a>
     </div>
+
+    <!-- Hamburger mobile -->
+    <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu mobile -->
+  <div
+    id="mobile-menu"
+    class="hidden bg-secondary-color px-6 py-6 flex-col gap-6 border-t border-primary-color"
+  >
+    <a
+      href={`/${lang}/home`}
+      class="text-white font-bold hover:text-primary-color transition-colors text-lg"
+      >{t.header.home}</a
+    >
+    <a
+      href={`/${lang}/services`}
+      class="text-white font-bold hover:text-primary-color transition-colors text-lg"
+      >{t.header.services}</a
+    >
+    <a
+      href={`/${lang}/about`}
+      class="text-white font-bold hover:text-primary-color transition-colors text-lg"
+      >{t.header.about}</a
+    >
+    <a
+      href={`/${lang}/contact`}
+      class="text-white font-bold hover:text-primary-color transition-colors text-lg"
+      >{t.header.contact}</a
+    >
+    <a
+      href={`/${otherLang}/home`}
+      class="text-white font-bold hover:text-primary-color transition-colors text-lg"
+    >
+      <span class={lang === "es" ? "text-primary-color" : "text-white"}>ES</span
+      >
+      <span class="text-white mx-1">|</span>
+      <span class={lang === "en" ? "text-primary-color" : "text-white"}>EN</span
+      >
+    </a>
   </div>
 </header>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+    menu?.classList.toggle("flex");
+  });
+</script>
