@@ -40,6 +40,11 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
         class="text-white font-bold hover:text-primary-color transition-colors"
         >{t.header.about}</a
       >
+      <a
+        href={`/${lang}/news`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.news}</a
+      >
     </nav>
 
     <!-- Lang switcher + CTA desktop -->
@@ -112,7 +117,7 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
       <img
         src="/src/assets/ANTAL-NEGATIVO.svg"
         alt="Antal 24"
-        class="h- w-auto"
+        class="h-70 w-auto"
       />
     </div>
 
@@ -131,6 +136,11 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
       href={`/${lang}/about`}
       class="text-white font-bold hover:text-primary-color transition-colors text-2xl"
       >{t.header.about}</a
+    >
+    <a
+      href={`/${lang}/news`}
+      class="text-white font-bold hover:text-primary-color transition-colors"
+      >{t.header.news}</a
     >
     <a
       href={`/${lang}/contact`}

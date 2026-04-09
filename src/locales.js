@@ -5,6 +5,7 @@ export const translations = {
       services: "Servicios",
       about: "Nosotros",
       contact: "Contáctanos",
+      news: "Noticias",
     },
     hero: {
       title: "Get it easy, get it safe!",
@@ -41,6 +42,7 @@ export const translations = {
     },
     news: {
       title: "Noticias",
+      viewAll: "Ver todas las noticias",
     },
     contact: {
       title: "¿Tienes alguna duda?",
@@ -54,6 +56,7 @@ export const translations = {
       services: "Services",
       about: "About Us",
       contact: "Contact Us",
+      news: "News",
     },
     hero: {
       title: "Get it easy, get it safe!",
@@ -90,6 +93,7 @@ export const translations = {
     },
     news: {
       title: "News",
+      viewAll: "View all news",
     },
     contact: {
       title: "Have a question?",
