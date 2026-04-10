@@ -257,15 +257,18 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       {t.news.title}
     </h2>
     <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
-    <div class="overflow-hidden">
-      <div class="news-track flex gap-6">
+    <div class="overflow-hidden py-4">
+      <div
+        class="news-track flex gap-6"
+        style="overflow: visible; padding: 10px 0;"
+      >
         {
           [1, 2, 3, 1, 2, 3].map((n) => (
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-13 transition-all duration-500 group w-[260px] md:w-[380px]">
+            <div class="bg-white rounded-xl shadow-lg transition-all duration-500 group w-[260px] md:w-[380px] relative z-0 hover:z-10 hover:scale-110 hover:shadow-2xl hover:border-2 hover:border-primary-color">
               <img
                 src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
                 alt="noticia"
-                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-125"
+                class="w-full h-48 object-cover rounded-t-xl"
               />
               <div class="p-6">
                 <span class="text-xs text-primary-color font-bold uppercase">
@@ -287,12 +290,13 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     <div class="text-center mt-16">
       <a
         href={`/${lang}/news`}
-        class="text-secondary-color font-semibold border-2 border-secondary-color
-        px-7 py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
+        class="text-secondary-color font-semibold border-2 border-secondary-color px-7
+      py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
       >
         {t.news.viewAll}
       </a>
     </div>
   </div>
 </section>
+
 <Footer lang={lang} />
