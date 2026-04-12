@@ -44,7 +44,7 @@ const services =
                       "Importación temporal sin pago de aranceles",
                       "Ideal para eventos y exposiciones internacionales",
                   ],
-                  img: "https://images.unsplash.com/photo-1566633806827-5db022039827?w=800",
+                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
               },
               {
                   num: "04",
@@ -77,7 +77,7 @@ const services =
                       "Adecuación a NOMs de etiquetado",
                       "Asesoría en información al consumidor",
                   ],
-                  img: "https://images.unsplash.com/photo-1601584672943-7e23070b7bc1?w=800",
+                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
               },
               {
                   num: "07",
@@ -123,7 +123,7 @@ const services =
                       "Temporary import without customs duties",
                       "Ideal for international events and exhibitions",
                   ],
-                  img: "https://images.unsplash.com/photo-1566633806827-5db022039827?w=800",
+                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
               },
               {
                   num: "04",
@@ -156,7 +156,7 @@ const services =
                       "Adaptation to labeling NOMs",
                       "Consumer information advisory",
                   ],
-                  img: "https://images.unsplash.com/photo-1601584672943-7e23070b7bc1?w=800",
+                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
               },
               {
                   num: "07",
@@ -216,7 +216,7 @@ const logistics =
                       "Gestión de carga aérea",
                       "Coordinación con aerolíneas",
                   ],
-                  img: "https://images.unsplash.com/photo-1566633806827-5db022039827?w=800",
+                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
               },
           ]
         : [
@@ -262,7 +262,7 @@ const logistics =
                       "Air cargo management",
                       "Airline coordination",
                   ],
-                  img: "https://images.unsplash.com/photo-1566633806827-5db022039827?w=800",
+                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
               },
           ];
 ---
@@ -271,32 +271,16 @@ const logistics =
     <Header lang={lang} />
 
     <!-- HERO -->
-    <section
-        class="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center bg-secondary-color overflow-hidden"
-    >
+    <section class="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center bg-secondary-color overflow-hidden">
         <div class="absolute inset-0">
-            <img
-                src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600"
-                alt="servicios"
-                class="w-full h-full object-cover opacity-30"
-            />
+            <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600" alt="servicios" class="w-full h-full object-cover opacity-30" />
         </div>
         <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
-            <h1
-                class="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight"
-                style="font-family: 'Trebuchet MS', sans-serif;"
-            >
-                {lang === "es" ? "Nuestros " : "Our "}<span
-                    style="color: #39a08b;"
-                    >{lang === "es" ? "Servicios" : "Services"}</span
-                >
+            <h1 class="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight" style="font-family: 'Trebuchet MS', sans-serif;">
+                {lang === "es" ? "Nuestros " : "Our "}<span style="color: #39a08b;">{lang === "es" ? "Servicios" : "Services"}</span>
             </h1>
             <p class="text-xl text-white opacity-90">
-                {
-                    lang === "es"
-                        ? "Soluciones integrales para tu comercio exterior y logística"
-                        : "Comprehensive solutions for your foreign trade and logistics"
-                }
+                {lang === "es" ? "Soluciones integrales para tu comercio exterior y logística" : "Comprehensive solutions for your foreign trade and logistics"}
             </p>
         </div>
     </section>
@@ -304,53 +288,34 @@ const logistics =
     <!-- SERVICIOS QUE OFRECEMOS -->
     <section class="py-20 bg-gray-100">
         <div class="max-w-5xl mx-auto px-6">
-            <h2
-                class="text-4xl font-bold text-secondary-color text-center mb-4"
-            >
-                {
-                    lang === "es"
-                        ? "Servicios que ofrecemos"
-                        : "Services we offer"
-                }
+            <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
+                {lang === "es" ? "Servicios que ofrecemos" : "Services we offer"}
             </h2>
             <div class="w-24 h-1 bg-primary-color mx-auto mb-16"></div>
             <div class="flex flex-col gap-16">
-                {
-                    services.map((service, i) => (
-                        <div
-                            class={`flex flex-col md:flex-row gap-10 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
-                        >
-                            <div class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
-                                <img
-                                    src={service.img}
-                                    alt={service.title}
-                                    class="w-full h-64 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
-                                />
-                            </div>
-                            <div class="w-full md:w-3/5">
-                                <span class="text-primary-color text-xs font-bold uppercase tracking-widest">
-                                    {lang === "es" ? "Servicio" : "Service"}{" "}
-                                    {service.num}
-                                </span>
-                                <h3 class="text-secondary-color font-bold text-2xl mt-2 mb-3">
-                                    {service.title}
-                                </h3>
-                                <div class="w-10 h-0.5 bg-primary-color mb-4" />
-                                <p class="text-gray-500 text-sm leading-relaxed mb-4">
-                                    {service.desc}
-                                </p>
-                                <ul class="flex flex-col gap-2">
-                                    {service.items.map((item) => (
-                                        <li class="flex items-center gap-2 text-sm text-gray-600">
-                                            <div class="w-2 h-2 rounded-full bg-primary-color flex-shrink-0" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                {services.map((service, i) => (
+                    <div class={`flex flex-col md:flex-row gap-10 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}>
+                        <div class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
+                            <img src={service.img} alt={service.title} class="w-full h-64 object-cover scale-110 group-hover:scale-100 transition-transform duration-500" />
                         </div>
-                    ))
-                }
+                        <div class="w-full md:w-3/5">
+                            <span class="text-primary-color text-xs font-bold uppercase tracking-widest">
+                                {lang === "es" ? "Servicio" : "Service"} {service.num}
+                            </span>
+                            <h3 class="text-secondary-color font-bold text-2xl mt-2 mb-3">{service.title}</h3>
+                            <div class="w-10 h-0.5 bg-primary-color mb-4" />
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">{service.desc}</p>
+                            <ul class="flex flex-col gap-2">
+                                {service.items.map((item) => (
+                                    <li class="flex items-center gap-2 text-sm text-gray-600">
+                                        <div class="w-2 h-2 rounded-full bg-primary-color flex-shrink-0" />
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     </section>
@@ -358,49 +323,34 @@ const logistics =
     <!-- SERVICIOS LOGÍSTICOS -->
     <section class="py-20" style="background-color: #f8f9fa;">
         <div class="max-w-5xl mx-auto px-6">
-            <h2
-                class="text-4xl font-bold text-secondary-color text-center mb-4"
-            >
+            <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
                 {lang === "es" ? "Servicios Logísticos" : "Logistics Services"}
             </h2>
             <div class="w-24 h-1 bg-primary-color mx-auto mb-16"></div>
             <div class="flex flex-col gap-16">
-                {
-                    logistics.map((service, i) => (
-                        <div
-                            class={`flex flex-col md:flex-row gap-10 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
-                        >
-                            <div class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
-                                <img
-                                    src={service.img}
-                                    alt={service.title}
-                                    class="w-full h-64 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
-                                />
-                            </div>
-                            <div class="w-full md:w-3/5">
-                                <span class="text-primary-color text-xs font-bold uppercase tracking-widest">
-                                    {lang === "es" ? "Logística" : "Logistics"}{" "}
-                                    {service.num}
-                                </span>
-                                <h3 class="text-secondary-color font-bold text-2xl mt-2 mb-3">
-                                    {service.title}
-                                </h3>
-                                <div class="w-10 h-0.5 bg-primary-color mb-4" />
-                                <p class="text-gray-500 text-sm leading-relaxed mb-4">
-                                    {service.desc}
-                                </p>
-                                <ul class="flex flex-col gap-2">
-                                    {service.items.map((item) => (
-                                        <li class="flex items-center gap-2 text-sm text-gray-600">
-                                            <div class="w-2 h-2 rounded-full bg-primary-color flex-shrink-0" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                {logistics.map((service, i) => (
+                    <div class={`flex flex-col md:flex-row gap-10 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}>
+                        <div class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
+                            <img src={service.img} alt={service.title} class="w-full h-64 object-cover scale-110 group-hover:scale-100 transition-transform duration-500" />
                         </div>
-                    ))
-                }
+                        <div class="w-full md:w-3/5">
+                            <span class="text-primary-color text-xs font-bold uppercase tracking-widest">
+                                {lang === "es" ? "Logística" : "Logistics"} {service.num}
+                            </span>
+                            <h3 class="text-secondary-color font-bold text-2xl mt-2 mb-3">{service.title}</h3>
+                            <div class="w-10 h-0.5 bg-primary-color mb-4" />
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">{service.desc}</p>
+                            <ul class="flex flex-col gap-2">
+                                {service.items.map((item) => (
+                                    <li class="flex items-center gap-2 text-sm text-gray-600">
+                                        <div class="w-2 h-2 rounded-full bg-primary-color flex-shrink-0" />
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     </section>
