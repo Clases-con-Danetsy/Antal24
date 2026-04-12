@@ -14,12 +14,12 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
     <!-- Logo que sobresale -->
     <a
       href={`/${lang}/home`}
-      class="relative z-10 bg-white rounded-b-2xl px-4 pb-3 pt-2 shadow-md mt-4 md:mt-16 ml-0 md:ml-40"
+      class="relative z-10 bg-white rounded-b-2xl px-4 pb-2 md:pb-16 pt-2 md:pt-6 shadow-md mt-4 md:mt-36 ml-0 md:ml-40"
     >
       <img
-        src="/src/assets/ANTAL-NEGATIVO.svg"
+        src="/src/assets/Antal-Colores.svg"
         alt="Antal 24"
-        class="h-30 md:h-56 w-auto"
+        class="h-20 md:h-40 w-auto"
       />
     </a>
 
@@ -115,9 +115,9 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
     <!-- Logo -->
     <div class="mb-10">
       <img
-        src="/src/assets/ANTAL-NEGATIVO.svg"
+        src="/src/assets/Antal-Blanco.svg"
         alt="Antal 24"
-        class="h-70 w-auto"
+        class="h-40 w-auto"
       />
     </div>
 
@@ -190,9 +190,9 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
   window.addEventListener("scroll", () => {
     if (window.innerWidth >= 768) {
       if (window.scrollY > 100) {
-        header?.classList.add("-translate-y-full");
+        header?.classList.add("-translate-y-[250%]");
       } else {
-        header?.classList.remove("-translate-y-full");
+        header?.classList.remove("-translate-y-[250%]");
       }
     }
   });
