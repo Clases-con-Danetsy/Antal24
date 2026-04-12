@@ -2,10 +2,194 @@
 import { translations } from "../../locales.js";
 const lang = Astro.props?.lang ?? "es";
 const t = translations[lang as keyof typeof translations] ?? translations["es"];
+const otherLang = lang === "es" ? "en" : "es";
+const otherLangLabel = lang === "es" ? "EN" : "ES";
 ---
 
-<header>
-  <div class="bg-blue-500 md:bg-green-500 lg:bg-red-500 xl:bg-amber-500">
-    {t.header.title}
+<header
+  id="main-header"
+  class="fixed top-0 left-0 w-full z-50 bg-transparent shadow-none transition-transform duration-300"
+>
+  <div class="w-full px-6 flex items-center justify-between h-20">
+    <!-- Logo que sobresale -->
+    <a
+      href={`/${lang}/home`}
+      class="relative z-10 bg-white rounded-b-2xl px-4 pb-2 md:pb-16 pt-2 md:pt-6 shadow-md mt-4 md:mt-36 ml-0 md:ml-40"
+    >
+      <img
+        src="/logos/Antal-Colores.svg"
+        alt="Antal 24"
+        class="h-20 md:h-40 w-auto"
+      />
+    </a>
+
+    <!-- Nav centrado -->
+    <nav class="hidden md:flex items-center gap-8 ml-auto">
+      <a
+        href={`/${lang}/home`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.home}</a
+      >
+      <a
+        href={`/${lang}/services`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.services}</a
+      >
+      <a
+        href={`/${lang}/about`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.about}</a
+      >
+      <a
+        href={`/${lang}/news`}
+        class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.news}</a
+      >
+    </nav>
+
+    <!-- Lang switcher + CTA desktop -->
+    <div class="hidden md:flex items-center gap-6">
+      <a
+        href={`/${otherLang}/home`}
+        class="text-white font-bold hover:text-primary-color transition-colors ml-4"
+      >
+        <span class={lang === "es" ? "text-primary-color" : "text-white"}
+          >ES</span
+        >
+        <span class="text-white mx-1">|</span>
+        <span class={lang === "en" ? "text-primary-color" : "text-white"}
+          >EN</span
+        >
+      </a>
+      <a
+        href={`/${lang}/contact`}
+        class="bg-primary-color text-white px-5 py-2 rounded font-bold hover:opacity-90 transition-opacity"
+      >
+        {t.header.contact}
+      </a>
+    </div>
+
+    <!-- Hamburger mobile -->
+    <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu mobile -->
+  <div
+    id="mobile-menu"
+    class="hidden bg-secondary-color flex-col fixed inset-0 top-0 z-40 items-center justify-center"
+  >
+    <!-- Botón cerrar -->
+    <button
+      id="close-btn"
+      class="absolute top-6 right-6 text-white focus:outline-none"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Logo -->
+    <div class="mb-10">
+      <img src="/logos/Antal-Blanco.svg" alt="Antal 24" class="h-40 w-auto" />
+    </div>
+
+    <!-- Links -->
+    <a
+      href={`/${lang}/home`}
+      class="text-white font-bold hover:text-primary-color transition-colors text-2xl"
+      >{t.header.home}</a
+    >
+    <a
+      href={`/${lang}/services`}
+      class="text-white font-bold hover:text-primary-color transition-colors text-2xl"
+      >{t.header.services}</a
+    >
+    <a
+      href={`/${lang}/about`}
+      class="text-white font-bold hover:text-primary-color transition-colors text-2xl"
+      >{t.header.about}</a
+    >
+    <a
+      href={`/${lang}/news`}
+      class="text-white font-bold hover:text-primary-color transition-colors"
+      >{t.header.news}</a
+    >
+    <a
+      href={`/${lang}/contact`}
+      class="text-white font-bold hover:text-primary-color transition-colors text-2xl"
+      >{t.header.contact}</a
+    >
+
+    <!-- Lang switcher -->
+    <div class="mt-6">
+      <a href={`/${otherLang}/home`} class="text-white font-bold text-xl">
+        <span class={lang === "es" ? "text-primary-color" : "text-white"}
+          >ES</span
+        >
+        <span class="text-white mx-1">|</span>
+        <span class={lang === "en" ? "text-primary-color" : "text-white"}
+          >EN</span
+        >
+      </a>
+    </div>
+
+    <!-- Línea decorativa -->
+    <div class="absolute bottom-10 w-16 h-1 bg-primary-color rounded-full">
+    </div>
   </div>
 </header>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const closeBtn = document.getElementById("close-btn");
+  const menu = document.getElementById("mobile-menu");
+
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+    menu?.classList.toggle("flex");
+    const logo = document.querySelector("#main-header a");
+    logo?.classList.toggle("invisible");
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    menu?.classList.add("hidden");
+    menu?.classList.remove("flex");
+    const logo = document.querySelector("#main-header a");
+    logo?.classList.remove("invisible");
+  });
+
+  const header = document.getElementById("main-header");
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth >= 768) {
+      if (window.scrollY > 100) {
+        header?.classList.add("-translate-y-[250%]");
+      } else {
+        header?.classList.remove("-translate-y-[250%]");
+      }
+    }
+  });
+</script>

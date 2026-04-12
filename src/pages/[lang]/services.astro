@@ -1,0 +1,359 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Headers/Header.astro";
+import Footer from "../../components/Footer.astro";
+export const prerender = true;
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+const lang = Astro.params.lang || "es";
+import { translations } from "../../locales.js";
+const t = translations[lang as keyof typeof translations] ?? translations["es"];
+
+const services =
+    lang === "es"
+        ? [
+              {
+                  num: "01",
+                  title: "Importaciones y Exportaciones",
+                  desc: "Gestionamos el tránsito de mercancía nacional e internacional, asegurando que tus productos lleguen a su destino de forma segura y eficiente cumpliendo todas las normativas vigentes.",
+                  items: [
+                      "Importación y exportación de todo tipo de mercancía",
+                      "Tránsito internacional de productos",
+                      "Cumplimiento de normativas aduaneras",
+                  ],
+                  img: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800",
+              },
+              {
+                  num: "02",
+                  title: "Asesoría Legal Aduanal",
+                  desc: "Contamos con especialistas en materia aduanal que te guiarán en cada paso del proceso de despacho, garantizando el cumplimiento legal en todo momento.",
+                  items: [
+                      "Asesoría personalizada en despacho aduanal",
+                      "Gestión de documentación legal",
+                      "Cumplimiento de regulaciones fiscales",
+                  ],
+                  img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800",
+              },
+              {
+                  num: "03",
+                  title: "Cuaderno ATA",
+                  desc: "Gestionamos carnés ATA para la importación temporal de mercancía, facilitando la participación en ferias, exposiciones y eventos internacionales sin pago de aranceles.",
+                  items: [
+                      "Gestión completa del carné ATA",
+                      "Importación temporal sin pago de aranceles",
+                      "Ideal para eventos y exposiciones internacionales",
+                  ],
+                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
+              },
+              {
+                  num: "04",
+                  title: "Trámites ante BANJERCITO",
+                  desc: "Realizamos todos los trámites necesarios ante BANJERCITO para la importación temporal de vehículos y mercancías, asegurando el cumplimiento de los requisitos legales.",
+                  items: [
+                      "Gestión de permisos de importación temporal",
+                      "Trámites de vehículos extranjeros",
+                      "Asesoría en requisitos BANJERCITO",
+                  ],
+                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+              },
+              {
+                  num: "05",
+                  title: "Certificaciones de NOMs de Seguridad",
+                  desc: "Gestionamos las certificaciones de Normas Oficiales Mexicanas de seguridad requeridas para la importación de productos, garantizando el cumplimiento normativo.",
+                  items: [
+                      "Certificación de productos de importación",
+                      "Gestión ante organismos certificadores",
+                      "Cumplimiento de NOMs de seguridad",
+                  ],
+                  img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800",
+              },
+              {
+                  num: "06",
+                  title: "Cumplimiento de NOMs de Etiquetado",
+                  desc: "Asesoramos y gestionamos el cumplimiento de las Normas Oficiales Mexicanas de etiquetado, asegurando que tus productos cumplan con los requisitos de información al consumidor.",
+                  items: [
+                      "Revisión de etiquetado de productos",
+                      "Adecuación a NOMs de etiquetado",
+                      "Asesoría en información al consumidor",
+                  ],
+                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+              },
+              {
+                  num: "07",
+                  title: "Padrón Sectorial Textil, Calzado y Siderúrgico",
+                  desc: "Gestionamos la inscripción y renovación en el Padrón Sectorial de los sectores Textil, Calzado y Siderúrgico, requisito indispensable para importar productos de estos sectores.",
+                  items: [
+                      "Inscripción al Padrón Sectorial",
+                      "Renovación de registros",
+                      "Asesoría en requisitos sectoriales",
+                  ],
+                  img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800",
+              },
+          ]
+        : [
+              {
+                  num: "01",
+                  title: "Imports & Exports",
+                  desc: "We manage national and international merchandise transit, ensuring your products reach their destination safely and efficiently while complying with all current regulations.",
+                  items: [
+                      "Import and export of all types of merchandise",
+                      "International product transit",
+                      "Compliance with customs regulations",
+                  ],
+                  img: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800",
+              },
+              {
+                  num: "02",
+                  title: "Legal Customs Advisory",
+                  desc: "We have customs specialists who will guide you through each step of the clearance process, ensuring legal compliance at all times.",
+                  items: [
+                      "Personalized customs clearance advisory",
+                      "Legal documentation management",
+                      "Tax regulation compliance",
+                  ],
+                  img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800",
+              },
+              {
+                  num: "03",
+                  title: "ATA Carnet",
+                  desc: "We manage ATA carnets for the temporary import of merchandise, facilitating participation in fairs, exhibitions and international events without paying customs duties.",
+                  items: [
+                      "Complete ATA carnet management",
+                      "Temporary import without customs duties",
+                      "Ideal for international events and exhibitions",
+                  ],
+                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
+              },
+              {
+                  num: "04",
+                  title: "BANJERCITO Procedures",
+                  desc: "We carry out all necessary procedures before BANJERCITO for the temporary import of vehicles and merchandise, ensuring compliance with legal requirements.",
+                  items: [
+                      "Temporary import permit management",
+                      "Foreign vehicle procedures",
+                      "BANJERCITO requirements advisory",
+                  ],
+                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+              },
+              {
+                  num: "05",
+                  title: "Safety NOM Certifications",
+                  desc: "We manage the certifications of Mexican Official Standards required for the import of products, guaranteeing regulatory compliance.",
+                  items: [
+                      "Import product certification",
+                      "Management before certifying bodies",
+                      "Safety NOM compliance",
+                  ],
+                  img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800",
+              },
+              {
+                  num: "06",
+                  title: "Labeling NOM Compliance",
+                  desc: "We advise and manage compliance with Mexican Official Labeling Standards, ensuring your products meet consumer information requirements.",
+                  items: [
+                      "Product labeling review",
+                      "Adaptation to labeling NOMs",
+                      "Consumer information advisory",
+                  ],
+                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+              },
+              {
+                  num: "07",
+                  title: "Textile, Footwear and Steel Sectoral Registry",
+                  desc: "We manage registration and renewal in the Sectoral Registry for the Textile, Footwear and Steel sectors, an essential requirement for importing products in these sectors.",
+                  items: [
+                      "Sectoral Registry registration",
+                      "Record renewal",
+                      "Sector requirements advisory",
+                  ],
+                  img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800",
+              },
+          ];
+
+const logistics =
+    lang === "es"
+        ? [
+              {
+                  num: "01",
+                  title: "Sistema Logístico de Fletes Terrestres",
+                  desc: "Contamos con un sistema logístico de fletes terrestres con cobertura nacional, garantizando tiempos de entrega óptimos y seguridad en el traslado de tu mercancía.",
+                  items: [
+                      "Cobertura nacional",
+                      "Rastreo en tiempo real",
+                      "Seguro de carga incluido",
+                  ],
+                  img: "https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=800",
+              },
+              {
+                  num: "02",
+                  title: "Sistema Logístico Internacional",
+                  desc: "Ofrecemos soluciones logísticas internacionales integrales, conectando tu negocio con mercados de todo el mundo de manera eficiente y segura.",
+                  items: [
+                      "Conexión con mercados globales",
+                      "Coordinación multimodal",
+                      "Seguimiento de embarques",
+                  ],
+                  img: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800",
+              },
+              {
+                  num: "03",
+                  title: "Gestoría Marítima",
+                  desc: "Gestionamos y coordinamos todos los envíos marítimos, desde la contratación del flete hasta la entrega final, asegurando el cumplimiento de los plazos establecidos.",
+                  items: [
+                      "Coordinación de envíos marítimos",
+                      "Gestión de documentación",
+                      "Seguimiento de embarques",
+                  ],
+                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+              },
+              {
+                  num: "04",
+                  title: "Gestoría Aérea",
+                  desc: "Coordinamos envíos aéreos para mercancía urgente o de alto valor, garantizando rapidez y seguridad en cada envío con los mejores precios del mercado.",
+                  items: [
+                      "Envíos aéreos express",
+                      "Gestión de carga aérea",
+                      "Coordinación con aerolíneas",
+                  ],
+                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
+              },
+          ]
+        : [
+              {
+                  num: "01",
+                  title: "Land Freight Logistics System",
+                  desc: "We have a national land freight logistics system, guaranteeing optimal delivery times and safety in the transportation of your merchandise.",
+                  items: [
+                      "National coverage",
+                      "Real-time tracking",
+                      "Cargo insurance included",
+                  ],
+                  img: "https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=800",
+              },
+              {
+                  num: "02",
+                  title: "International Logistics System",
+                  desc: "We offer comprehensive international logistics solutions, connecting your business with markets around the world efficiently and safely.",
+                  items: [
+                      "Connection with global markets",
+                      "Multimodal coordination",
+                      "Shipment tracking",
+                  ],
+                  img: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800",
+              },
+              {
+                  num: "03",
+                  title: "Maritime Agency",
+                  desc: "We manage and coordinate all maritime shipments, from freight contracting to final delivery, ensuring compliance with established deadlines.",
+                  items: [
+                      "Maritime shipment coordination",
+                      "Documentation management",
+                      "Shipment tracking",
+                  ],
+                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+              },
+              {
+                  num: "04",
+                  title: "Air Agency",
+                  desc: "We coordinate air shipments for urgent or high-value merchandise, guaranteeing speed and safety in each shipment at the best market prices.",
+                  items: [
+                      "Express air shipments",
+                      "Air cargo management",
+                      "Airline coordination",
+                  ],
+                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
+              },
+          ];
+---
+
+<Layout lang={lang}>
+    <Header lang={lang} />
+
+    <!-- HERO -->
+    <section class="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center bg-secondary-color overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600" alt="servicios" class="w-full h-full object-cover opacity-30" />
+        </div>
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
+            <h1 class="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight" style="font-family: 'Trebuchet MS', sans-serif;">
+                {lang === "es" ? "Nuestros " : "Our "}<span style="color: #39a08b;">{lang === "es" ? "Servicios" : "Services"}</span>
+            </h1>
+            <p class="text-xl text-white opacity-90">
+                {lang === "es" ? "Soluciones integrales para tu comercio exterior y logística" : "Comprehensive solutions for your foreign trade and logistics"}
+            </p>
+        </div>
+    </section>
+
+    <!-- SERVICIOS QUE OFRECEMOS -->
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
+                {lang === "es" ? "Servicios que ofrecemos" : "Services we offer"}
+            </h2>
+            <div class="w-24 h-1 bg-primary-color mx-auto mb-16"></div>
+            <div class="flex flex-col gap-16">
+                {services.map((service, i) => (
+                    <div class={`flex flex-col md:flex-row gap-10 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}>
+                        <div class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
+                            <img src={service.img} alt={service.title} class="w-full h-64 object-cover scale-110 group-hover:scale-100 transition-transform duration-500" />
+                        </div>
+                        <div class="w-full md:w-3/5">
+                            <span class="text-primary-color text-xs font-bold uppercase tracking-widest">
+                                {lang === "es" ? "Servicio" : "Service"} {service.num}
+                            </span>
+                            <h3 class="text-secondary-color font-bold text-2xl mt-2 mb-3">{service.title}</h3>
+                            <div class="w-10 h-0.5 bg-primary-color mb-4" />
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">{service.desc}</p>
+                            <ul class="flex flex-col gap-2">
+                                {service.items.map((item) => (
+                                    <li class="flex items-center gap-2 text-sm text-gray-600">
+                                        <div class="w-2 h-2 rounded-full bg-primary-color flex-shrink-0" />
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS LOGÍSTICOS -->
+    <section class="py-20" style="background-color: #f8f9fa;">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
+                {lang === "es" ? "Servicios Logísticos" : "Logistics Services"}
+            </h2>
+            <div class="w-24 h-1 bg-primary-color mx-auto mb-16"></div>
+            <div class="flex flex-col gap-16">
+                {logistics.map((service, i) => (
+                    <div class={`flex flex-col md:flex-row gap-10 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}>
+                        <div class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
+                            <img src={service.img} alt={service.title} class="w-full h-64 object-cover scale-110 group-hover:scale-100 transition-transform duration-500" />
+                        </div>
+                        <div class="w-full md:w-3/5">
+                            <span class="text-primary-color text-xs font-bold uppercase tracking-widest">
+                                {lang === "es" ? "Logística" : "Logistics"} {service.num}
+                            </span>
+                            <h3 class="text-secondary-color font-bold text-2xl mt-2 mb-3">{service.title}</h3>
+                            <div class="w-10 h-0.5 bg-primary-color mb-4" />
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">{service.desc}</p>
+                            <ul class="flex flex-col gap-2">
+                                {service.items.map((item) => (
+                                    <li class="flex items-center gap-2 text-sm text-gray-600">
+                                        <div class="w-2 h-2 rounded-full bg-primary-color flex-shrink-0" />
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <Footer lang={lang} />
+</Layout>
