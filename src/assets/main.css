@@ -2,14 +2,19 @@
 
 /* Variables globales */
 :root {
-    --primary-color: #006ab7;
-    --secondary-color: #54c0e8;
+    --primary-color: #39a08b;
+    /* rgba(57, 160, 139) */
+    --secondary-color: #062d76;
+    /* rgba(6, 45, 118) */
+    --tertiary-color: #adacb1;
+    /* rgba(173, 172, 177) */
 }
 
 /* Tokens de Tailwind v4 */
 @theme {
     --color-primary-color: var(--primary-color);
     --color-secondary-color: var(--secondary-color);
+    --color-tertiary-color: var(--tertiary-color);
     --color-test: red;
 
     /* Fonts (equivalente a fontFamily) */

@@ -1,0 +1,43 @@
+/* ===========================
+   CARRUSEL - SERVICIOS
+=========================== */
+.carousel-track {
+    animation: scroll 20s linear infinite;
+    width: max-content;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ===========================
+   CARRUSEL - NOTICIAS
+=========================== */
+.news-track {
+    animation: scrollNews 20s linear infinite;
+    width: max-content;
+}
+
+.news-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollNews {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
