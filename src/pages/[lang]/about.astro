@@ -1,0 +1,401 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Headers/Header.astro";
+import Footer from "../../components/Footer.astro";
+export const prerender = true;
+export function getStaticPaths() {
+    return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+const lang = Astro.params.lang || "es";
+import { translations } from "../../locales.js";
+const t = translations[lang as keyof typeof translations] ?? translations["es"];
+
+const valores =
+    lang === "es"
+        ? [
+              "Transparencia",
+              "Responsabilidad",
+              "Trabajo en equipo",
+              "Pasión",
+              "Claridad",
+              "Honestidad",
+              "Respeto",
+              "Confiabilidad",
+          ]
+        : [
+              "Transparency",
+              "Responsibility",
+              "Teamwork",
+              "Passion",
+              "Clarity",
+              "Honesty",
+              "Respect",
+              "Reliability",
+          ];
+---
+
+<Layout lang={lang}>
+    <Header lang={lang} />
+
+    <!-- HERO -->
+    <section
+        class="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center bg-secondary-color overflow-hidden"
+    >
+        <div class="absolute inset-0">
+            <img
+                src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1600"
+                alt="nosotros"
+                class="w-full h-full object-cover opacity-20"
+            />
+        </div>
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
+            <h1
+                class="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight"
+                style="font-family: 'Trebuchet MS', sans-serif;"
+            >
+                {lang === "es" ? "Sobre " : "About "}<span
+                    style="color: #39a08b;"
+                    >{lang === "es" ? "Nosotros" : "Us"}</span
+                >
+            </h1>
+            <p class="text-xl text-white opacity-90">
+                {
+                    lang === "es"
+                        ? "Especialistas en comercio exterior y logística"
+                        : "Specialists in foreign trade and logistics"
+                }
+            </p>
+        </div>
+    </section>
+
+    <!-- QUIENES SOMOS -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div
+                    class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group"
+                >
+                    <img
+                        src="https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=600"
+                        alt="Quiénes somos"
+                        class="w-full h-72 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
+                    />
+                </div>
+                <div class="w-full md:w-3/5">
+                    <span
+                        class="text-primary-color text-xs font-bold uppercase tracking-widest"
+                    >
+                        {lang === "es" ? "¿Quiénes somos?" : "Who we are"}
+                    </span>
+                    <h2
+                        class="text-secondary-color font-bold text-3xl mt-2 mb-4"
+                    >
+                        {
+                            lang === "es"
+                                ? "Somos expertos en comercio exterior"
+                                : "We are foreign trade experts"
+                        }
+                    </h2>
+                    <div class="w-10 h-0.5 bg-primary-color mb-6"></div>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        {
+                            lang === "es"
+                                ? "Somos una empresa conformada por especialistas en materia de comercio exterior y logística, quienes en conjunto, te asesoraremos en tus trámites y procesos de importación, exportación y traslado de tu mercancía."
+                                : "We are a company made up of specialists in foreign trade and logistics, who together will advise you on your procedures and processes of importation, exportation and transportation of your merchandise."
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISION Y VISION -->
+    <section class="py-20" style="background-color: #f8f9fa;">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col gap-10">
+            <div
+                class="flex flex-col md:flex-row rounded-xl overflow-hidden shadow-lg"
+            >
+                <div class="w-2 bg-primary-color flex-shrink-0"></div>
+                <div class="flex-1 p-10 bg-white">
+                    <span
+                        class="text-primary-color text-xs font-bold uppercase tracking-widest"
+                        >{lang === "es" ? "Nuestra" : "Our"}</span
+                    >
+                    <h3
+                        class="text-secondary-color font-bold text-2xl mt-2 mb-4"
+                    >
+                        {lang === "es" ? "Misión" : "Mission"}
+                    </h3>
+                    <div class="w-10 h-0.5 bg-primary-color mb-4"></div>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        {
+                            lang === "es"
+                                ? "Nuestra misión es impulsar el crecimiento económico de nuestros aliados mediante estrategias ágiles, sostenibles y rentables. Simplificando los procesos de importación y exportación mediante soluciones logísticas personalizadas."
+                                : "Our mission is to drive the economic growth of our allies through agile, sustainable and profitable strategies. Simplifying import and export processes through personalized logistics solutions."
+                        }
+                    </p>
+                </div>
+                <img
+                    src="https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=400"
+                    class="w-full md:w-72 h-48 md:h-auto object-cover"
+                    alt="Misión"
+                />
+            </div>
+
+            <div
+                class="flex flex-col md:flex-row-reverse rounded-xl overflow-hidden shadow-lg"
+            >
+                <div class="w-2 bg-secondary-color flex-shrink-0"></div>
+                <div class="flex-1 p-10 bg-white">
+                    <span
+                        class="text-secondary-color text-xs font-bold uppercase tracking-widest"
+                        >{lang === "es" ? "Nuestra" : "Our"}</span
+                    >
+                    <h3
+                        class="text-secondary-color font-bold text-2xl mt-2 mb-4"
+                    >
+                        {lang === "es" ? "Visión" : "Vision"}
+                    </h3>
+                    <div class="w-10 h-0.5 bg-secondary-color mb-4"></div>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        {
+                            lang === "es"
+                                ? "Ser referentes nacionales en la importación, exportación y tránsito de productos diversos, distinguidos por nuestra capacidad de adaptación a mercados emergentes y por liderar una red de suministros mediante estrategias que sean eficientes, éticas y sin límites geográficos."
+                                : "To be national references in the importation, exportation and transit of diverse products, distinguished by our capacity to adapt to emerging markets and to lead a supply network through efficient, ethical and geographically unlimited strategies."
+                        }
+                    </p>
+                </div>
+                <img
+                    src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=400"
+                    class="w-full md:w-72 h-48 md:h-auto object-cover"
+                    alt="Visión"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORES -->
+    <section class="py-20" style="background-color: #f8f9fa;">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2
+                class="text-4xl font-bold text-secondary-color text-center mb-4"
+            >
+                {lang === "es" ? "Nuestros Valores" : "Our Values"}
+            </h2>
+            <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
+            <div
+                style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem;"
+            >
+                <div class="text-center">
+                    <div
+                        style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
+                    >
+                        <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#39a08b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path
+                                d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                            ></path><circle cx="12" cy="12" r="3"></circle></svg
+                        >
+                    </div>
+                    <p
+                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                    >
+                        {lang === "es" ? "Transparencia" : "Transparency"}
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
+                    >
+                        <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#39a08b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path
+                                d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                            ></path></svg
+                        >
+                    </div>
+                    <p
+                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                    >
+                        {lang === "es" ? "Responsabilidad" : "Responsibility"}
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
+                    >
+                        <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#39a08b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                            ></path><circle cx="9" cy="7" r="4"></circle><path
+                                d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path
+                                d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
+                        >
+                    </div>
+                    <p
+                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                    >
+                        {lang === "es" ? "Trabajo en equipo" : "Teamwork"}
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
+                    >
+                        <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#39a08b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                            ></path></svg
+                        >
+                    </div>
+                    <p
+                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                    >
+                        {lang === "es" ? "Pasión" : "Passion"}
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
+                    >
+                        <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#39a08b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><circle cx="12" cy="12" r="10"></circle><line
+                                x1="12"
+                                y1="8"
+                                x2="12"
+                                y2="12"></line><line
+                                x1="12"
+                                y1="16"
+                                x2="12.01"
+                                y2="16"></line></svg
+                        >
+                    </div>
+                    <p
+                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                    >
+                        {lang === "es" ? "Claridad" : "Clarity"}
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
+                    >
+                        <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#39a08b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><polyline points="20 6 9 17 4 12"></polyline></svg
+                        >
+                    </div>
+                    <p
+                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                    >
+                        {lang === "es" ? "Honestidad" : "Honesty"}
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
+                    >
+                        <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#39a08b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path
+                                d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"
+                            ></path><line x1="6" y1="1" x2="6" y2="4"
+                            ></line><line x1="10" y1="1" x2="10" y2="4"
+                            ></line><line x1="14" y1="1" x2="14" y2="4"
+                            ></line></svg
+                        >
+                    </div>
+                    <p
+                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                    >
+                        {lang === "es" ? "Respeto" : "Respect"}
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
+                    >
+                        <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#39a08b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"
+                            ></path><polyline points="22 4 12 14.01 9 11.01"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <p
+                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                    >
+                        {lang === "es" ? "Confiabilidad" : "Reliability"}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <Footer lang={lang} />
+</Layout>
