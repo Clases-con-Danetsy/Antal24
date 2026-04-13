@@ -9,29 +9,6 @@ export function getStaticPaths() {
 const lang = Astro.params.lang || "es";
 import { translations } from "../../locales.js";
 const t = translations[lang as keyof typeof translations] ?? translations["es"];
-
-const valores =
-    lang === "es"
-        ? [
-              "Transparencia",
-              "Responsabilidad",
-              "Trabajo en equipo",
-              "Pasión",
-              "Claridad",
-              "Honestidad",
-              "Respeto",
-              "Confiabilidad",
-          ]
-        : [
-              "Transparency",
-              "Responsibility",
-              "Teamwork",
-              "Passion",
-              "Clarity",
-              "Honesty",
-              "Respect",
-              "Reliability",
-          ];
 ---
 
 <Layout lang={lang}>
@@ -58,7 +35,7 @@ const valores =
                     >{lang === "es" ? "Nosotros" : "Us"}</span
                 >
             </h1>
-            <p class="text-xl text-white opacity-90">
+            <p class="text-lg md:text-xl text-white opacity-90">
                 {
                     lang === "es"
                         ? "Especialistas en comercio exterior y logística"
@@ -69,26 +46,26 @@ const valores =
     </section>
 
     <!-- QUIENES SOMOS -->
-    <section class="py-20 bg-white">
+    <section class="py-16 md:py-20 bg-white">
         <div class="max-w-5xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="flex flex-col md:flex-row gap-10 items-center">
                 <div
                     class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group"
                 >
                     <img
                         src="https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=600"
                         alt="Quiénes somos"
-                        class="w-full h-72 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
+                        class="w-full h-64 md:h-72 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
                     />
                 </div>
-                <div class="w-full md:w-3/5">
+                <div class="w-full md:w-3/5 text-center md:text-left">
                     <span
                         class="text-primary-color text-xs font-bold uppercase tracking-widest"
                     >
                         {lang === "es" ? "¿Quiénes somos?" : "Who we are"}
                     </span>
                     <h2
-                        class="text-secondary-color font-bold text-3xl mt-2 mb-4"
+                        class="text-secondary-color font-bold text-2xl md:text-3xl mt-2 mb-4"
                     >
                         {
                             lang === "es"
@@ -96,7 +73,10 @@ const valores =
                                 : "We are foreign trade experts"
                         }
                     </h2>
-                    <div class="w-10 h-0.5 bg-primary-color mb-6"></div>
+                    <div
+                        class="w-10 h-0.5 bg-primary-color mb-6 mx-auto md:mx-0"
+                    >
+                    </div>
                     <p class="text-gray-500 text-sm leading-relaxed">
                         {
                             lang === "es"
@@ -110,13 +90,16 @@ const valores =
     </section>
 
     <!-- MISION Y VISION -->
-    <section class="py-20" style="background-color: #f8f9fa;">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col gap-10">
+    <section class="py-16 md:py-20" style="background-color: #f8f9fa;">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col gap-8">
             <div
                 class="flex flex-col md:flex-row rounded-xl overflow-hidden shadow-lg"
             >
-                <div class="w-2 bg-primary-color flex-shrink-0"></div>
-                <div class="flex-1 p-10 bg-white">
+                <div
+                    class="h-2 md:h-auto md:w-2 bg-primary-color flex-shrink-0"
+                >
+                </div>
+                <div class="flex-1 p-8 md:p-10 bg-white">
                     <span
                         class="text-primary-color text-xs font-bold uppercase tracking-widest"
                         >{lang === "es" ? "Nuestra" : "Our"}</span
@@ -137,7 +120,7 @@ const valores =
                 </div>
                 <img
                     src="https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=400"
-                    class="w-full md:w-72 h-48 md:h-auto object-cover"
+                    class="w-full h-48 md:w-72 md:h-auto object-cover"
                     alt="Misión"
                 />
             </div>
@@ -145,8 +128,11 @@ const valores =
             <div
                 class="flex flex-col md:flex-row-reverse rounded-xl overflow-hidden shadow-lg"
             >
-                <div class="w-2 bg-secondary-color flex-shrink-0"></div>
-                <div class="flex-1 p-10 bg-white">
+                <div
+                    class="h-2 md:h-auto md:w-2 bg-secondary-color flex-shrink-0"
+                >
+                </div>
+                <div class="flex-1 p-8 md:p-10 bg-white">
                     <span
                         class="text-secondary-color text-xs font-bold uppercase tracking-widest"
                         >{lang === "es" ? "Nuestra" : "Our"}</span
@@ -167,7 +153,7 @@ const valores =
                 </div>
                 <img
                     src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=400"
-                    class="w-full md:w-72 h-48 md:h-auto object-cover"
+                    class="w-full h-48 md:w-72 md:h-auto object-cover"
                     alt="Visión"
                 />
             </div>
@@ -175,16 +161,17 @@ const valores =
     </section>
 
     <!-- VALORES -->
-    <section class="py-20" style="background-color: #f8f9fa;">
+    <section class="py-16 md:py-20" style="background-color: #f8f9fa;">
         <div class="max-w-5xl mx-auto px-6">
             <h2
-                class="text-4xl font-bold text-secondary-color text-center mb-4"
+                class="text-3xl md:text-4xl font-bold text-secondary-color text-center mb-4"
             >
                 {lang === "es" ? "Nuestros Valores" : "Our Values"}
             </h2>
             <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
             <div
-                style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem;"
+                style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;"
+                class="md:grid-cols-4"
             >
                 <div class="text-center">
                     <div
@@ -205,7 +192,7 @@ const valores =
                         >
                     </div>
                     <p
-                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                        class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
                     >
                         {lang === "es" ? "Transparencia" : "Transparency"}
                     </p>
@@ -230,7 +217,7 @@ const valores =
                         >
                     </div>
                     <p
-                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                        class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
                     >
                         {lang === "es" ? "Responsabilidad" : "Responsibility"}
                     </p>
@@ -256,7 +243,7 @@ const valores =
                         >
                     </div>
                     <p
-                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                        class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
                     >
                         {lang === "es" ? "Trabajo en equipo" : "Teamwork"}
                     </p>
@@ -281,7 +268,7 @@ const valores =
                         >
                     </div>
                     <p
-                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                        class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
                     >
                         {lang === "es" ? "Pasión" : "Passion"}
                     </p>
@@ -312,7 +299,7 @@ const valores =
                         >
                     </div>
                     <p
-                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                        class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
                     >
                         {lang === "es" ? "Claridad" : "Clarity"}
                     </p>
@@ -335,7 +322,7 @@ const valores =
                         >
                     </div>
                     <p
-                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                        class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
                     >
                         {lang === "es" ? "Honestidad" : "Honesty"}
                     </p>
@@ -363,7 +350,7 @@ const valores =
                         >
                     </div>
                     <p
-                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                        class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
                     >
                         {lang === "es" ? "Respeto" : "Respect"}
                     </p>
@@ -388,7 +375,7 @@ const valores =
                         >
                     </div>
                     <p
-                        class="text-secondary-color font-bold text-sm uppercase tracking-wide"
+                        class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
                     >
                         {lang === "es" ? "Confiabilidad" : "Reliability"}
                     </p>
