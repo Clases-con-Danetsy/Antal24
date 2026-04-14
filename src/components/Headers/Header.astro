@@ -4,6 +4,8 @@ const lang = Astro.props?.lang ?? "es";
 const t = translations[lang as keyof typeof translations] ?? translations["es"];
 const otherLang = lang === "es" ? "en" : "es";
 const otherLangLabel = lang === "es" ? "EN" : "ES";
+const currentPath = Astro.url.pathname;
+const otherLangPath = currentPath.replace(`/${lang}/`, `/${otherLang}/`);
 ---
 
 <header
@@ -50,7 +52,7 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
     <!-- Lang switcher + CTA desktop -->
     <div class="hidden md:flex items-center gap-6">
       <a
-        href={`/${otherLang}/home`}
+        href={otherLangPath}
         class="text-white font-bold hover:text-primary-color transition-colors ml-4"
       >
         <span class={lang === "es" ? "text-primary-color" : "text-white"}
@@ -146,7 +148,7 @@ const otherLangLabel = lang === "es" ? "EN" : "ES";
 
     <!-- Lang switcher -->
     <div class="mt-6">
-      <a href={`/${otherLang}/home`} class="text-white font-bold text-xl">
+      <a href={otherLangPath} class="text-white font-bold text-xl">
         <span class={lang === "es" ? "text-primary-color" : "text-white"}
           >ES</span
         >
