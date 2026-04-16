@@ -106,6 +106,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
           </div>
         </div>
       </div>
+
       <div
         class="animate-on-load-delay-2 relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
@@ -147,32 +148,37 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       >
       </div>
     </div>
-    <div class="max-w-5xl mx-auto px-6 overflow-hidden">
-      <div class="carousel-track flex gap-6" id="carousel1">
-        {
-          [...t.services.items, ...t.services.items].map(
-            (service: { title: string; desc: string }, i: number) => (
-              <div
-                class="flex-shrink-0 relative rounded-xl overflow-hidden shadow-lg group h-72"
-                style="width: 320px"
-              >
-                <img
-                  src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1504711434969-e33886168f5c", "1521737852567-6949f3f9f2b5", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c", "1494412574643-ff11b0a5c1c3"][i % 7]}?w=600`}
-                  alt={service.title}
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
-                />
-                <div class="absolute inset-0 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                <div class="absolute inset-0 flex flex-col justify-end p-6">
-                  <h3 class="text-white font-bold text-xl mb-2">
-                    {service.title}
-                  </h3>
-                  <p class="text-white text-sm opacity-90">{service.desc}</p>
-                  <span class="text-primary-color font-bold mt-3 text-sm" />
+    <div class="max-w-5xl mx-auto px-6 relative">
+      <div class="swiper swiper-servicios">
+        <div class="swiper-wrapper">
+          {
+            t.services.items.map(
+              (service: { title: string; desc: string }, i: number) => (
+                <div class="swiper-slide">
+                  <div class="relative rounded-xl overflow-hidden shadow-lg group h-72">
+                    <img
+                      src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1504711434969-e33886168f5c", "1521737852567-6949f3f9f2b5", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c", "1494412574643-ff11b0a5c1c3"][i % 7]}?w=600`}
+                      alt={service.title}
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
+                    />
+                    <div class="absolute inset-0 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                    <div class="absolute inset-0 flex flex-col justify-end p-6">
+                      <h3 class="text-white font-bold text-xl mb-2">
+                        {service.title}
+                      </h3>
+                      <p class="text-white text-sm opacity-90">
+                        {service.desc}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ),
-          )
-        }
+              ),
+            )
+          }
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </section>
@@ -312,38 +318,38 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         class="w-24 h-1 bg-primary-color mx-auto mb-14"
       >
       </div>
-      <div class="overflow-hidden py-4">
-        <div
-          class="news-track flex gap-6"
-          style="overflow: visible; padding: 10px 0;"
-        >
-          {
-            [1, 2, 3, 1, 2, 3].map((n) => (
-              <div
-                data-aos="fade-up"
-                data-aos-delay={n * 100}
-                class="bg-white rounded-xl shadow-lg transition-all duration-500 group w-[260px] md:w-[380px] relative z-0 hover:z-10 hover:scale-110 hover:shadow-2xl hover:border-2 hover:border-primary-color"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
-                  alt="noticia"
-                  class="w-full h-48 object-cover rounded-t-xl"
-                />
-                <div class="p-6">
-                  <span class="text-xs text-primary-color font-bold uppercase">
-                    Abril 2026
-                  </span>
-                  <h3 class="text-secondary-color font-bold text-lg mt-2 mb-3">
-                    Título de noticia placeholder {n}
-                  </h3>
-                  <p class="text-gray-500 text-sm">
-                    Descripción breve de la noticia. Este contenido será
-                    actualizado desde el sistema de gestión.
-                  </p>
+      <div class="relative">
+        <div class="swiper swiper-noticias">
+          <div class="swiper-wrapper py-4">
+            {
+              [1, 2, 3].map((n) => (
+                <div class="swiper-slide">
+                  <div class="bg-white rounded-xl shadow-lg transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:border-2 hover:border-primary-color">
+                    <img
+                      src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
+                      alt="noticia"
+                      class="w-full h-48 object-cover rounded-t-xl"
+                    />
+                    <div class="p-6">
+                      <span class="text-xs text-primary-color font-bold uppercase">
+                        Abril 2026
+                      </span>
+                      <h3 class="text-secondary-color font-bold text-lg mt-2 mb-3">
+                        Título de noticia placeholder {n}
+                      </h3>
+                      <p class="text-gray-500 text-sm">
+                        Descripción breve de la noticia. Este contenido será
+                        actualizado desde el sistema de gestión.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))
-          }
+              ))
+            }
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-pagination"></div>
         </div>
       </div>
       <div data-aos="fade-up" class="text-center mt-16">
@@ -359,23 +365,58 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
   </section>
 
   <Footer lang={lang} />
+
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-        } else {
-          entry.target.classList.remove("in-view");
-        }
-      });
+    import Swiper from "swiper";
+    import { Navigation, Pagination, Autoplay } from "swiper/modules";
+    import "swiper/css";
+    import "swiper/css/navigation";
+    import "swiper/css/pagination";
+
+    new Swiper(".swiper-servicios", {
+      modules: [Navigation, Pagination, Autoplay],
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".swiper-servicios .swiper-button-next",
+        prevEl: ".swiper-servicios .swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-servicios .swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: { slidesPerView: 2, spaceBetween: 20 },
+        1024: { slidesPerView: 3, spaceBetween: 24 },
+      },
     });
 
-    document
-      .querySelectorAll(
-        ".animate-on-load, .animate-on-load-delay-1, .animate-on-load-delay-2",
-      )
-      .forEach((el) => {
-        observer.observe(el);
-      });
+    new Swiper(".swiper-noticias", {
+      modules: [Navigation, Pagination, Autoplay],
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".swiper-noticias .swiper-button-next",
+        prevEl: ".swiper-noticias .swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-noticias .swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: { slidesPerView: 1.5, spaceBetween: 20 },
+        1024: { slidesPerView: 2.2, spaceBetween: 24 },
+      },
+    });
   </script>
 </Layout>
