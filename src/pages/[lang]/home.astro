@@ -39,12 +39,18 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
 
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
       <h1
+        data-aos="fade-down"
+        data-aos-duration="1000"
         class="text-3xl md:text-7xl font-bold text-white mb-6 leading-tight"
         style="font-family: 'Trebuchet MS', sans-serif;"
       >
         Get it easy, <span style="color: #39a08b;">get it safe!</span>
       </h1>
-      <p class="text-xl md:text-2xl text-white mb-10 opacity-90">
+      <p
+        data-aos="fade-up"
+        data-aos-delay="300"
+        class="text-xl md:text-2xl text-white mb-10 opacity-90"
+      >
         {t.hero.subtitle}
       </p>
     </div>
@@ -56,7 +62,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
   <section class="py-16 bg-white">
     <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div
-        class="relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
+        class="animate-on-load relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
         <img
           src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600"
@@ -79,7 +85,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       </div>
 
       <div
-        class="relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
+        class="animate-on-load-delay-1 relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
         <img
           src="/imagenes/logistica.png"
@@ -100,9 +106,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
           </div>
         </div>
       </div>
-
       <div
-        class="relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
+        class="animate-on-load-delay-2 relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
         <img
           src="/imagenes/despachoaduanal.png"
@@ -129,10 +134,18 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
   <!-- SERVICIOS -->
   <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
+      <h2
+        data-aos="fade-up"
+        class="text-4xl font-bold text-secondary-color text-center mb-4"
+      >
         {t.services.title}
       </h2>
-      <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="w-24 h-1 bg-primary-color mx-auto mb-14"
+      >
+      </div>
     </div>
     <div class="max-w-5xl mx-auto px-6 overflow-hidden">
       <div class="carousel-track flex gap-6" id="carousel1">
@@ -164,7 +177,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <div class="text-center py-10 bg-gray-50">
+  <div data-aos="fade-up" class="text-center py-10 bg-gray-50">
     <a
       href={`/${lang}/services`}
       class="text-secondary-color font-semibold border-2 border-secondary-color px-7
@@ -173,139 +186,196 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       {lang === "es" ? "Ver todos los servicios" : "View all services"}
     </a>
   </div>
-</Layout>
 
-<!-- SERVICIOS LOGÍSTICOS -->
-<section class="py-20 bg-white">
-  <div class="max-w-3xl mx-auto px-6">
-    <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
-      {t.services.logisticsTitle}
-    </h2>
-    <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {
-        t.services.logistics.map(
-          (service: { title: string; desc: string }, i: number) => (
-            <div class="relative rounded-xl overflow-hidden shadow-lg group h-64">
-              <img
-                src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c"][i % 4]}?w=600`}
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
-              />
-              <div class="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-              <div class="absolute inset-0 flex flex-col justify-end p-6">
-                <h3 class="text-white font-bold text-xl mb-2">
-                  {service.title}
-                </h3>
-                <p class="text-white text-sm opacity-90">{service.desc}</p>
-                <span class="text-primary-color font-bold mt-3 text-sm" />
-              </div>
-            </div>
-          ),
-        )
-      }
-    </div>
-  </div>
-</section>
-
-<!-- COBERTURA MAPA-->
-<section class="py-20 bg-secondary-color">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-4xl font-bold text-white text-center mb-4">
-      {t.coverage.title}
-    </h2>
-    <div class="w-24 h-1 bg-primary-color mx-auto mb-10"></div>
-    <p
-      class="text-white text-center text-lg max-w-2xl mx-auto mb-12 opacity-90"
-    >
-      {t.coverage.desc}
-    </p>
-
-    <div class="bg-white rounded-xl p-8 shadow-2xl">
-      <div
-        class="relative w-full rounded-lg overflow-hidden pb-[80%] md:pb-[60%]"
+  <!-- SERVICIOS LOGÍSTICOS -->
+  <section class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2
+        data-aos="fade-up"
+        class="text-4xl font-bold text-secondary-color text-center mb-4"
       >
-        <iframe
-          class="absolute inset-0 w-full h-full"
-          src="https://www.google.com/maps/d/embed?mid=1OCzcRGtfFUAl_Ie1rz0WqofWERhC4zk"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"></iframe>
+        {t.services.logisticsTitle}
+      </h2>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="w-24 h-1 bg-primary-color mx-auto mb-14"
+      >
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {
+          t.services.logistics.map(
+            (service: { title: string; desc: string }, i: number) => (
+              <div
+                data-aos="fade-up"
+                data-aos-delay={i * 150}
+                class="relative rounded-xl overflow-hidden shadow-lg group h-64"
+              >
+                <img
+                  src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c"][i % 4]}?w=600`}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
+                />
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
+                <div class="absolute inset-0 flex flex-col justify-end p-6">
+                  <h3 class="text-white font-bold text-xl mb-2">
+                    {service.title}
+                  </h3>
+                  <p class="text-white text-sm opacity-90">{service.desc}</p>
+                  <span class="text-primary-color font-bold mt-3 text-sm" />
+                </div>
+              </div>
+            ),
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- COBERTURA MAPA-->
+  <section class="py-20 bg-secondary-color">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2
+        data-aos="fade-up"
+        class="text-4xl font-bold text-white text-center mb-4"
+      >
+        {t.coverage.title}
+      </h2>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="w-24 h-1 bg-primary-color mx-auto mb-10"
+      >
+      </div>
+      <p
+        data-aos="fade-up"
+        data-aos-delay="200"
+        class="text-white text-center text-lg max-w-2xl mx-auto mb-12 opacity-90"
+      >
+        {t.coverage.desc}
+      </p>
+
+      <div
+        data-aos="zoom-in"
+        data-aos-delay="300"
+        class="bg-white rounded-xl p-8 shadow-2xl"
+      >
         <div
-          class="absolute top-0 left-0 w-full bg-white"
-          style="height: 60px; z-index: 10;"
+          class="relative w-full rounded-lg overflow-hidden pb-[80%] md:pb-[60%]"
         >
+          <iframe
+            class="absolute inset-0 w-full h-full"
+            src="https://www.google.com/maps/d/embed?mid=1OCzcRGtfFUAl_Ie1rz0WqofWERhC4zk"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"></iframe>
+          <div
+            class="absolute top-0 left-0 w-full bg-white"
+            style="height: 60px; z-index: 10;"
+          >
+          </div>
+        </div>
+
+        <!-- Leyenda -->
+        <div class="flex flex-wrap justify-center gap-6 mt-6">
+          {
+            [
+              { city: "Quintana Roo", color: "bg-primary-color" },
+              { city: "Yucatán", color: "bg-primary-color" },
+              { city: "CDMX", color: "bg-primary-color" },
+              { city: "Nuevo Laredo", color: "bg-primary-color" },
+            ].map((item) => (
+              <div class="flex items-center gap-2">
+                <div class={`w-4 h-4 rounded-full ${item.color}`} />
+                <span class="text-secondary-color font-bold text-sm">
+                  {item.city}
+                </span>
+              </div>
+            ))
+          }
         </div>
       </div>
-
-      <!-- Leyenda -->
-      <div class="flex flex-wrap justify-center gap-6 mt-6">
-        {
-          [
-            { city: "Quintana Roo", color: "bg-primary-color" },
-            { city: "Yucatán", color: "bg-primary-color" },
-            { city: "CDMX", color: "bg-primary-color" },
-            { city: "Nuevo Laredo", color: "bg-primary-color" },
-          ].map((item) => (
-            <div class="flex items-center gap-2">
-              <div class={`w-4 h-4 rounded-full ${item.color}`} />
-              <span class="text-secondary-color font-bold text-sm">
-                {item.city}
-              </span>
-            </div>
-          ))
-        }
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- NOTICIAS -->
-<section class="py-20 bg-gray-50">
-  <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
-      {t.news.title}
-    </h2>
-    <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
-    <div class="overflow-hidden py-4">
+  <!-- NOTICIAS -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2
+        data-aos="fade-up"
+        class="text-4xl font-bold text-secondary-color text-center mb-4"
+      >
+        {t.news.title}
+      </h2>
       <div
-        class="news-track flex gap-6"
-        style="overflow: visible; padding: 10px 0;"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="w-24 h-1 bg-primary-color mx-auto mb-14"
       >
-        {
-          [1, 2, 3, 1, 2, 3].map((n) => (
-            <div class="bg-white rounded-xl shadow-lg transition-all duration-500 group w-[260px] md:w-[380px] relative z-0 hover:z-10 hover:scale-110 hover:shadow-2xl hover:border-2 hover:border-primary-color">
-              <img
-                src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
-                alt="noticia"
-                class="w-full h-48 object-cover rounded-t-xl"
-              />
-              <div class="p-6">
-                <span class="text-xs text-primary-color font-bold uppercase">
-                  Abril 2026
-                </span>
-                <h3 class="text-secondary-color font-bold text-lg mt-2 mb-3">
-                  Título de noticia placeholder {n}
-                </h3>
-                <p class="text-gray-500 text-sm">
-                  Descripción breve de la noticia. Este contenido será
-                  actualizado desde el sistema de gestión.
-                </p>
+      </div>
+      <div class="overflow-hidden py-4">
+        <div
+          class="news-track flex gap-6"
+          style="overflow: visible; padding: 10px 0;"
+        >
+          {
+            [1, 2, 3, 1, 2, 3].map((n) => (
+              <div
+                data-aos="fade-up"
+                data-aos-delay={n * 100}
+                class="bg-white rounded-xl shadow-lg transition-all duration-500 group w-[260px] md:w-[380px] relative z-0 hover:z-10 hover:scale-110 hover:shadow-2xl hover:border-2 hover:border-primary-color"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
+                  alt="noticia"
+                  class="w-full h-48 object-cover rounded-t-xl"
+                />
+                <div class="p-6">
+                  <span class="text-xs text-primary-color font-bold uppercase">
+                    Abril 2026
+                  </span>
+                  <h3 class="text-secondary-color font-bold text-lg mt-2 mb-3">
+                    Título de noticia placeholder {n}
+                  </h3>
+                  <p class="text-gray-500 text-sm">
+                    Descripción breve de la noticia. Este contenido será
+                    actualizado desde el sistema de gestión.
+                  </p>
+                </div>
               </div>
-            </div>
-          ))
-        }
+            ))
+          }
+        </div>
+      </div>
+      <div data-aos="fade-up" class="text-center mt-16">
+        <a
+          href={`/${lang}/news`}
+          class="text-secondary-color font-semibold border-2 border-secondary-color px-7
+        py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
+        >
+          {t.news.viewAll}
+        </a>
       </div>
     </div>
-    <div class="text-center mt-16">
-      <a
-        href={`/${lang}/news`}
-        class="text-secondary-color font-semibold border-2 border-secondary-color px-7
-      py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
-      >
-        {t.news.viewAll}
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<Footer lang={lang} />
+  <Footer lang={lang} />
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        } else {
+          entry.target.classList.remove("in-view");
+        }
+      });
+    });
+
+    document
+      .querySelectorAll(
+        ".animate-on-load, .animate-on-load-delay-1, .animate-on-load-delay-2",
+      )
+      .forEach((el) => {
+        observer.observe(el);
+      });
+  </script>
+</Layout>
