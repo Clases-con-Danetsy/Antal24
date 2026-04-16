@@ -147,3 +147,11 @@
 .animate-service-6.in-view {
     animation: fadeUp 1.2s ease-in-out 1.2s forwards;
 }
+
+.animate-service-7 {
+    opacity: 0;
+}
+
+.animate-service-7.in-view {
+    animation: fadeUp 1.2s ease-in-out forwards;
+}

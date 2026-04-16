@@ -27,6 +27,7 @@ export const translations = {
         { title: "Certificaciones NOMs de Seguridad", desc: "Certificaciones de NOMs de seguridad para tu mercancía." },
         { title: "Cumplimiento de NOMs de Etiquetado", desc: "Gestión del cumplimiento de NOMs de etiquetado." },
         { title: "Padrón Sectorial", desc: "Textil, Calzado y Siderúrgico." },
+        { title: "Almacén / Depósito Fiscal", desc: "Gestión y administración de almacenes y depósitos fiscales para tu mercancía." },
       ],
       logisticsTitle: "Servicios Logísticos",
       logistics: [
@@ -78,6 +79,7 @@ export const translations = {
         { title: "Safety NOM Certifications", desc: "Safety NOM certifications for your merchandise." },
         { title: "Labeling NOM Compliance", desc: "Labeling NOM compliance management." },
         { title: "Sectoral Registry", desc: "Textile, Footwear and Steel sectors." },
+        { title: "Warehouse / Fiscal Deposit", desc: "Management and administration of warehouses and fiscal deposits for your merchandise." },
       ],
       logisticsTitle: "Logistics Services",
       logistics: [
