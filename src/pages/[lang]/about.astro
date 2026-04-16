@@ -27,6 +27,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         </div>
         <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
             <h1
+                data-aos="fade-down"
+                data-aos-duration="1000"
                 class="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight"
                 style="font-family: 'Trebuchet MS', sans-serif;"
             >
@@ -35,7 +37,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                     >{lang === "es" ? "Nosotros" : "Us"}</span
                 >
             </h1>
-            <p class="text-lg md:text-xl text-white opacity-90">
+            <p
+                data-aos="fade-up"
+                data-aos-delay="300"
+                class="text-lg md:text-xl text-white opacity-90"
+            >
                 {
                     lang === "es"
                         ? "Especialistas en comercio exterior y logística"
@@ -50,6 +56,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         <div class="max-w-5xl mx-auto px-6">
             <div class="flex flex-col md:flex-row gap-10 items-center">
                 <div
+                    data-aos="fade-right"
+                    data-aos-duration="1000"
                     class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group"
                 >
                     <img
@@ -58,7 +66,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                         class="w-full h-64 md:h-72 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
                     />
                 </div>
-                <div class="w-full md:w-3/5 text-center md:text-left">
+                <div
+                    data-aos="fade-left"
+                    data-aos-duration="1000"
+                    class="w-full md:w-3/5 text-center md:text-left"
+                >
                     <span
                         class="text-primary-color text-xs font-bold uppercase tracking-widest"
                     >
@@ -93,6 +105,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     <section class="py-16 md:py-20" style="background-color: #f8f9fa;">
         <div class="max-w-5xl mx-auto px-6 flex flex-col gap-8">
             <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
                 class="flex flex-col md:flex-row rounded-xl overflow-hidden shadow-lg"
             >
                 <div
@@ -126,6 +140,9 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
             </div>
 
             <div
+                data-aos="fade-up"
+                data-aos-delay="200"
+                data-aos-duration="1000"
                 class="flex flex-col md:flex-row-reverse rounded-xl overflow-hidden shadow-lg"
             >
                 <div
@@ -164,16 +181,22 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     <section class="py-16 md:py-20" style="background-color: #f8f9fa;">
         <div class="max-w-5xl mx-auto px-6">
             <h2
+                data-aos="fade-up"
                 class="text-3xl md:text-4xl font-bold text-secondary-color text-center mb-4"
             >
                 {lang === "es" ? "Nuestros Valores" : "Our Values"}
             </h2>
-            <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
+            <div
+                data-aos="fade-up"
+                data-aos-delay="100"
+                class="w-24 h-1 bg-primary-color mx-auto mb-14"
+            >
+            </div>
             <div
                 style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;"
                 class="md:grid-cols-4"
             >
-                <div class="text-center">
+                <div data-aos="fade-up" data-aos-delay="0" class="text-center">
                     <div
                         style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
                     >
@@ -186,10 +209,12 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            ><path
-                                d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                            ></path><circle cx="12" cy="12" r="3"></circle></svg
                         >
+                            <path
+                                d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                            ></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
                     </div>
                     <p
                         class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
@@ -198,7 +223,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                     </p>
                 </div>
 
-                <div class="text-center">
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    class="text-center"
+                >
                     <div
                         style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
                     >
@@ -211,10 +240,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            ><path
-                                d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-                            ></path></svg
                         >
+                            <path
+                                d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                            ></path>
+                        </svg>
                     </div>
                     <p
                         class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
@@ -223,7 +253,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                     </p>
                 </div>
 
-                <div class="text-center">
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    class="text-center"
+                >
                     <div
                         style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
                     >
@@ -236,11 +270,13 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            ><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                            ></path><circle cx="9" cy="7" r="4"></circle><path
-                                d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path
-                                d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
                         >
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                            ></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
                     </div>
                     <p
                         class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
@@ -249,7 +285,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                     </p>
                 </div>
 
-                <div class="text-center">
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                    class="text-center"
+                >
                     <div
                         style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
                     >
@@ -262,10 +302,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            ><path
-                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                            ></path></svg
                         >
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                            ></path>
+                        </svg>
                     </div>
                     <p
                         class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
@@ -274,7 +315,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                     </p>
                 </div>
 
-                <div class="text-center">
+                <div data-aos="fade-up" data-aos-delay="0" class="text-center">
                     <div
                         style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
                     >
@@ -287,16 +328,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            ><circle cx="12" cy="12" r="10"></circle><line
-                                x1="12"
-                                y1="8"
-                                x2="12"
-                                y2="12"></line><line
-                                x1="12"
-                                y1="16"
-                                x2="12.01"
-                                y2="16"></line></svg
                         >
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
                     </div>
                     <p
                         class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
@@ -305,7 +341,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                     </p>
                 </div>
 
-                <div class="text-center">
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    class="text-center"
+                >
                     <div
                         style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
                     >
@@ -318,8 +358,9 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            ><polyline points="20 6 9 17 4 12"></polyline></svg
                         >
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
                     </div>
                     <p
                         class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
@@ -328,7 +369,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                     </p>
                 </div>
 
-                <div class="text-center">
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    class="text-center"
+                >
                     <div
                         style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
                     >
@@ -341,13 +386,14 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            ><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path
-                                d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"
-                            ></path><line x1="6" y1="1" x2="6" y2="4"
-                            ></line><line x1="10" y1="1" x2="10" y2="4"
-                            ></line><line x1="14" y1="1" x2="14" y2="4"
-                            ></line></svg
                         >
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"
+                            ></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
                     </div>
                     <p
                         class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"
@@ -356,7 +402,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                     </p>
                 </div>
 
-                <div class="text-center">
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                    class="text-center"
+                >
                     <div
                         style="width:80px; height:80px; border-radius:50%; background:#062d76; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;"
                     >
@@ -369,10 +419,10 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"
-                            ></path><polyline points="22 4 12 14.01 9 11.01"
-                            ></polyline></svg
                         >
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
                     </div>
                     <p
                         class="text-secondary-color font-bold text-xs md:text-sm uppercase tracking-wide"

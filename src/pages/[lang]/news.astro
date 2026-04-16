@@ -32,6 +32,7 @@ const news = [
         ],
     tags: lang === "es" ? ["Transporte", "Norte", "Distribución"] : ["Transport", "North", "Distribution"],
     gradientStyle: "background: linear-gradient(135deg, #062d76 50%, #39a08b);",
+    animClass: "animate-news-0",
   },
   {
     category: lang === "es" ? "Aduanas" : "Customs",
@@ -52,6 +53,7 @@ const news = [
         ],
     tags: lang === "es" ? ["SAT", "Aranceles", "Electrónicos"] : ["SAT", "Tariffs", "Electronics"],
     gradientStyle: "background: linear-gradient(135deg, #062d76 40%, #0a3d8f);",
+    animClass: "animate-news-1",
   },
   {
     category: lang === "es" ? "Comercio exterior" : "Foreign trade",
@@ -72,6 +74,7 @@ const news = [
         ],
     tags: lang === "es" ? ["TLCPTP", "Exportación", "Asia-Pacífico"] : ["CPTPP", "Export", "Asia-Pacific"],
     gradientStyle: "background: linear-gradient(135deg, #062d76 50%, #2d7a5e);",
+    animClass: "animate-news-2",
   },
 ];
 ---
@@ -92,6 +95,8 @@ const news = [
     </div>
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
       <h1
+        data-aos="fade-down"
+        data-aos-duration="1000"
         class="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight"
         style="font-family: 'Trebuchet MS', sans-serif;"
       >
@@ -99,7 +104,11 @@ const news = [
           >{lang === "es" ? "ticias" : "ws"}</span
         >
       </h1>
-      <p class="text-lg md:text-xl text-white opacity-90">
+      <p
+        data-aos="fade-up"
+        data-aos-delay="300"
+        class="text-lg md:text-xl text-white opacity-90"
+      >
         {
           lang === "es"
             ? "Mantente informado sobre las últimas novedades en comercio exterior, logística y despacho aduanal."
@@ -115,22 +124,18 @@ const news = [
   <main class="max-w-4xl mx-auto px-6 py-16 flex flex-col gap-10">
     {news.map((article, i) => (
       <div>
-        <article style="background: white; border-radius: 16px; overflow: hidden; border: 0.5px solid rgba(173,172,177,0.3); box-shadow: 0 4px 32px rgba(6,45,118,0.06);">
-
+        <article
+          class={article.animClass}
+          style="background: white; border-radius: 16px; overflow: hidden; border: 0.5px solid rgba(173,172,177,0.3); box-shadow: 0 4px 32px rgba(6,45,118,0.06);"
+        >
           <!-- Imagen portada -->
           <div style={`${article.gradientStyle} position: relative; height: 280px; display: flex; align-items: center; justify-content: center;`}>
-
-            <!-- Badge categoría -->
             <span style="position: absolute; top: 16px; left: 16px; background: #39a08b; color: white; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; z-index: 2;">
               {article.category}
             </span>
-
-            <!-- Fecha -->
             <span style="position: absolute; bottom: 16px; right: 16px; background: rgba(6,45,118,0.85); color: white; font-size: 11px; padding: 4px 12px; border-radius: 4px; z-index: 2;">
               {article.date}
             </span>
-
-            <!-- Ícono decorativo -->
             <svg style="width: 64px; height: 64px; opacity: 0.12; position: relative; z-index: 1;" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
@@ -139,8 +144,6 @@ const news = [
 
           <!-- Cuerpo del artículo -->
           <div style="padding: 2rem 2.5rem;">
-
-            <!-- Meta -->
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
               <span style="font-size: 10px; font-weight: 600; color: #39a08b; text-transform: uppercase; letter-spacing: 1.5px;">{article.category}</span>
               <span style="width: 4px; height: 4px; border-radius: 50%; background: #adacb1; display: inline-block;"></span>
@@ -148,23 +151,15 @@ const news = [
               <span style="width: 4px; height: 4px; border-radius: 50%; background: #adacb1; display: inline-block;"></span>
               <span style="font-size: 11px; color: #adacb1;">Equipo ANTAL</span>
             </div>
-
-            <!-- Título -->
             <h2 style="font-family: 'Trebuchet MS', sans-serif; font-size: 22px; font-weight: 700; color: #062d76; line-height: 1.35; margin-bottom: 12px;">
               {article.title}
             </h2>
-
-            <!-- Línea acento -->
             <div style="width: 36px; height: 3px; background: #39a08b; border-radius: 2px; margin-bottom: 20px;"></div>
-
-            <!-- Párrafos -->
             <div style="display: flex; flex-direction: column; gap: 12px;">
               {article.content.map((paragraph: string) => (
                 <p style="font-size: 14px; color: #6b7280; line-height: 1.85;">{paragraph}</p>
               ))}
             </div>
-
-            <!-- Tags -->
             <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding-top: 20px; border-top: 0.5px solid rgba(173,172,177,0.25);">
               {article.tags.map((tag: string) => (
                 <span style="font-size: 10px; font-weight: 500; color: #062d76; padding: 4px 12px; border-radius: 20px; background: rgba(6,45,118,0.07); border: 0.5px solid rgba(6,45,118,0.15);">
@@ -188,4 +183,20 @@ const news = [
   </main>
 
   <Footer lang={lang} />
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        } else {
+          entry.target.classList.remove("in-view");
+        }
+      });
+    });
+
+    document
+      .querySelectorAll(".animate-news-0, .animate-news-1, .animate-news-2")
+      .forEach((el) => observer.observe(el));
+  </script>
 </Layout>
