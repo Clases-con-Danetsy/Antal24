@@ -31,10 +31,10 @@ export const translations = {
       ],
       logisticsTitle: "Servicios Logísticos",
       logistics: [
-        { title: "Fletes Terrestres", desc: "Sistema logístico de fletes terrestres." },
-        { title: "Logística Internacional", desc: "Sistema logístico internacional." },
-        { title: "Gestoría Marítima", desc: "Gestión y coordinación de envíos marítimos." },
-        { title: "Gestoría Aérea", desc: "Gestión y coordinación de envíos aéreos." },
+        { title: "Flete Terrestre", desc: "Cobertura nacional con tiempos de entrega óptimos y rastreo en tiempo real." },
+        { title: "Logística Internacional", desc: "Soluciones multimodales para conectar tu negocio con mercados globales." },
+        { title: "Flete Marítimo", desc: "Coordinación integral de envíos marítimos desde el origen hasta la entrega." },
+        { title: "Flete Aéreo", desc: "Envíos express para mercancía urgente o de alto valor al mejor precio." },
       ],
     },
     coverage: {
@@ -83,10 +83,10 @@ export const translations = {
       ],
       logisticsTitle: "Logistics Services",
       logistics: [
-        { title: "Land Freight", desc: "Land freight logistics system." },
-        { title: "International Logistics", desc: "International logistics system." },
-        { title: "Maritime Agency", desc: "Maritime shipment management and coordination." },
-        { title: "Air Agency", desc: "Air shipment management and coordination." },
+        { title: "Land Freight", desc: "National coverage with optimal delivery times and real-time tracking." },
+        { title: "International Logistics", desc: "Multimodal solutions to connect your business with global markets." },
+        { title: "Maritime Freight", desc: "End-to-end coordination of maritime shipments from origin to delivery." },
+        { title: "Air Freight", desc: "Express shipments for urgent or high-value merchandise at the best price." },
       ],
     },
     coverage: {
