@@ -50,6 +50,21 @@ const serviceLinks =
           anchor: "warehouse-fiscal-deposit",
         },
       ];
+
+const logisticsLinks =
+  lang === "es"
+    ? [
+        { label: "Fletes Terrestres", anchor: "fletes-terrestres" },
+        { label: "Logística Internacional", anchor: "logistica-internacional" },
+        { label: "Gestoría Marítima", anchor: "gestoria-maritima" },
+        { label: "Gestoría Aérea", anchor: "gestoria-aerea" },
+      ]
+    : [
+        { label: "Land Freight", anchor: "land-freight" },
+        { label: "International Logistics", anchor: "international-logistics" },
+        { label: "Maritime Agency", anchor: "maritime-agency" },
+        { label: "Air Agency", anchor: "air-agency" },
+      ];
 ---
 
 <header
@@ -74,8 +89,9 @@ const serviceLinks =
       <a
         href={`/${lang}/home`}
         class="text-white font-bold hover:text-primary-color transition-colors"
-        >{t.header.home}</a
       >
+        {t.header.home}
+      </a>
 
       <!-- Servicios con dropdown -->
       <div class="relative group">
@@ -98,13 +114,39 @@ const serviceLinks =
           </svg>
         </a>
         <div
-          class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2"
+          class="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2"
         >
+          <!-- Servicios -->
+          <p
+            class="px-4 pt-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#adacb1]"
+          >
+            {lang === "es" ? "Servicios" : "Services"}
+          </p>
           {
             serviceLinks.map((item) => (
               <a
                 href={`/${lang}/services#${item.anchor}`}
-                class="block px-4 py-2.5 text-sm text-secondary-color hover:bg-gray-50 hover:text-primary-color transition-colors font-medium"
+                class="block px-4 py-2 text-sm text-secondary-color hover:bg-gray-50 hover:text-primary-color transition-colors font-medium"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+
+          <!-- Separador -->
+          <div class="my-2 mx-4 border-t border-gray-100"></div>
+
+          <!-- Logística -->
+          <p
+            class="px-4 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#adacb1]"
+          >
+            {lang === "es" ? "Logística" : "Logistics"}
+          </p>
+          {
+            logisticsLinks.map((item) => (
+              <a
+                href={`/${lang}/services#${item.anchor}`}
+                class="block px-4 py-2 text-sm text-secondary-color hover:bg-gray-50 hover:text-primary-color transition-colors font-medium"
               >
                 {item.label}
               </a>
@@ -116,13 +158,15 @@ const serviceLinks =
       <a
         href={`/${lang}/about`}
         class="text-white font-bold hover:text-primary-color transition-colors"
-        >{t.header.about}</a
       >
+        {t.header.about}
+      </a>
       <a
         href={`/${lang}/news`}
         class="text-white font-bold hover:text-primary-color transition-colors"
-        >{t.header.news}</a
       >
+        {t.header.news}
+      </a>
     </nav>
 
     <!-- Lang switcher + CTA desktop -->
@@ -199,8 +243,9 @@ const serviceLinks =
     <a
       href={`/${lang}/home`}
       class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
-      >{t.header.home}</a
     >
+      {t.header.home}
+    </a>
 
     <!-- Servicios mobile -->
     <div class="flex flex-col items-center w-full">
@@ -227,8 +272,31 @@ const serviceLinks =
         id="mobile-services-list"
         class="hidden flex-col items-center gap-3 mb-5 w-full px-8"
       >
+        <!-- Servicios -->
+        <p
+          class="text-[#adacb1] text-xs font-bold uppercase tracking-widest mt-1"
+        >
+          {lang === "es" ? "Servicios" : "Services"}
+        </p>
         {
           serviceLinks.map((item) => (
+            <a
+              href={`/${lang}/services#${item.anchor}`}
+              class="text-white font-semibold hover:text-primary-color transition-colors text-lg text-center"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+
+        <!-- Logística -->
+        <p
+          class="text-[#adacb1] text-xs font-bold uppercase tracking-widest mt-3"
+        >
+          {lang === "es" ? "Logística" : "Logistics"}
+        </p>
+        {
+          logisticsLinks.map((item) => (
             <a
               href={`/${lang}/services#${item.anchor}`}
               class="text-white font-semibold hover:text-primary-color transition-colors text-lg text-center"
@@ -243,18 +311,21 @@ const serviceLinks =
     <a
       href={`/${lang}/about`}
       class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
-      >{t.header.about}</a
     >
+      {t.header.about}
+    </a>
     <a
       href={`/${lang}/news`}
       class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
-      >{t.header.news}</a
     >
+      {t.header.news}
+    </a>
     <a
       href={`/${lang}/contact`}
       class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
-      >{t.header.contact}</a
     >
+      {t.header.contact}
+    </a>
 
     <!-- Lang switcher -->
     <div class="mt-4">
@@ -313,5 +384,15 @@ const serviceLinks =
         header?.classList.remove("-translate-y-[250%]");
       }
     }
+  });
+
+  // Cerrar menu al hacer clic en cualquier enlace
+  document.querySelectorAll("#mobile-menu a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu?.classList.add("hidden");
+      menu?.classList.remove("flex");
+      const logo = document.querySelector("#main-header a");
+      logo?.classList.remove("invisible");
+    });
   });
 </script>

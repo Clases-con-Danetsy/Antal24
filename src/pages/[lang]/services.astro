@@ -15,6 +15,7 @@ const services =
         ? [
               {
                   num: "01",
+                  id: "importaciones-y-exportaciones",
                   title: "Importaciones y Exportaciones",
                   desc: "Gestionamos el tránsito de mercancía nacional e internacional, asegurando que tus productos lleguen a su destino de forma segura y eficiente cumpliendo todas las normativas vigentes.",
                   items: [
@@ -26,6 +27,7 @@ const services =
               },
               {
                   num: "02",
+                  id: "asesoria-legal-aduanal",
                   title: "Asesoría Legal Aduanal",
                   desc: "Contamos con especialistas en materia aduanal que te guiarán en cada paso del proceso de despacho, garantizando el cumplimiento legal en todo momento.",
                   items: [
@@ -37,6 +39,7 @@ const services =
               },
               {
                   num: "03",
+                  id: "cuaderno-ata",
                   title: "Cuaderno ATA",
                   desc: "Gestionamos carnés ATA para la importación temporal de mercancía, facilitando la participación en ferias, exposiciones y eventos internacionales sin pago de aranceles.",
                   items: [
@@ -48,6 +51,7 @@ const services =
               },
               {
                   num: "04",
+                  id: "tramites-ante-banjercito",
                   title: "Trámites ante BANJERCITO",
                   desc: "Realizamos todos los trámites necesarios ante BANJERCITO para la importación temporal de vehículos y mercancías, asegurando el cumplimiento de los requisitos legales.",
                   items: [
@@ -59,6 +63,7 @@ const services =
               },
               {
                   num: "05",
+                  id: "certificaciones-noms-de-seguridad",
                   title: "Certificaciones de NOMs de Seguridad",
                   desc: "Gestionamos las certificaciones de Normas Oficiales Mexicanas de seguridad requeridas para la importación de productos, garantizando el cumplimiento normativo.",
                   items: [
@@ -70,6 +75,7 @@ const services =
               },
               {
                   num: "06",
+                  id: "cumplimiento-de-noms-de-etiquetado",
                   title: "Cumplimiento de NOMs de Etiquetado",
                   desc: "Asesoramos y gestionamos el cumplimiento de las Normas Oficiales Mexicanas de etiquetado, asegurando que tus productos cumplan con los requisitos de información al consumidor.",
                   items: [
@@ -81,6 +87,7 @@ const services =
               },
               {
                   num: "07",
+                  id: "padron-sectorial",
                   title: "Padrón Sectorial Textil, Calzado y Siderúrgico",
                   desc: "Gestionamos la inscripción y renovación en el Padrón Sectorial de los sectores Textil, Calzado y Siderúrgico, requisito indispensable para importar productos de estos sectores.",
                   items: [
@@ -92,6 +99,7 @@ const services =
               },
               {
                   num: "08",
+                  id: "almacen-deposito-fiscal",
                   title: "Almacén / Depósito Fiscal",
                   desc: "Gestionamos y administramos almacenes y depósitos fiscales, garantizando el resguardo seguro de tu mercancía bajo los lineamientos fiscales vigentes.",
                   items: [
@@ -105,6 +113,7 @@ const services =
         : [
               {
                   num: "01",
+                  id: "imports-exports",
                   title: "Imports & Exports",
                   desc: "We manage national and international merchandise transit, ensuring your products reach their destination safely and efficiently while complying with all current regulations.",
                   items: [
@@ -116,6 +125,7 @@ const services =
               },
               {
                   num: "02",
+                  id: "legal-customs-advisory",
                   title: "Legal Customs Advisory",
                   desc: "We have customs specialists who will guide you through each step of the clearance process, ensuring legal compliance at all times.",
                   items: [
@@ -127,6 +137,7 @@ const services =
               },
               {
                   num: "03",
+                  id: "ata-carnet",
                   title: "ATA Carnet",
                   desc: "We manage ATA carnets for the temporary import of merchandise, facilitating participation in fairs, exhibitions and international events without paying customs duties.",
                   items: [
@@ -138,6 +149,7 @@ const services =
               },
               {
                   num: "04",
+                  id: "banjercito-procedures",
                   title: "BANJERCITO Procedures",
                   desc: "We carry out all necessary procedures before BANJERCITO for the temporary import of vehicles and merchandise, ensuring compliance with legal requirements.",
                   items: [
@@ -149,6 +161,7 @@ const services =
               },
               {
                   num: "05",
+                  id: "safety-nom-certifications",
                   title: "Safety NOM Certifications",
                   desc: "We manage the certifications of Mexican Official Standards required for the import of products, guaranteeing regulatory compliance.",
                   items: [
@@ -160,6 +173,7 @@ const services =
               },
               {
                   num: "06",
+                  id: "labeling-nom-compliance",
                   title: "Labeling NOM Compliance",
                   desc: "We advise and manage compliance with Mexican Official Labeling Standards, ensuring your products meet consumer information requirements.",
                   items: [
@@ -171,6 +185,7 @@ const services =
               },
               {
                   num: "07",
+                  id: "sectoral-registry",
                   title: "Textile, Footwear and Steel Sectoral Registry",
                   desc: "We manage registration and renewal in the Sectoral Registry for the Textile, Footwear and Steel sectors, an essential requirement for importing products in these sectors.",
                   items: [
@@ -182,6 +197,7 @@ const services =
               },
               {
                   num: "08",
+                  id: "warehouse-fiscal-deposit",
                   title: "Warehouse / Fiscal Deposit",
                   desc: "We manage and administer warehouses and fiscal deposits, guaranteeing the secure storage of your merchandise under current fiscal regulations.",
                   items: [
@@ -191,6 +207,21 @@ const services =
                   ],
                   img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800",
               },
+          ];
+
+const logisticsIds =
+    lang === "es"
+        ? [
+              "fletes-terrestres",
+              "logistica-internacional",
+              "gestoria-maritima",
+              "gestoria-aerea",
+          ]
+        : [
+              "land-freight",
+              "international-logistics",
+              "maritime-agency",
+              "air-agency",
           ];
 
 const logistics =
@@ -330,8 +361,8 @@ const logistics =
     </section>
 
     <!-- SERVICIOS QUE OFRECEMOS -->
-    <section class="py-20 bg-gray-100">
-        <div class="max-w-5xl mx-auto px-6">
+    <section class="py-24 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-6">
             <h2
                 data-aos="fade-up"
                 class="text-4xl font-bold text-secondary-color text-center mb-4"
@@ -345,38 +376,43 @@ const logistics =
             <div
                 data-aos="fade-up"
                 data-aos-delay="100"
-                class="w-24 h-1 bg-primary-color mx-auto mb-16"
+                class="w-24 h-1 bg-primary-color mx-auto mb-20"
             >
             </div>
-            <div class="flex flex-col gap-16">
+            <div class="flex flex-col gap-32">
                 {
                     services.map((service, i) => (
                         <div
-                            class={`animate-service-${i} flex flex-col md:flex-row gap-10 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
+                            id={service.id}
+                            class={`animate-service-${i} flex flex-col md:flex-row gap-12 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
+                            style="scroll-margin-top: 120px;"
                         >
-                            <div class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
+                            <div class="w-full md:w-1/2 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
                                 <img
                                     src={service.img}
                                     alt={service.title}
-                                    class="w-full h-64 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
+                                    class="w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
                                 />
                             </div>
-                            <div class="w-full md:w-3/5">
-                                <span class="text-primary-color text-xs font-bold uppercase tracking-widest">
+                            <div class="w-full md:w-1/2">
+                                <span class="text-primary-color text-sm font-bold uppercase tracking-widest">
                                     {lang === "es" ? "Servicio" : "Service"}{" "}
                                     {service.num}
                                 </span>
-                                <h3 class="text-secondary-color font-bold text-2xl mt-2 mb-3">
+                                <h3
+                                    class="text-secondary-color font-bold text-3xl mt-2 mb-4"
+                                    style="font-family: 'Trebuchet MS', sans-serif;"
+                                >
                                     {service.title}
                                 </h3>
-                                <div class="w-10 h-0.5 bg-primary-color mb-4" />
-                                <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                                <div class="w-10 h-0.5 bg-primary-color mb-5" />
+                                <p class="text-gray-500 text-base leading-relaxed mb-6">
                                     {service.desc}
                                 </p>
-                                <ul class="flex flex-col gap-2">
+                                <ul class="flex flex-col gap-3">
                                     {service.items.map((item) => (
-                                        <li class="flex items-center gap-2 text-sm text-gray-600">
-                                            <div class="w-2 h-2 rounded-full bg-primary-color flex-shrink-0" />
+                                        <li class="flex items-center gap-3 text-base text-gray-600">
+                                            <div class="w-2.5 h-2.5 rounded-full bg-primary-color flex-shrink-0" />
                                             {item}
                                         </li>
                                     ))}
@@ -390,8 +426,8 @@ const logistics =
     </section>
 
     <!-- SERVICIOS LOGÍSTICOS -->
-    <section class="py-20" style="background-color: #f8f9fa;">
-        <div class="max-w-5xl mx-auto px-6">
+    <section class="py-24" style="background-color: #f8f9fa;">
+        <div class="max-w-6xl mx-auto px-6">
             <h2
                 data-aos="fade-up"
                 class="text-4xl font-bold text-secondary-color text-center mb-4"
@@ -401,38 +437,43 @@ const logistics =
             <div
                 data-aos="fade-up"
                 data-aos-delay="100"
-                class="w-24 h-1 bg-primary-color mx-auto mb-16"
+                class="w-24 h-1 bg-primary-color mx-auto mb-20"
             >
             </div>
-            <div class="flex flex-col gap-16">
+            <div class="flex flex-col gap-32">
                 {
                     logistics.map((service, i) => (
                         <div
-                            class={`animate-logistics-${i} flex flex-col md:flex-row gap-10 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
+                            id={logisticsIds[i]}
+                            class={`animate-logistics-${i} flex flex-col md:flex-row gap-12 items-center ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
+                            style="scroll-margin-top: 120px;"
                         >
-                            <div class="w-full md:w-2/5 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
+                            <div class="w-full md:w-1/2 rounded-xl overflow-hidden shadow-lg flex-shrink-0 group">
                                 <img
                                     src={service.img}
                                     alt={service.title}
-                                    class="w-full h-64 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
+                                    class="w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
                                 />
                             </div>
-                            <div class="w-full md:w-3/5">
-                                <span class="text-primary-color text-xs font-bold uppercase tracking-widest">
+                            <div class="w-full md:w-1/2">
+                                <span class="text-primary-color text-sm font-bold uppercase tracking-widest">
                                     {lang === "es" ? "Logística" : "Logistics"}{" "}
                                     {service.num}
                                 </span>
-                                <h3 class="text-secondary-color font-bold text-2xl mt-2 mb-3">
+                                <h3
+                                    class="text-secondary-color font-bold text-3xl mt-2 mb-4"
+                                    style="font-family: 'Trebuchet MS', sans-serif;"
+                                >
                                     {service.title}
                                 </h3>
-                                <div class="w-10 h-0.5 bg-primary-color mb-4" />
-                                <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                                <div class="w-10 h-0.5 bg-primary-color mb-5" />
+                                <p class="text-gray-500 text-base leading-relaxed mb-6">
                                     {service.desc}
                                 </p>
-                                <ul class="flex flex-col gap-2">
+                                <ul class="flex flex-col gap-3">
                                     {service.items.map((item) => (
-                                        <li class="flex items-center gap-2 text-sm text-gray-600">
-                                            <div class="w-2 h-2 rounded-full bg-primary-color flex-shrink-0" />
+                                        <li class="flex items-center gap-3 text-base text-gray-600">
+                                            <div class="w-2.5 h-2.5 rounded-full bg-primary-color flex-shrink-0" />
                                             {item}
                                         </li>
                                     ))}
