@@ -14,7 +14,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
 <Layout lang={lang}>
   <Header lang={lang} />
 
-  <!-- HERO -->
+  <!-- HERO — azul -->
   <section
     class="relative min-h-[700px] md:min-h-[80vh] flex items-center justify-center bg-secondary-color overflow-hidden"
   >
@@ -44,7 +44,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         class="text-3xl md:text-7xl font-bold text-white mb-6 leading-tight"
         style="font-family: 'Trebuchet MS', sans-serif;"
       >
-        Get it easy, <span style="color: #39a08b;">get it safe!</span>
+        Get it easy, <span style="color: #7dc5b5;">get it safe!</span>
       </h1>
       <p
         data-aos="fade-up"
@@ -56,9 +56,9 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <div class="w-full h-1 bg-primary-color"></div>
+  <div class="w-full h-1" style="background-color: #7dc5b5;"></div>
 
-  <!-- 3 PILARES -->
+  <!-- 3 PILARES — blanco -->
   <section class="py-16 bg-white">
     <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div
@@ -79,7 +79,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
           <div class="text-5xl mb-4"></div>
           <h3 class="text-2xl font-bold">{t.pillars.comercializadora}</h3>
           <div
-            class="w-10 h-0.5 bg-primary-color mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style="background-color: #7dc5b5;"
           >
           </div>
         </div>
@@ -103,7 +104,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
           <div class="text-5xl mb-4"></div>
           <h3 class="text-2xl font-bold">{t.pillars.logistica}</h3>
           <div
-            class="w-10 h-0.5 bg-primary-color mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style="background-color: #7dc5b5;"
           >
           </div>
         </div>
@@ -127,7 +129,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
           <div class="text-5xl mb-4"></div>
           <h3 class="text-2xl font-bold">{t.pillars.aduanal}</h3>
           <div
-            class="w-10 h-0.5 bg-primary-color mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style="background-color: #7dc5b5;"
           >
           </div>
         </div>
@@ -135,8 +138,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <!-- SERVICIOS -->
-  <section class="py-20 bg-gray-50">
+  <!-- SERVICIOS — verde suave -->
+  <section class="py-20" style="background-color: #7dc5b5;">
     <div class="max-w-7xl mx-auto px-6">
       <h2
         data-aos="fade-up"
@@ -147,7 +150,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       <div
         data-aos="fade-up"
         data-aos-delay="100"
-        class="w-24 h-1 bg-primary-color mx-auto mb-14"
+        class="w-24 h-1 bg-secondary-color mx-auto mb-14"
       >
       </div>
     </div>
@@ -192,29 +195,33 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <div data-aos="fade-up" class="text-center py-10 bg-gray-50">
+  <div
+    data-aos="fade-up"
+    class="text-center py-10"
+    style="background-color: #7dc5b5;"
+  >
     <a
       href={`/${lang}/services`}
-      class="text-secondary-color font-semibold border-2 border-secondary-color px-7
-    py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
+      class="text-secondary-color font-semibold border-2 border-secondary-color px-7 py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
     >
       {lang === "es" ? "Ver todos los servicios" : "View all services"}
     </a>
   </div>
 
-  <!-- SERVICIOS LOGÍSTICOS -->
-  <section class="py-20 bg-white">
+  <!-- SERVICIOS LOGÍSTICOS — azul -->
+  <section class="py-20 bg-secondary-color">
     <div class="max-w-3xl mx-auto px-6">
       <h2
         data-aos="fade-up"
-        class="text-4xl font-bold text-secondary-color text-center mb-4"
+        class="text-4xl font-bold text-white text-center mb-4"
       >
         {t.services.logisticsTitle}
       </h2>
       <div
         data-aos="fade-up"
         data-aos-delay="100"
-        class="w-24 h-1 bg-primary-color mx-auto mb-14"
+        class="w-24 h-1 mx-auto mb-14"
+        style="background-color: #7dc5b5;"
       >
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -239,7 +246,6 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                     {service.title}
                   </h3>
                   <p class="text-white text-sm opacity-90">{service.desc}</p>
-                  <span class="text-primary-color font-bold mt-3 text-sm" />
                 </div>
               </div>
             ),
@@ -249,25 +255,25 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <!-- COBERTURA MAPA-->
-  <section class="py-20 bg-secondary-color">
+  <!-- COBERTURA MAPA — verde suave -->
+  <section class="py-20" style="background-color: #7dc5b5;">
     <div class="max-w-7xl mx-auto px-6">
       <h2
         data-aos="fade-up"
-        class="text-4xl font-bold text-white text-center mb-4"
+        class="text-4xl font-bold text-secondary-color text-center mb-4"
       >
         {t.coverage.title}
       </h2>
       <div
         data-aos="fade-up"
         data-aos-delay="100"
-        class="w-24 h-1 bg-primary-color mx-auto mb-10"
+        class="w-24 h-1 bg-secondary-color mx-auto mb-10"
       >
       </div>
       <p
         data-aos="fade-up"
         data-aos-delay="200"
-        class="text-white text-center text-lg max-w-2xl mx-auto mb-12 opacity-90"
+        class="text-secondary-color text-center text-lg max-w-2xl mx-auto mb-12 opacity-90"
       >
         {t.coverage.desc}
       </p>
@@ -297,13 +303,13 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         <div class="flex flex-wrap justify-center gap-6 mt-6">
           {
             [
-              { city: "Quintana Roo", color: "bg-primary-color" },
-              { city: "Yucatán", color: "bg-primary-color" },
-              { city: "CDMX", color: "bg-primary-color" },
-              { city: "Nuevo Laredo", color: "bg-primary-color" },
+              { city: "Quintana Roo" },
+              { city: "Yucatán" },
+              { city: "CDMX" },
+              { city: "Nuevo Laredo" },
             ].map((item) => (
               <div class="flex items-center gap-2">
-                <div class={`w-4 h-4 rounded-full ${item.color}`} />
+                <div class="w-4 h-4 rounded-full bg-secondary-color" />
                 <span class="text-secondary-color font-bold text-sm">
                   {item.city}
                 </span>
@@ -315,8 +321,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <!-- NOTICIAS -->
-  <section class="py-20 bg-gray-50">
+  <!-- NOTICIAS — blanco -->
+  <section class="py-20 bg-white">
     <div class="max-w-5xl mx-auto px-6">
       <h2
         data-aos="fade-up"
@@ -327,7 +333,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       <div
         data-aos="fade-up"
         data-aos-delay="100"
-        class="w-24 h-1 bg-primary-color mx-auto mb-14"
+        class="w-24 h-1 mx-auto mb-14"
+        style="background-color: #7dc5b5;"
       >
       </div>
       <div class="relative">
@@ -336,14 +343,20 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
             {
               [1, 2, 3, 1, 2, 3].map((n) => (
                 <div class="swiper-slide">
-                  <div class="bg-white rounded-xl shadow-lg transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:border-2 hover:border-primary-color">
+                  <div
+                    class="bg-white rounded-xl shadow-lg transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:border-2"
+                    style="border-top: 4px solid #7dc5b5;"
+                  >
                     <img
                       src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
                       alt="noticia"
                       class="w-full h-48 object-cover rounded-t-xl"
                     />
                     <div class="p-6">
-                      <span class="text-xs text-primary-color font-bold uppercase">
+                      <span
+                        class="text-xs font-bold uppercase"
+                        style="color: #7dc5b5;"
+                      >
                         Abril 2026
                       </span>
                       <h3 class="text-secondary-color font-bold text-lg mt-2 mb-3">
@@ -367,8 +380,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       <div data-aos="fade-up" class="text-center mt-16">
         <a
           href={`/${lang}/news`}
-          class="text-secondary-color font-semibold border-2 border-secondary-color px-7
-        py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
+          class="text-secondary-color font-semibold border-2 border-secondary-color px-7 py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
         >
           {t.news.viewAll}
         </a>
