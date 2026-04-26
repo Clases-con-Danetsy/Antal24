@@ -14,101 +14,123 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
 <Layout lang={lang}>
   <Header lang={lang} />
 
-  <!-- HERO -->
+  <!-- HERO — azul -->
   <section
-    <section
     class="relative min-h-[700px] md:min-h-[80vh] flex items-center justify-center bg-secondary-color overflow-hidden"
   >
-    >
-    <div class="absolute inset-0">
-      <img
-        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600"
-        alt="hero"
-        class="w-full h-full object-cover opacity-30"
-      />
+    <div class="absolute inset-0 overflow-hidden">
+      <iframe
+        src="https://www.youtube.com/embed/v5lhMsxCb94?autoplay=1&mute=1&loop=1&playlist=v5lhMsxCb94&controls=0&showinfo=0&rel=0&modestbranding=1"
+        class="absolute"
+        style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; min-width: max(100vw, 177.78vh); min-height: max(100vh, 56.25vw); pointer-events: none;"
+        allow="autoplay; encrypted-media"
+        frameborder="0"></iframe>
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(to top, rgba(57,160,139,0.5) 0%, transparent 60%);"
+      >
+      </div>
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(to bottom, rgba(6,45,118,0.5) 0%, transparent 60%);"
+      >
+      </div>
     </div>
+
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
       <h1
+        data-aos="fade-down"
+        data-aos-duration="1000"
         class="text-3xl md:text-7xl font-bold text-white mb-6 leading-tight"
         style="font-family: 'Trebuchet MS', sans-serif;"
       >
-        Get it easy, <span style="color: #39a08b;">get it safe!</span>
+        Get it easy, <span style="color: #7dc5b5;">get it safe!</span>
       </h1>
-      <p class="text-xl md:text-2xl text-white mb-10 opacity-90">
+      <p
+        data-aos="fade-up"
+        data-aos-delay="300"
+        class="text-xl md:text-2xl text-white mb-10 opacity-90"
+      >
         {t.hero.subtitle}
       </p>
     </div>
   </section>
 
-  <div class="w-full h-1 bg-primary-color"></div>
+  <div class="w-full h-1" style="background-color: #7dc5b5;"></div>
 
-  <!-- 3 PILARES -->
+  <!-- 3 PILARES — blanco -->
   <section class="py-16 bg-white">
     <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div
-        class="relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
+        class="animate-on-load relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
         <img
           src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600"
           alt="Comercializadora"
           class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div class="absolute inset-0 opacity-40"></div>
         <div
-          class="absolute inset-0 bg-secondary-color opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+          class="absolute inset-0"
+          style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
         >
         </div>
+        <div></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <div class="text-5xl mb-4"></div>
           <h3 class="text-2xl font-bold">{t.pillars.comercializadora}</h3>
           <div
-            class="w-10 h-0.5 bg-primary-color mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style="background-color: #7dc5b5;"
           >
           </div>
         </div>
       </div>
 
       <div
-        class="relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
+        class="animate-on-load-delay-1 relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
         <img
-          src="https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=600"
+          src="/imagenes/logistica.png"
           alt="Logística"
           class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div class="absolute inset-0 opacity-40"></div>
         <div
-          class="absolute inset-0 bg-secondary-color opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+          class="absolute inset-0"
+          style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
         >
         </div>
+        <div></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <div class="text-5xl mb-4"></div>
           <h3 class="text-2xl font-bold">{t.pillars.logistica}</h3>
           <div
-            class="w-10 h-0.5 bg-primary-color mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style="background-color: #7dc5b5;"
           >
           </div>
         </div>
       </div>
 
       <div
-        class="relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
+        class="animate-on-load-delay-2 relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
         <img
-          src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600"
+          src="/imagenes/despachoaduanal.png"
           alt="Despacho Aduanal"
           class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div class="absolute inset-0 opacity-40"></div>
         <div
-          class="absolute inset-0 bg-secondary-color opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+          class="absolute inset-0"
+          style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
         >
         </div>
+        <div></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <div class="text-5xl mb-4"></div>
           <h3 class="text-2xl font-bold">{t.pillars.aduanal}</h3>
           <div
-            class="w-10 h-0.5 bg-primary-color mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style="background-color: #7dc5b5;"
           >
           </div>
         </div>
@@ -116,35 +138,114 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <!-- SERVICIOS -->
-  <section class="py-20 bg-gray-50">
+  <!-- SERVICIOS — verde suave -->
+  <section class="py-20" style="background-color: #7dc5b5;">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
+      <h2
+        data-aos="fade-up"
+        class="text-4xl font-bold text-secondary-color text-center mb-4"
+      >
         {t.services.title}
       </h2>
-      <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="w-24 h-1 bg-secondary-color mx-auto mb-14"
+      >
+      </div>
     </div>
-    <div class="max-w-5xl mx-auto px-6 overflow-hidden">
-      <div class="carousel-track flex gap-6" id="carousel1">
+    <div class="max-w-5xl mx-auto px-6 relative">
+      <div class="swiper swiper-servicios">
+        <div class="swiper-wrapper">
+          {
+            t.services.items.map(
+              (service: { title: string; desc: string }, i: number) => (
+                <div class="swiper-slide">
+                  <div class="relative rounded-xl overflow-hidden shadow-lg group h-72">
+                    <img
+                      src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1504711434969-e33886168f5c", "1521737852567-6949f3f9f2b5", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c", "1494412574643-ff11b0a5c1c3"][i % 7]}?w=600`}
+                      alt={service.title}
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
+                    />
+                    <div
+                      class="absolute inset-0 transition-opacity duration-500"
+                      style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
+                    />
+                    <div class="absolute inset-0 flex flex-col justify-end p-6">
+                      <h3
+                        class="text-white font-bold text-2xl mb-2"
+                        style="font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px;"
+                      >
+                        {service.title}
+                      </h3>
+                      <p class="text-white text-sm opacity-90">
+                        {service.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ),
+            )
+          }
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <div
+    data-aos="fade-up"
+    class="text-center py-10"
+    style="background-color: #7dc5b5;"
+  >
+    <a
+      href={`/${lang}/services`}
+      class="text-secondary-color font-semibold border-2 border-secondary-color px-7 py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
+    >
+      {lang === "es" ? "Ver todos los servicios" : "View all services"}
+    </a>
+  </div>
+
+  <!-- SERVICIOS LOGÍSTICOS — azul -->
+  <section class="py-20 bg-secondary-color">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2
+        data-aos="fade-up"
+        class="text-4xl font-bold text-white text-center mb-4"
+      >
+        {t.services.logisticsTitle}
+      </h2>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="w-24 h-1 mx-auto mb-14"
+        style="background-color: #7dc5b5;"
+      >
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {
-          [...t.services.items, ...t.services.items].map(
+          t.services.logistics.map(
             (service: { title: string; desc: string }, i: number) => (
               <div
-                class="flex-shrink-0 relative rounded-xl overflow-hidden shadow-lg group h-72"
-                style="width: 320px"
+                data-aos="fade-up"
+                data-aos-delay={i * 150}
+                class="relative rounded-xl overflow-hidden shadow-lg group h-64"
               >
                 <img
-                  src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1504711434969-e33886168f5c", "1521737852567-6949f3f9f2b5", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c", "1494412574643-ff11b0a5c1c3"][i % 7]}?w=600`}
-                  alt={service.title}
+                  src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c"][i % 4]}?w=600`}
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
                 />
-                <div class="absolute inset-0 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                <div
+                  class="absolute inset-0 transition-opacity duration-500"
+                  style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
+                />
                 <div class="absolute inset-0 flex flex-col justify-end p-6">
                   <h3 class="text-white font-bold text-xl mb-2">
                     {service.title}
                   </h3>
                   <p class="text-white text-sm opacity-90">{service.desc}</p>
-                  <span class="text-primary-color font-bold mt-3 text-sm" />
                 </div>
               </div>
             ),
@@ -154,148 +255,212 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <div class="text-center py-10 bg-gray-50">
-    <a
-      href={`/${lang}/services`}
-      class="text-secondary-color font-semibold border-2 border-secondary-color px-7
-    py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
-    >
-      {lang === "es" ? "Ver todos los servicios" : "View all services"}
-    </a>
-  </div>
-</Layout>
-
-<!-- SERVICIOS LOGÍSTICOS -->
-<section class="py-20 bg-white">
-  <div class="max-w-3xl mx-auto px-6">
-    <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
-      {t.services.logisticsTitle}
-    </h2>
-    <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {
-        t.services.logistics.map(
-          (service: { title: string; desc: string }, i: number) => (
-            <div class="relative rounded-xl overflow-hidden shadow-lg group h-64">
-              <img
-               src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c"][i % 4]}?w=600`}
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
-              />
-              <div class="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-              <div class="absolute inset-0 flex flex-col justify-end p-6">
-                <h3 class="text-white font-bold text-xl mb-2">
-                  {service.title}
-                </h3>
-                <p class="text-white text-sm opacity-90">{service.desc}</p>
-                <span class="text-primary-color font-bold mt-3 text-sm" />
-              </div>
-            </div>
-          ),
-        )
-      }
-    </div>
-  </div>
-</section>
-
-<!-- COBERTURA MAPA-->
-<section class="py-20 bg-secondary-color">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-4xl font-bold text-white text-center mb-4">
-      {t.coverage.title}
-    </h2>
-    <div class="w-24 h-1 bg-primary-color mx-auto mb-10"></div>
-    <p
-      class="text-white text-center text-lg max-w-2xl mx-auto mb-12 opacity-90"
-    >
-      {t.coverage.desc}
-    </p>
-
-    <div class="bg-white rounded-xl p-8 shadow-2xl">
-      <div
-        class="relative w-full rounded-lg overflow-hidden pb-[80%] md:pb-[60%]"
+  <!-- COBERTURA MAPA — verde suave -->
+  <section class="py-20" style="background-color: #7dc5b5;">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2
+        data-aos="fade-up"
+        class="text-4xl font-bold text-secondary-color text-center mb-4"
       >
-        <iframe
-          class="absolute inset-0 w-full h-full"
-          src="https://www.google.com/maps/d/embed?mid=1OCzcRGtfFUAl_Ie1rz0WqofWERhC4zk"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"></iframe>
+        {t.coverage.title}
+      </h2>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="w-24 h-1 bg-secondary-color mx-auto mb-10"
+      >
+      </div>
+      <p
+        data-aos="fade-up"
+        data-aos-delay="200"
+        class="text-secondary-color text-center text-lg max-w-2xl mx-auto mb-12 opacity-90"
+      >
+        {t.coverage.desc}
+      </p>
+
+      <div
+        data-aos="zoom-in"
+        data-aos-delay="300"
+        class="bg-white rounded-xl p-8 shadow-2xl"
+      >
         <div
-          class="absolute top-0 left-0 w-full bg-white"
-          style="height: 60px; z-index: 10;"
+          class="relative w-full rounded-lg overflow-hidden pb-[80%] md:pb-[60%]"
         >
+          <iframe
+            class="absolute inset-0 w-full h-full"
+            src="https://www.google.com/maps/d/embed?mid=1OCzcRGtfFUAl_Ie1rz0WqofWERhC4zk"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"></iframe>
+          <div
+            class="absolute top-0 left-0 w-full bg-white"
+            style="height: 60px; z-index: 10;"
+          >
+          </div>
+        </div>
+
+        <!-- Leyenda -->
+        <div class="flex flex-wrap justify-center gap-6 mt-6">
+          {
+            [
+              { city: "Quintana Roo" },
+              { city: "Yucatán" },
+              { city: "CDMX" },
+              { city: "Nuevo Laredo" },
+            ].map((item) => (
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded-full bg-secondary-color" />
+                <span class="text-secondary-color font-bold text-sm">
+                  {item.city}
+                </span>
+              </div>
+            ))
+          }
         </div>
       </div>
-
-      <!-- Leyenda -->
-      <div class="flex flex-wrap justify-center gap-6 mt-6">
-        {
-          [
-            { city: "Quintana Roo", color: "bg-primary-color" },
-            { city: "Yucatán", color: "bg-primary-color" },
-            { city: "CDMX", color: "bg-primary-color" },
-            { city: "Nuevo Laredo", color: "bg-primary-color" },
-          ].map((item) => (
-            <div class="flex items-center gap-2">
-              <div class={`w-4 h-4 rounded-full ${item.color}`} />
-              <span class="text-secondary-color font-bold text-sm">
-                {item.city}
-              </span>
-            </div>
-          ))
-        }
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- NOTICIAS -->
-<section class="py-20 bg-gray-50">
-  <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-4xl font-bold text-secondary-color text-center mb-4">
-      {t.news.title}
-    </h2>
-    <div class="w-24 h-1 bg-primary-color mx-auto mb-14"></div>
-    <div class="overflow-hidden py-4">
+  <!-- NOTICIAS — blanco -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2
+        data-aos="fade-up"
+        class="text-4xl font-bold text-secondary-color text-center mb-4"
+      >
+        {t.news.title}
+      </h2>
       <div
-        class="news-track flex gap-6"
-        style="overflow: visible; padding: 10px 0;"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="w-24 h-1 mx-auto mb-14"
+        style="background-color: #7dc5b5;"
       >
-        {
-          [1, 2, 3, 1, 2, 3].map((n) => (
-            <div class="bg-white rounded-xl shadow-lg transition-all duration-500 group w-[260px] md:w-[380px] relative z-0 hover:z-10 hover:scale-110 hover:shadow-2xl hover:border-2 hover:border-primary-color">
-              <img
-                src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
-                alt="noticia"
-                class="w-full h-48 object-cover rounded-t-xl"
-              />
-              <div class="p-6">
-                <span class="text-xs text-primary-color font-bold uppercase">
-                  Abril 2026
-                </span>
-                <h3 class="text-secondary-color font-bold text-lg mt-2 mb-3">
-                  Título de noticia placeholder {n}
-                </h3>
-                <p class="text-gray-500 text-sm">
-                  Descripción breve de la noticia. Este contenido será
-                  actualizado desde el sistema de gestión.
-                </p>
-              </div>
-            </div>
-          ))
-        }
+      </div>
+      <div class="relative">
+        <div class="swiper swiper-noticias">
+          <div class="swiper-wrapper py-4">
+            {
+              [1, 2, 3, 1, 2, 3].map((n) => (
+                <div class="swiper-slide">
+                  <div
+                    class="bg-white rounded-xl shadow-lg transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:border-2"
+                    style="border-top: 4px solid #7dc5b5;"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
+                      alt="noticia"
+                      class="w-full h-48 object-cover rounded-t-xl"
+                    />
+                    <div class="p-6">
+                      <span
+                        class="text-xs font-bold uppercase"
+                        style="color: #7dc5b5;"
+                      >
+                        Abril 2026
+                      </span>
+                      <h3 class="text-secondary-color font-bold text-lg mt-2 mb-3">
+                        Título de noticia placeholder {n}
+                      </h3>
+                      <p class="text-gray-500 text-sm">
+                        Descripción breve de la noticia. Este contenido será
+                        actualizado desde el sistema de gestión.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <div data-aos="fade-up" class="text-center mt-16">
+        <a
+          href={`/${lang}/news`}
+          class="text-secondary-color font-semibold border-2 border-secondary-color px-7 py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
+        >
+          {t.news.viewAll}
+        </a>
       </div>
     </div>
-    <div class="text-center mt-16">
-      <a
-        href={`/${lang}/news`}
-        class="text-secondary-color font-semibold border-2 border-secondary-color px-7
-      py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
-      >
-        {t.news.viewAll}
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<Footer lang={lang} />
+  <Footer lang={lang} />
+
+  <script>
+    import Swiper from "swiper";
+    import { Navigation, Pagination, Autoplay } from "swiper/modules";
+    import "swiper/css";
+    import "swiper/css/navigation";
+    import "swiper/css/pagination";
+
+    new Swiper(".swiper-servicios", {
+      modules: [Navigation, Pagination, Autoplay],
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".swiper-servicios .swiper-button-next",
+        prevEl: ".swiper-servicios .swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-servicios .swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: { slidesPerView: 2, spaceBetween: 20 },
+        1024: { slidesPerView: 3, spaceBetween: 24 },
+      },
+    });
+
+    new Swiper(".swiper-noticias", {
+      modules: [Navigation, Pagination, Autoplay],
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".swiper-noticias .swiper-button-next",
+        prevEl: ".swiper-noticias .swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-noticias .swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: { slidesPerView: 1.5, spaceBetween: 20 },
+        1024: { slidesPerView: 2.2, spaceBetween: 24 },
+      },
+    });
+  </script>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        } else {
+          entry.target.classList.remove("in-view");
+        }
+      });
+    });
+
+    document
+      .querySelectorAll(
+        ".animate-on-load, .animate-on-load-delay-1, .animate-on-load-delay-2",
+      )
+      .forEach((el) => {
+        observer.observe(el);
+      });
+  </script>
+</Layout>

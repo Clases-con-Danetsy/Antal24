@@ -32,12 +32,126 @@
     animation-play-state: paused;
 }
 
-@keyframes scrollNews {
-    0% {
-        transform: translateX(0);
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
 
-    100% {
-        transform: translateX(-50%);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
+
+.animate-on-load {
+    opacity: 0;
+}
+
+.animate-on-load-delay-1 {
+    opacity: 0;
+}
+
+.animate-on-load-delay-2 {
+    opacity: 0;
+}
+
+.animate-on-load.in-view {
+    animation: fadeUp 1.2s ease-in-out forwards;
+}
+
+.animate-on-load-delay-1.in-view {
+    animation: fadeUp 1.2s ease-in-out 0.3s forwards;
+}
+
+.animate-on-load-delay-2.in-view {
+    animation: fadeUp 1.2s ease-in-out 0.6s forwards;
+}
+
+.animate-news-0 {
+    opacity: 0;
+}
+
+.animate-news-1 {
+    opacity: 0;
+}
+
+.animate-news-2 {
+    opacity: 0;
+}
+
+.animate-news-0.in-view {
+    animation: fadeUp 1.2s ease-in-out forwards;
+}
+
+.animate-news-1.in-view {
+    animation: fadeUp 1.2s ease-in-out 0.3s forwards;
+}
+
+.animate-news-2.in-view {
+    animation: fadeUp 1.2s ease-in-out 0.6s forwards;
+}
+
+.animate-service-0 {
+    opacity: 0;
+}
+
+.animate-service-1 {
+    opacity: 0;
+}
+
+.animate-service-2 {
+    opacity: 0;
+}
+
+.animate-service-3 {
+    opacity: 0;
+}
+
+.animate-service-4 {
+    opacity: 0;
+}
+
+.animate-service-5 {
+    opacity: 0;
+}
+
+.animate-service-6 {
+    opacity: 0;
+}
+
+.animate-service-0.in-view {
+    animation: fadeUp 1.2s ease-in-out forwards;
+}
+
+.animate-service-1.in-view {
+    animation: fadeUp 1.2s ease-in-out 0.2s forwards;
+}
+
+.animate-service-2.in-view {
+    animation: fadeUp 1.2s ease-in-out 0.4s forwards;
+}
+
+.animate-service-3.in-view {
+    animation: fadeUp 1.2s ease-in-out 0.6s forwards;
+}
+
+.animate-service-4.in-view {
+    animation: fadeUp 1.2s ease-in-out 0.8s forwards;
+}
+
+.animate-service-5.in-view {
+    animation: fadeUp 1.2s ease-in-out 1s forwards;
+}
+
+.animate-service-6.in-view {
+    animation: fadeUp 1.2s ease-in-out 1.2s forwards;
+}
+
+.animate-service-7 {
+    opacity: 0;
+}
+
+.animate-service-7.in-view {
+    animation: fadeUp 1.2s ease-in-out forwards;
 }
