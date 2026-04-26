@@ -1,0 +1,202 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Headers/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+export const prerender = true;
+export function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const lang = Astro.params.lang || "es";
+import { translations } from "../../locales.js";
+const t = translations[lang as keyof typeof translations] ?? translations["es"];
+
+const news = [
+  {
+    category: lang === "es" ? "Logística" : "Logistics",
+    date: lang === "es" ? "12 de abril de 2026" : "April 12, 2026",
+    title: lang === "es"
+      ? "Nuevas rutas de transporte terrestre hacia el norte del país"
+      : "New land transport routes to the north of the country",
+    content: lang === "es"
+      ? [
+          "ANTAL amplía su red de distribución con nuevas rutas estratégicas que conectan la Ciudad de México con Nuevo Laredo, uno de los corredores de comercio exterior más importantes del país.",
+          "Gracias a esta expansión, los tiempos de entrega se reducen hasta un 30%, permitiendo a nuestros clientes mejorar su cadena de suministro y reducir costos operativos significativamente.",
+          "Las nuevas rutas contemplan puntos de enlace en Monterrey y Saltillo, consolidando una red que cubre los principales puertos de entrada y salida de mercancía en el norte del territorio nacional.",
+        ]
+      : [
+          "ANTAL expands its distribution network with new strategic routes connecting Mexico City with Nuevo Laredo.",
+          "Thanks to this expansion, delivery times are reduced by up to 30%, allowing our clients to improve their supply chain.",
+          "The new routes include connection points in Monterrey and Saltillo, consolidating a network that covers the main ports in northern Mexico.",
+        ],
+    tags: lang === "es" ? ["Transporte", "Norte", "Distribución"] : ["Transport", "North", "Distribution"],
+    gradientStyle: "background: linear-gradient(135deg, #062d76 50%, #39a08b);",
+    animClass: "animate-news-0",
+  },
+  {
+    category: lang === "es" ? "Aduanas" : "Customs",
+    date: lang === "es" ? "5 de abril de 2026" : "April 5, 2026",
+    title: lang === "es"
+      ? "Actualización en regulaciones de importación para productos electrónicos"
+      : "Update on import regulations for electronic products",
+    content: lang === "es"
+      ? [
+          "El Servicio de Administración Tributaria (SAT) publicó nuevas disposiciones que afectan la clasificación arancelaria de dispositivos electrónicos importados, con vigencia a partir de mayo de 2026.",
+          "Entre los cambios más relevantes destacan modificaciones en las fracciones arancelarias para teléfonos inteligentes, tabletas y componentes para ensamble.",
+          "Desde ANTAL, estamos listos para asesorar a nuestros clientes en la correcta clasificación de sus mercancías y garantizar el cumplimiento de las nuevas disposiciones.",
+        ]
+      : [
+          "The Tax Administration Service (SAT) published new provisions affecting the tariff classification of imported electronic devices, effective from May 2026.",
+          "The most relevant changes include modifications to tariff fractions for smartphones, tablets and assembly components.",
+          "At ANTAL, we are ready to advise our clients on the correct classification of their goods.",
+        ],
+    tags: lang === "es" ? ["SAT", "Aranceles", "Electrónicos"] : ["SAT", "Tariffs", "Electronics"],
+    gradientStyle: "background: linear-gradient(135deg, #062d76 40%, #0a3d8f);",
+    animClass: "animate-news-1",
+  },
+  {
+    category: lang === "es" ? "Comercio exterior" : "Foreign trade",
+    date: lang === "es" ? "28 de marzo de 2026" : "March 28, 2026",
+    title: lang === "es"
+      ? "México fortalece acuerdos comerciales con Asia-Pacífico"
+      : "Mexico strengthens trade agreements with Asia-Pacific",
+    content: lang === "es"
+      ? [
+          "El TLCPTP abre nuevas oportunidades para exportadores mexicanos, especialmente en los sectores automotriz y agroindustrial, consolidando a México como un actor clave en el comercio del Pacífico.",
+          "Este acuerdo facilita el acceso preferencial a mercados como Japón, Vietnam y Australia, con reducciones arancelarias que benefician directamente a las empresas mexicanas.",
+          "En ANTAL, estamos preparados para acompañar a nuestros clientes en el aprovechamiento de estos nuevos esquemas comerciales.",
+        ]
+      : [
+          "The CPTPP opens new opportunities for Mexican exporters, especially in the automotive and agro-industrial sectors.",
+          "This agreement facilitates preferential access to markets such as Japan, Vietnam and Australia.",
+          "At ANTAL, we are prepared to accompany our clients in taking advantage of these new commercial schemes.",
+        ],
+    tags: lang === "es" ? ["TLCPTP", "Exportación", "Asia-Pacífico"] : ["CPTPP", "Export", "Asia-Pacific"],
+    gradientStyle: "background: linear-gradient(135deg, #062d76 50%, #2d7a5e);",
+    animClass: "animate-news-2",
+  },
+];
+---
+
+<Layout lang={lang}>
+  <Header lang={lang} />
+
+  <!-- HERO -->
+  <section
+    class="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center bg-secondary-color overflow-hidden"
+  >
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600"
+        alt="noticias"
+        class="w-full h-full object-cover opacity-20"
+      />
+    </div>
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
+      <h1
+        data-aos="fade-down"
+        data-aos-duration="1000"
+        class="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight"
+        style="font-family: 'Trebuchet MS', sans-serif;"
+      >
+        {lang === "es" ? "No" : "Ne"}<span style="color: #39a08b;"
+          >{lang === "es" ? "ticias" : "ws"}</span
+        >
+      </h1>
+      <p
+        data-aos="fade-up"
+        data-aos-delay="300"
+        class="text-lg md:text-xl text-white opacity-90"
+      >
+        {
+          lang === "es"
+            ? "Mantente informado sobre las últimas novedades en comercio exterior, logística y despacho aduanal."
+            : "Stay informed about the latest news in foreign trade, logistics and customs clearance."
+        }
+      </p>
+    </div>
+  </section>
+
+  <div class="w-full h-1 bg-primary-color"></div>
+
+  <!-- NOTICIAS -->
+  <main class="max-w-4xl mx-auto px-6 py-16 flex flex-col gap-10">
+    {news.map((article, i) => (
+      <div>
+        <article
+          class={article.animClass}
+          style="background: white; border-radius: 16px; overflow: hidden; border: 0.5px solid rgba(173,172,177,0.3); box-shadow: 0 4px 32px rgba(6,45,118,0.06);"
+        >
+          <!-- Imagen portada -->
+          <div style={`${article.gradientStyle} position: relative; height: 280px; display: flex; align-items: center; justify-content: center;`}>
+            <span style="position: absolute; top: 16px; left: 16px; background: #39a08b; color: white; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; z-index: 2;">
+              {article.category}
+            </span>
+            <span style="position: absolute; bottom: 16px; right: 16px; background: rgba(6,45,118,0.85); color: white; font-size: 11px; padding: 4px 12px; border-radius: 4px; z-index: 2;">
+              {article.date}
+            </span>
+            <svg style="width: 64px; height: 64px; opacity: 0.12; position: relative; z-index: 1;" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+
+          <!-- Cuerpo del artículo -->
+          <div style="padding: 2rem 2.5rem;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+              <span style="font-size: 10px; font-weight: 600; color: #39a08b; text-transform: uppercase; letter-spacing: 1.5px;">{article.category}</span>
+              <span style="width: 4px; height: 4px; border-radius: 50%; background: #adacb1; display: inline-block;"></span>
+              <span style="font-size: 11px; color: #adacb1;">{article.date}</span>
+              <span style="width: 4px; height: 4px; border-radius: 50%; background: #adacb1; display: inline-block;"></span>
+              <span style="font-size: 11px; color: #adacb1;">Equipo ANTAL</span>
+            </div>
+            <h2 style="font-family: 'Trebuchet MS', sans-serif; font-size: 22px; font-weight: 700; color: #062d76; line-height: 1.35; margin-bottom: 12px;">
+              {article.title}
+            </h2>
+            <div style="width: 36px; height: 3px; background: #39a08b; border-radius: 2px; margin-bottom: 20px;"></div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              {article.content.map((paragraph: string) => (
+                <p style="font-size: 14px; color: #6b7280; line-height: 1.85;">{paragraph}</p>
+              ))}
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding-top: 20px; border-top: 0.5px solid rgba(173,172,177,0.25);">
+              {article.tags.map((tag: string) => (
+                <span style="font-size: 10px; font-weight: 500; color: #062d76; padding: 4px 12px; border-radius: 20px; background: rgba(6,45,118,0.07); border: 0.5px solid rgba(6,45,118,0.15);">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+
+        <!-- Separador -->
+        {i < news.length - 1 && (
+          <div style="display: flex; align-items: center; gap: 12px; margin-top: 2.5rem;">
+            <div style="flex: 1; height: 1px; background: rgba(173,172,177,0.3);"></div>
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: #39a08b;"></div>
+            <div style="flex: 1; height: 1px; background: rgba(173,172,177,0.3);"></div>
+          </div>
+        )}
+      </div>
+    ))}
+  </main>
+
+  <Footer lang={lang} />
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        } else {
+          entry.target.classList.remove("in-view");
+        }
+      });
+    });
+
+    document
+      .querySelectorAll(".animate-news-0, .animate-news-1, .animate-news-2")
+      .forEach((el) => observer.observe(el));
+  </script>
+</Layout>
