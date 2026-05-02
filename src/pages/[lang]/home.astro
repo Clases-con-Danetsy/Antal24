@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Headers/Header.astro";
 import Footer from "../../components/Footer.astro";
+import MapaSocios from "../../components/Headers/MapaSocios.astro";
+
 export const prerender = true;
 export function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -255,71 +257,8 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <!-- COBERTURA MAPA — verde suave -->
-  <section class="py-20" style="background-color: #7dc5b5;">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2
-        data-aos="fade-up"
-        class="text-4xl font-bold text-secondary-color text-center mb-4"
-      >
-        {t.coverage.title}
-      </h2>
-      <div
-        data-aos="fade-up"
-        data-aos-delay="100"
-        class="w-24 h-1 bg-secondary-color mx-auto mb-10"
-      >
-      </div>
-      <p
-        data-aos="fade-up"
-        data-aos-delay="200"
-        class="text-secondary-color text-center text-lg max-w-2xl mx-auto mb-12 opacity-90"
-      >
-        {t.coverage.desc}
-      </p>
-
-      <div
-        data-aos="zoom-in"
-        data-aos-delay="300"
-        class="bg-white rounded-xl p-8 shadow-2xl"
-      >
-        <div
-          class="relative w-full rounded-lg overflow-hidden pb-[80%] md:pb-[60%]"
-        >
-          <iframe
-            class="absolute inset-0 w-full h-full"
-            src="https://www.google.com/maps/d/embed?mid=1OCzcRGtfFUAl_Ie1rz0WqofWERhC4zk"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"></iframe>
-          <div
-            class="absolute top-0 left-0 w-full bg-white"
-            style="height: 60px; z-index: 10;"
-          >
-          </div>
-        </div>
-
-        <!-- Leyenda -->
-        <div class="flex flex-wrap justify-center gap-6 mt-6">
-          {
-            [
-              { city: "Quintana Roo" },
-              { city: "Yucatán" },
-              { city: "CDMX" },
-              { city: "Nuevo Laredo" },
-            ].map((item) => (
-              <div class="flex items-center gap-2">
-                <div class="w-4 h-4 rounded-full bg-secondary-color" />
-                <span class="text-secondary-color font-bold text-sm">
-                  {item.city}
-                </span>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- MAPA SOCIOS — reemplaza cobertura -->
+  <MapaSocios lang={lang} />
 
   <!-- NOTICIAS — blanco -->
   <section class="py-20 bg-white">
@@ -402,10 +341,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       slidesPerView: 1.2,
       spaceBetween: 20,
       loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
+      autoplay: { delay: 3000, disableOnInteraction: false },
       navigation: {
         nextEl: ".swiper-servicios .swiper-button-next",
         prevEl: ".swiper-servicios .swiper-button-prev",
@@ -425,10 +361,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       slidesPerView: 1.2,
       spaceBetween: 20,
       loop: true,
-      autoplay: {
-        delay: 3500,
-        disableOnInteraction: false,
-      },
+      autoplay: { delay: 3500, disableOnInteraction: false },
       navigation: {
         nextEl: ".swiper-noticias .swiper-button-next",
         prevEl: ".swiper-noticias .swiper-button-prev",
@@ -454,7 +387,6 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         }
       });
     });
-
     document
       .querySelectorAll(
         ".animate-on-load, .animate-on-load-delay-1, .animate-on-load-delay-2",
