@@ -1,0 +1,187 @@
+---
+const { lang = "es" } = Astro.props;
+
+const texts = {
+  es: { title: "Socios Comerciales" },
+  en: { title: "Commercial Partners" },
+};
+
+const t = texts[lang as keyof typeof texts] ?? texts["es"];
+
+const partners = {
+  es: [
+    { id: "usa", name: "Estados Unidos", flag: "🇺🇸", city: ["New York", "Los Angeles", "Miami", "Houston"], desc: "Socio estratégico en importaciones y exportaciones con gestión integral de aduanas y logística terrestre e internacional.", coords: [-98, 38] },
+    { id: "de", name: "Alemania", flag: "🇩🇪", city: ["Berlín", "Hamburgo", "Frankfurt"], desc: "Alianza en logística internacional y certificaciones NOMs. Principal puerta de entrada al mercado europeo.", coords: [10, 51] },
+    { id: "es", name: "España", flag: "🇪🇸", city: ["Madrid", "Barcelona", "Valencia"], desc: "Socio en comercio exterior y despacho aduanal con conexión directa a la Unión Europea y América Latina.", coords: [-3, 40] },
+    { id: "cn", name: "China", flag: "🇨🇳", city: ["Shanghai", "Beijing", "Guangzhou"], desc: "Principal socio en importación de mercancía y gestión de cuadernos ATA y certificaciones.", coords: [104, 35] },
+  ],
+  en: [
+    { id: "usa", name: "United States", flag: "🇺🇸", city: ["New York", "Los Angeles", "Miami", "Houston"], desc: "Strategic partner in imports and exports with full customs management and international logistics.", coords: [-98, 38] },
+    { id: "de", name: "Germany", flag: "🇩🇪", city: ["Berlin", "Hamburg", "Frankfurt"], desc: "Commercial alliance in international logistics and NOM certifications. Gateway to the European market.", coords: [10, 51] },
+    { id: "es", name: "Spain", flag: "🇪🇸", city: ["Madrid", "Barcelona", "Valencia"], desc: "Partner in foreign trade and customs clearance with direct connection to the European Union.", coords: [-3, 40] },
+    { id: "cn", name: "China", flag: "🇨🇳", city: ["Shanghai", "Beijing", "Guangzhou"], desc: "Main partner for merchandise imports and ATA carnet management and certifications.", coords: [104, 35] },
+  ],
+};
+
+const currentPartners = partners[lang as keyof typeof partners] ?? partners["es"];
+const partnerData = JSON.stringify(currentPartners);
+---
+
+<section class="py-20 bg-secondary-color">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 data-aos="fade-up" class="text-4xl font-bold text-white text-center mb-4">
+      {t.title}
+    </h2>
+    <div data-aos="fade-up" data-aos-delay="100" class="w-24 h-1 mx-auto mb-10" style="background-color: #7dc5b5;"></div>
+
+    <!-- Mapa -->
+    <div data-aos="zoom-in" data-aos-delay="200">
+      <div id="antal-map" class="w-full"></div>
+    </div>
+
+    <!-- Países con pin SVG pegado al mapa -->
+    <div class="flex flex-wrap justify-center gap-8 mt-1">
+      {currentPartners.map((p) => (
+        <div class="flex items-center gap-2">
+          <!-- Pin SVG pequeño -->
+          <svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 0C2.69 0 0 2.69 0 6C0 10.5 6 18 6 18C6 18 12 10.5 12 6C12 2.69 9.31 0 6 0Z" fill="#39a08b"/>
+            <circle cx="6" cy="6" r="2.5" fill="white"/>
+          </svg>
+          <span class="text-white font-bold text-sm">{p.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="mapa-modal" style="display:none; position:fixed; inset:0; z-index:50; align-items:center; justify-content:center; background:rgba(6,45,118,0.88);">
+  <div style="position:relative; border-radius:16px; padding:2rem; max-width:380px; width:90%; background:#0a3d6e; border:1.5px solid #39a08b;">
+    <button id="modal-close" style="position:absolute; top:1rem; right:1rem; background:none; border:none; color:#7dc5b5; cursor:pointer; font-size:1.2rem;">✕</button>
+    <div id="modal-flag" style="font-size:2.5rem; margin-bottom:0.5rem;"></div>
+    <div id="modal-title" style="color:white; font-size:1.3rem; font-weight:bold; margin-bottom:0.25rem;"></div>
+    <div id="modal-city" style="color:#7dc5b5; font-size:0.85rem; margin-bottom:0.75rem;"></div>
+    <div style="width:40px; height:3px; background:#39a08b; border-radius:2px; margin-bottom:0.75rem;"></div>
+    <div id="modal-desc" style="color:rgba(255,255,255,0.82); font-size:0.9rem; line-height:1.6;"></div>
+  </div>
+</div>
+
+<script define:vars={{ partnerData }}>
+  const partners = JSON.parse(partnerData);
+  const pinPath = "M0,-18 C6,-18 12,-12 12,-6 C12,4 0,18 0,18 C0,18 -12,4 -12,-6 C-12,-12 -6,-18 0,-18 Z";
+
+  async function initMap() {
+    const [d3Module, topoModule] = await Promise.all([
+      import("https://cdn.jsdelivr.net/npm/d3@7/+esm"),
+      import("https://cdn.jsdelivr.net/npm/topojson-client@3/+esm"),
+    ]);
+
+    const d3 = d3Module;
+    const W = 960, H = 480;
+    const container = document.getElementById("antal-map");
+    if (!container) return;
+
+    const svg = d3.select(container)
+      .append("svg")
+      .attr("viewBox", `0 0 ${W} ${H}`)
+      .style("width", "100%")
+      .style("display", "block");
+
+    const proj = d3.geoNaturalEarth1().scale(153).translate([W / 2, H / 2]);
+    const pathGen = d3.geoPath().projection(proj);
+
+    const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+    const countries = topoModule.feature(world, world.objects.countries);
+
+    svg.selectAll("path.country")
+      .data(countries.features.filter((d) => d.id !== "010"))
+      .enter()
+      .append("path")
+      .attr("d", pathGen)
+      .style("fill", "#1a5c4a")
+      .style("stroke", "#7dc5b5")
+      .style("stroke-width", "0.5")
+      .on("mouseover", function() { d3.select(this).style("fill", "#226b57"); })
+      .on("mouseout", function() { d3.select(this).style("fill", "#1a5c4a"); });
+
+    const usaPos = proj(partners[0].coords);
+
+    partners.forEach((p, i) => {
+      const pos = proj(p.coords);
+
+      if (i > 0) {
+        svg.append("path")
+          .style("stroke", "#7dc5b5")
+          .style("stroke-width", "0.5")
+          .style("stroke-dasharray", "5 4")
+          .style("opacity", "0.4")
+          .style("fill", "none")
+          .attr("d", `M${usaPos[0]},${usaPos[1]-10} Q${(usaPos[0]+pos[0])/2},${Math.min(usaPos[1],pos[1])-55} ${pos[0]},${pos[1]-10}`);
+      }
+
+      const g = svg.append("g").style("cursor", "pointer").on("click", () => openModal(p));
+
+      const pulse = g.append("circle")
+        .attr("cx", pos[0]).attr("cy", pos[1] - 6)
+        .attr("r", 8)
+        .style("fill", "#39a08b")
+        .style("opacity", "0.5");
+
+      let start = null;
+      const delay = i * 500;
+      function animatePulse(ts) {
+        if (!start) start = ts + delay;
+        const elapsed = (ts - start) % 2000;
+        if (elapsed >= 0) {
+          const progress = elapsed / 2000;
+          pulse.attr("r", 8 + progress * 16).style("opacity", 0.5 * (1 - progress));
+        }
+        requestAnimationFrame(animatePulse);
+      }
+      requestAnimationFrame(animatePulse);
+
+      g.append("path")
+        .attr("d", pinPath)
+        .attr("transform", `translate(${pos[0]}, ${pos[1]})`)
+        .style("fill", "#39a08b")
+        .style("stroke", "white")
+        .style("stroke-width", "1.2")
+        .style("filter", "drop-shadow(0px 2px 4px rgba(0,0,0,0.5))");
+
+      g.append("circle")
+        .attr("cx", pos[0]).attr("cy", pos[1] - 6)
+        .attr("r", 3)
+        .style("fill", "white")
+        .style("opacity", "0.9");
+
+      g.append("text")
+        .attr("x", pos[0]).attr("y", pos[1] + 28)
+        .style("fill", "#7dc5b5")
+        .style("font-size", "9px")
+        .style("font-weight", "bold")
+        .style("text-anchor", "middle")
+        .style("pointer-events", "none")
+        .style("font-family", "Trebuchet MS, sans-serif")
+        .text(p.name);
+    });
+  }
+
+  function openModal(p) {
+    document.getElementById("modal-flag").textContent = p.flag;
+    document.getElementById("modal-title").textContent = p.name;
+    document.getElementById("modal-city").textContent = Array.isArray(p.city) ? p.city.join(" · ") : p.city;
+    document.getElementById("modal-desc").textContent = p.desc;
+    document.getElementById("mapa-modal").style.display = "flex";
+  }
+
+  document.getElementById("modal-close")?.addEventListener("click", () => {
+    document.getElementById("mapa-modal").style.display = "none";
+  });
+
+  document.getElementById("mapa-modal")?.addEventListener("click", function(e) {
+    if (e.target === this) this.style.display = "none";
+  });
+
+  initMap();
+</script>
