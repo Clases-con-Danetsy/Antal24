@@ -1,9 +1,5 @@
 ---
 // src/pages/[lang]/noticias.astro
-// ============================================
-// Igual que antes pero las noticias vienen
-// del API PHP en lugar de estar hardcodeadas.
-// ============================================
 
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Headers/Header.astro";
@@ -18,46 +14,6 @@ export function getStaticPaths() {
 const lang = Astro.params.lang || "es";
 import { translations } from "../../locales.js";
 const t = translations[lang as keyof typeof translations] ?? translations["es"];
-
-// -----------------------------------------------
-// Fetch al API de noticias en build time
-// -----------------------------------------------
-let news: any[] = [];
-
-try {
-  // const res = await fetch("https://antal24.com/admin/noticias.php");
-  const res = await fetch("http://localhost/antal24/admin/noticias.php");
-
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-  const data = await res.json();
-
-  if (data.ok && Array.isArray(data.noticias)) {
-    // Mapear cada noticia de la API al formato que usa el template
-    news = data.noticias.map((n: any, i: number) => {
-      // Gradientes rotativos igual que los originales
-      const gradients = [
-        "background: linear-gradient(135deg, #062d76 50%, #39a08b);",
-        "background: linear-gradient(135deg, #062d76 40%, #0a3d8f);",
-        "background: linear-gradient(135deg, #062d76 50%, #2d7a5e);",
-      ];
-
-      return {
-        categoria : lang === "es" ? n.categoria_es : n.categoria_en,
-        date      : lang === "es" ? n.fecha_es     : n.fecha_en,
-        title     : lang === "es" ? n.titulo_es    : n.titulo_en,
-        content   : lang === "es" ? n.contenido_es : n.contenido_en, // ya es array
-        tags      : lang === "es" ? n.tags_es      : n.tags_en,      // ya es array
-        imagen    : n.imagen ?? null,
-        gradientStyle: gradients[i % gradients.length],
-        animClass : `animate-news-${i % 3}`,
-      };
-    });
-  }
-} catch (err) {
-  console.error("[news.astro] Error al cargar noticias:", err);
-  // Si el API falla, news queda vacío y se muestra mensaje de fallback
-}
 ---
 
 <Layout lang={lang}>
@@ -103,99 +59,220 @@ try {
 
   <!-- NOTICIAS -->
   <main class="max-w-4xl mx-auto px-6 py-16 flex flex-col gap-10">
-
-    {news.length === 0 && (
+    <div id="news-container">
       <div style="text-align:center; padding: 4rem 0; color: #6b7280;">
         <p style="font-size:18px; font-weight:600;">
-          {lang === "es" ? "No hay noticias publicadas aún." : "No news published yet."}
+          {lang === "es" ? "Cargando noticias..." : "Loading news..."}
         </p>
       </div>
-    )}
-
-    {news.map((article, i) => (
-      <div>
-        <article
-          class={article.animClass}
-          style="background: white; border-radius: 16px; overflow: hidden; border: 0.5px solid rgba(173,172,177,0.3); box-shadow: 0 4px 32px rgba(6,45,118,0.06);"
-        >
-          <!-- Imagen portada: usa la imagen subida o el gradiente de color -->
-          <div style={`position: relative; height: 280px; display: flex; align-items: center; justify-content: center; ${article.imagen ? '' : article.gradientStyle}`}>
-
-            {article.imagen
-              ? <img
-                  src={article.imagen}
-                  alt={article.title}
-                  style="width:100%; height:100%; object-fit:cover; display:block;"
-                />
-              : <svg style="width: 64px; height: 64px; opacity: 0.12; position: relative; z-index: 1;" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-            }
-
-            <span style="position: absolute; top: 16px; left: 16px; background: #39a08b; color: white; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; z-index: 2;">
-              {article.categoria}
-            </span>
-            <span style="position: absolute; bottom: 16px; right: 16px; background: rgba(6,45,118,0.85); color: white; font-size: 11px; padding: 4px 12px; border-radius: 4px; z-index: 2;">
-              {article.date}
-            </span>
-          </div>
-
-          <!-- Cuerpo del artículo -->
-          <div style="padding: 2rem 2.5rem;">
-            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-              <span style="font-size: 10px; font-weight: 600; color: #39a08b; text-transform: uppercase; letter-spacing: 1.5px;">{article.categoria}</span>
-              <span style="width: 4px; height: 4px; border-radius: 50%; background: #adacb1; display: inline-block;"></span>
-              <span style="font-size: 11px; color: #adacb1;">{article.date}</span>
-              <span style="width: 4px; height: 4px; border-radius: 50%; background: #adacb1; display: inline-block;"></span>
-              <span style="font-size: 11px; color: #adacb1;">Equipo ANTAL24</span>
-            </div>
-            <h2 style="font-family: 'Trebuchet MS', sans-serif; font-size: 22px; font-weight: 700; color: #062d76; line-height: 1.35; margin-bottom: 12px;">
-              {article.title}
-            </h2>
-            <div style="width: 36px; height: 3px; background: #39a08b; border-radius: 2px; margin-bottom: 20px;"></div>
-            <div style="display: flex; flex-direction: column; gap: 12px;">
-              {article.content.map((paragraph: string) => (
-                <p style="font-size: 14px; color: #6b7280; line-height: 1.85;">{paragraph}</p>
-              ))}
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding-top: 20px; border-top: 0.5px solid rgba(173,172,177,0.25);">
-              {article.tags.map((tag: string) => (
-                <span style="font-size: 10px; font-weight: 500; color: #062d76; padding: 4px 12px; border-radius: 20px; background: rgba(6,45,118,0.07); border: 0.5px solid rgba(6,45,118,0.15);">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </article>
-
-        <!-- Separador -->
-        {i < news.length - 1 && (
-          <div style="display: flex; align-items: center; gap: 12px; margin-top: 2.5rem;">
-            <div style="flex: 1; height: 1px; background: rgba(173,172,177,0.3);"></div>
-            <div style="width: 8px; height: 8px; border-radius: 50%; background: #39a08b;"></div>
-            <div style="flex: 1; height: 1px; background: rgba(173,172,177,0.3);"></div>
-          </div>
-        )}
-      </div>
-    ))}
+    </div>
   </main>
 
   <Footer lang={lang} />
 
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-        } else {
-          entry.target.classList.remove("in-view");
-        }
-      });
-    });
+  <script define:vars={{ lang }}>
+    const container = document.getElementById("news-container");
 
-    document
-      .querySelectorAll(".animate-news-0, .animate-news-1, .animate-news-2")
-      .forEach((el) => observer.observe(el));
+    async function loadNews() {
+      try {
+        const base =
+          window.location.hostname === "localhost"
+            ? "http://localhost/antal24"
+            : "";
+
+        const res = await fetch(`${base}/admin/noticias.php`);
+        const data = await res.json();
+
+        if (!data.ok || !Array.isArray(data.noticias)) {
+          throw new Error("Invalid API response");
+        }
+
+        if (data.noticias.length === 0) {
+          container.innerHTML = `
+            <div style="text-align:center; padding: 4rem 0; color: #6b7280;">
+              <p style="font-size:18px; font-weight:600;">
+                ${lang === "es" ? "No hay noticias publicadas aún." : "No news published yet."}
+              </p>
+            </div>`;
+          return;
+        }
+
+        const gradients = [
+          "linear-gradient(135deg, #062d76 50%, #39a08b)",
+          "linear-gradient(135deg, #062d76 40%, #0a3d8f)",
+          "linear-gradient(135deg, #062d76 50%, #2d7a5e)",
+        ];
+
+        const html = data.noticias
+          .map((n, i) => {
+            const categoria = lang === "es" ? n.categoria_es : n.categoria_en;
+            const fecha = lang === "es" ? n.fecha_es : n.fecha_en;
+            const titulo = lang === "es" ? n.titulo_es : n.titulo_en;
+            const contenido = lang === "es" ? n.contenido_es : n.contenido_en;
+            const tags = lang === "es" ? n.tags_es : n.tags_en;
+
+            const separator =
+              i < data.noticias.length - 1
+                ? `
+            <div style="display:flex; align-items:center; gap:12px; margin-top:2.5rem;">
+              <div style="flex:1; height:1px; background:rgba(173,172,177,0.3);"></div>
+              <div style="width:8px; height:8px; border-radius:50%; background:#39a08b;"></div>
+              <div style="flex:1; height:1px; background:rgba(173,172,177,0.3);"></div>
+            </div>`
+                : "";
+
+            return `
+            <div>
+              <article style="
+                background: white;
+                border-radius: 16px;
+                overflow: hidden;
+                border: 0.5px solid rgba(173,172,177,0.3);
+                box-shadow: 0 4px 32px rgba(6,45,118,0.06);
+              ">
+
+                <!-- Imagen / gradiente con badges -->
+                <div style="
+                  position: relative;
+                  height: 40%;
+                  overflow: hidden;
+                  ${n.imagen ? "" : `background: ${gradients[i % gradients.length]};`}
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  ${
+                    n.imagen
+                      ? `<img src="${n.imagen}" alt="${titulo}" style="width:100%; height:100%; object-fit:cover; display:block;" />`
+                      : `<svg style="width:64px; height:64px; opacity:0.12; position:relative; z-index:1;" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                       </svg>`
+                  }
+
+                  <!-- Badge categoría (arriba izquierda) -->
+                  <span style="
+                    position: absolute;
+                    top: 16px;
+                    left: 16px;
+                    background: #39a08b;
+                    color: white;
+                    font-size: 10px;
+                    font-weight: 600;
+                    letter-spacing: 1.5px;
+                    text-transform: uppercase;
+                    padding: 4px 12px;
+                    border-radius: 4px;
+                    z-index: 2;
+                  ">${categoria}</span>
+
+                  <!-- Badge fecha (abajo derecha) -->
+                  <span style="
+                    position: absolute;
+                    bottom: 16px;
+                    right: 16px;
+                    background: rgba(6,45,118,0.85);
+                    color: white;
+                    font-size: 11px;
+                    padding: 4px 12px;
+                    border-radius: 4px;
+                    z-index: 2;
+                  ">${fecha}</span>
+                </div>
+
+                <!-- Cuerpo -->
+                <div style="padding: 2rem 2.5rem;">
+
+                  <!-- Metadata row -->
+                  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
+                    <span style="font-size:10px; font-weight:600; color:#39a08b; text-transform:uppercase; letter-spacing:1.5px;">${categoria}</span>
+                    <span style="width:4px; height:4px; border-radius:50%; background:#adacb1; display:inline-block;"></span>
+                    <span style="font-size:11px; color:#adacb1;">${fecha}</span>
+                    <span style="width:4px; height:4px; border-radius:50%; background:#adacb1; display:inline-block;"></span>
+                    <span style="font-size:11px; color:#adacb1;">Equipo ANTAL24</span>
+                  </div>
+
+                  <!-- Título -->
+                  <h2 style="
+                    font-family: 'Trebuchet MS', sans-serif;
+                    font-size: 22px;
+                    font-weight: 700;
+                    color: #062d76;
+                    line-height: 1.35;
+                    margin-bottom: 12px;
+                  ">${titulo}</h2>
+
+                  <!-- Línea decorativa verde -->
+                  <div style="width:36px; height:3px; background:#39a08b; border-radius:2px; margin-bottom:20px;"></div>
+
+                  <!-- Párrafos -->
+                  <div style="display:flex; flex-direction:column; gap:12px;">
+                    ${contenido
+                      .map(
+                        (p) => `
+                      <p style="font-size:14px; color:#6b7280; line-height:1.85;">${p}</p>
+                    `,
+                      )
+                      .join("")}
+                  </div>
+
+                  <!-- Tags -->
+                  <div style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    margin-top: 24px;
+                    padding-top: 20px;
+                    border-top: 0.5px solid rgba(173,172,177,0.25);
+                  ">
+                    ${tags
+                      .map(
+                        (tag) => `
+                      <span style="
+                        font-size: 10px;
+                        font-weight: 500;
+                        color: #062d76;
+                        padding: 4px 12px;
+                        border-radius: 20px;
+                        background: rgba(6,45,118,0.07);
+                        border: 0.5px solid rgba(6,45,118,0.15);
+                      ">${tag}</span>
+                    `,
+                      )
+                      .join("")}
+                  </div>
+
+                </div>
+              </article>
+              ${separator}
+            </div>`;
+          })
+          .join("");
+
+        container.innerHTML = html;
+
+        // Intersection observer para animaciones
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+            } else {
+              entry.target.classList.remove("in-view");
+            }
+          });
+        });
+        container
+          .querySelectorAll("article")
+          .forEach((el) => observer.observe(el));
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `
+          <div style="text-align:center; padding: 4rem 0; color:red;">
+            ${lang === "es" ? "Error al cargar noticias." : "Error loading news."}
+          </div>`;
+      }
+    }
+
+    loadNews();
   </script>
 </Layout>
