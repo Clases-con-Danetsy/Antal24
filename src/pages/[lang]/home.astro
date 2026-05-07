@@ -29,17 +29,17 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         frameborder="0"></iframe>
       <div
         class="absolute inset-0"
-        style="background: linear-gradient(to top, rgba(57,160,139,0.5) 0%, transparent 60%);"
+        style="background: linear-gradient(to top, rgba(6,45,118,0.8) 0%, transparent 50%);"
       >
       </div>
       <div
         class="absolute inset-0"
-        style="background: linear-gradient(to bottom, rgba(6,45,118,0.5) 0%, transparent 60%);"
+        style="background: linear-gradient(to bottom, rgba(6,45,118,0.5) 0%, transparent 50%);"
       >
       </div>
     </div>
 
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+    <div class="relative z-10 text-center px-6 md:pt-72 max-w-4xl mx-auto">
       <h1
         data-aos="fade-down"
         data-aos-duration="1000"
@@ -197,13 +197,10 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <div
-    data-aos="fade-up"
-    class="text-center py-10"
-    style="background-color: #7dc5b5;"
-  >
+  <div class="text-center py-10" style="background-color: #7dc5b5;">
     <a
       href={`/${lang}/services`}
+      data-aos="fade-up"
       class="text-secondary-color font-semibold border-2 border-secondary-color px-7 py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
     >
       {lang === "es" ? "Ver todos los servicios" : "View all services"}
