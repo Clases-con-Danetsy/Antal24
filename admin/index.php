@@ -29,6 +29,7 @@ $logueado = isset($_SESSION['antal_admin']) && $_SESSION['antal_admin'] === true
 
 // --- Listar noticias existentes ---
 $noticias = [];
+$editando = null; // noticia cargada para editar
 if ($logueado) {
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -37,14 +38,46 @@ if ($logueado) {
 
     // Eliminar noticia
     if (isset($_GET['eliminar']) && is_numeric($_GET['eliminar'])) {
+        $stmtDel = $pdo->prepare("SELECT imagen FROM noticias WHERE id = ?");
+        $stmtDel->execute([$_GET['eliminar']]);
+        $imgRow = $stmtDel->fetch(PDO::FETCH_ASSOC);
+        if ($imgRow && $imgRow['imagen']) {
+            $imgPath = dirname(__DIR__) . '/' . $imgRow['imagen'];
+            if (file_exists($imgPath)) @unlink($imgPath);
+        }
         $pdo->prepare("DELETE FROM noticias WHERE id = ?")->execute([$_GET['eliminar']]);
         header('Location: index.php?ok=eliminado');
         exit;
     }
+
+    // Toggle publicado
+    if (isset($_GET['toggle']) && is_numeric($_GET['toggle'])) {
+        $stmtT = $pdo->prepare("UPDATE noticias SET publicado = 1 - publicado WHERE id = ?");
+        $stmtT->execute([$_GET['toggle']]);
+        header('Location: index.php?ok=actualizado');
+        exit;
+    }
+
+    // Cargar noticia para editar
+    if (isset($_GET['editar']) && is_numeric($_GET['editar'])) {
+        $stmtE = $pdo->prepare("SELECT * FROM noticias WHERE id = ?");
+        $stmtE->execute([$_GET['editar']]);
+        $editando = $stmtE->fetch(PDO::FETCH_ASSOC);
+        if ($editando) {
+            // Convertir ||| de vuelta a párrafos con doble salto
+            $editando['contenido_es'] = str_replace('|||', "\n\n", $editando['contenido_es']);
+            $editando['contenido_en'] = str_replace('|||', "\n\n", $editando['contenido_en']);
+        }
+    }
 }
 
 if (isset($_GET['ok'])) {
-    $success = $_GET['ok'] === 'guardado' ? '✅ Noticia publicada correctamente.' : '🗑️ Noticia eliminada.';
+    $msgs = [
+        'guardado'    => '✅ Noticia publicada correctamente.',
+        'eliminado'   => '🗑️ Noticia eliminada.',
+        'actualizado' => '✏️ Noticia actualizada correctamente.',
+    ];
+    $success = $msgs[$_GET['ok']] ?? '';
 }
 ?>
 <!DOCTYPE html>
@@ -272,6 +305,7 @@ if (isset($_GET['ok'])) {
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+    .news-item-actions { display: flex; gap: 6px; flex-shrink: 0; align-items: center; }
     .btn-del {
       font-size: 11px;
       color: var(--danger);
@@ -283,6 +317,41 @@ if (isset($_GET['ok'])) {
       transition: all 0.2s;
     }
     .btn-del:hover { background: #fef2f2; }
+    .btn-edit {
+      font-size: 11px;
+      color: var(--azul);
+      text-decoration: none;
+      border: 1px solid rgba(6,45,118,0.25);
+      padding: 4px 10px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .btn-edit:hover { background: rgba(6,45,118,0.06); }
+    .btn-toggle {
+      font-size: 11px;
+      color: var(--verde);
+      text-decoration: none;
+      border: 1px solid rgba(57,160,139,0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .btn-toggle:hover { background: rgba(57,160,139,0.08); }
+    .form-editing-banner {
+      background: #fffbeb;
+      border: 1.5px solid #f59e0b;
+      color: #92400e;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
     /* ---- LOGIN ---- */
     .login-wrap {
@@ -390,11 +459,27 @@ if (isset($_GET['ok'])) {
 
     <div class="card">
       <div class="card-title">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        Nueva Noticia
+        <?php if ($editando): ?>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Editar Noticia
+        <?php else: ?>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          Nueva Noticia
+        <?php endif; ?>
       </div>
 
-      <form method="POST" action="guardar.php" enctype="multipart/form-data">
+      <?php if ($editando): ?>
+        <div class="form-editing-banner">
+          ✏️ Editando: <em><?= htmlspecialchars($editando['titulo_es']) ?></em>
+          &nbsp;·&nbsp;
+          <a href="index.php" style="color:inherit;font-weight:700;">✕ Cancelar</a>
+        </div>
+      <?php endif; ?>
+
+      <form method="POST" action="<?= $editando ? 'actualizar.php' : 'guardar.php' ?>" enctype="multipart/form-data">
+        <?php if ($editando): ?>
+          <input type="hidden" name="id" value="<?= (int)$editando['id'] ?>" />
+        <?php endif; ?>
         <div class="form-grid">
 
           <!-- SECCIÓN ESPAÑOL -->
@@ -402,24 +487,28 @@ if (isset($_GET['ok'])) {
 
           <div class="field">
             <label>Categoría ES <span class="req">*</span></label>
-            <input type="text" name="categoria_es" placeholder="Ej: Logística" required />
+            <input type="text" name="categoria_es" placeholder="Ej: Logística" required
+              value="<?= htmlspecialchars($editando['categoria_es'] ?? '') ?>" />
           </div>
           <div class="field">
             <label>Fecha ES <span class="req">*</span></label>
-            <input type="text" name="fecha_es" placeholder="12 de abril de 2026" required />
+            <input type="text" name="fecha_es" placeholder="12 de abril de 2026" required
+              value="<?= htmlspecialchars($editando['fecha_es'] ?? '') ?>" />
           </div>
           <div class="field full">
             <label>Título ES <span class="req">*</span></label>
-            <input type="text" name="titulo_es" placeholder="Título de la noticia en español" required />
+            <input type="text" name="titulo_es" placeholder="Título de la noticia en español" required
+              value="<?= htmlspecialchars($editando['titulo_es'] ?? '') ?>" />
           </div>
           <div class="field full">
             <label>Contenido ES <span class="req">*</span></label>
-            <textarea name="contenido_es" placeholder="Escribe cada párrafo separado por una línea en blanco.&#10;&#10;Párrafo 1...&#10;&#10;Párrafo 2..." required></textarea>
+            <textarea name="contenido_es" placeholder="Escribe cada párrafo separado por una línea en blanco.&#10;&#10;Párrafo 1...&#10;&#10;Párrafo 2..." required><?= htmlspecialchars($editando['contenido_es'] ?? '') ?></textarea>
             <span class="hint">Separa los párrafos con una línea en blanco entre cada uno.</span>
           </div>
           <div class="field full">
             <label>Tags ES</label>
-            <input type="text" name="tags_es" placeholder="Transporte, Norte, Distribución" />
+            <input type="text" name="tags_es" placeholder="Transporte, Norte, Distribución"
+              value="<?= htmlspecialchars($editando['tags_es'] ?? '') ?>" />
             <span class="hint">Separados por coma.</span>
           </div>
 
@@ -428,47 +517,60 @@ if (isset($_GET['ok'])) {
 
           <div class="field">
             <label>Categoría EN <span class="req">*</span></label>
-            <input type="text" name="categoria_en" placeholder="Ej: Logistics" required />
+            <input type="text" name="categoria_en" placeholder="Ej: Logistics" required
+              value="<?= htmlspecialchars($editando['categoria_en'] ?? '') ?>" />
           </div>
           <div class="field">
             <label>Fecha EN <span class="req">*</span></label>
-            <input type="text" name="fecha_en" placeholder="April 12, 2026" required />
+            <input type="text" name="fecha_en" placeholder="April 12, 2026" required
+              value="<?= htmlspecialchars($editando['fecha_en'] ?? '') ?>" />
           </div>
           <div class="field full">
             <label>Título EN <span class="req">*</span></label>
-            <input type="text" name="titulo_en" placeholder="News title in English" required />
+            <input type="text" name="titulo_en" placeholder="News title in English" required
+              value="<?= htmlspecialchars($editando['titulo_en'] ?? '') ?>" />
           </div>
           <div class="field full">
             <label>Contenido EN <span class="req">*</span></label>
-            <textarea name="contenido_en" placeholder="Write each paragraph separated by a blank line.&#10;&#10;Paragraph 1...&#10;&#10;Paragraph 2..." required></textarea>
+            <textarea name="contenido_en" placeholder="Write each paragraph separated by a blank line.&#10;&#10;Paragraph 1...&#10;&#10;Paragraph 2..." required><?= htmlspecialchars($editando['contenido_en'] ?? '') ?></textarea>
             <span class="hint">Separate paragraphs with a blank line.</span>
           </div>
           <div class="field full">
             <label>Tags EN</label>
-            <input type="text" name="tags_en" placeholder="Transport, North, Distribution" />
+            <input type="text" name="tags_en" placeholder="Transport, North, Distribution"
+              value="<?= htmlspecialchars($editando['tags_en'] ?? '') ?>" />
           </div>
 
           <!-- IMAGEN -->
           <div class="section-label">🖼️ Imagen de portada</div>
 
           <div class="field full">
-            <label>Imagen (JPG, PNG, WebP — máx. 5MB)</label>
+            <label>Imagen (JPG, PNG, WebP — máx. 5MB)<?= $editando && $editando['imagen'] ? ' — <em style="font-weight:400;color:var(--muted);">dejar vacío para mantener la actual</em>' : '' ?></label>
             <input type="file" name="imagen" accept="image/jpeg,image/png,image/webp" id="img-input" />
-            <img id="img-preview" src="" alt="Vista previa" />
+            <?php if ($editando && $editando['imagen']): ?>
+              <img id="img-preview" src="../<?= htmlspecialchars($editando['imagen']) ?>" alt="Imagen actual" style="display:block;" />
+            <?php else: ?>
+              <img id="img-preview" src="" alt="Vista previa" />
+            <?php endif; ?>
           </div>
 
           <!-- PUBLICADO -->
           <div class="field">
             <label>Estado</label>
             <select name="publicado">
-              <option value="1">✅ Publicado</option>
-              <option value="0">📝 Borrador</option>
+              <option value="1" <?= ($editando['publicado'] ?? 1) == 1 ? 'selected' : '' ?>>✅ Publicado</option>
+              <option value="0" <?= ($editando['publicado'] ?? 1) == 0 ? 'selected' : '' ?>>📝 Borrador</option>
             </select>
           </div>
 
           <button type="submit" class="btn-submit">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-            Publicar noticia
+            <?php if ($editando): ?>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v14a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+              Guardar cambios
+            <?php else: ?>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+              Publicar noticia
+            <?php endif; ?>
           </button>
 
         </div>
@@ -491,16 +593,23 @@ if (isset($_GET['ok'])) {
       <?php else: ?>
         <div class="news-list">
           <?php foreach ($noticias as $n): ?>
-            <div class="news-item">
-              <div class="news-item-dot <?= $n['publicado'] ? 'dot-on' : 'dot-off' ?>"></div>
+            <div class="news-item <?= (isset($_GET['editar']) && $_GET['editar'] == $n['id']) ? 'news-item--active' : '' ?>">
+              <div class="news-item-dot <?= $n['publicado'] ? 'dot-on' : 'dot-off' ?>"
+                   title="<?= $n['publicado'] ? 'Publicado' : 'Borrador' ?>"></div>
               <div class="news-item-body">
                 <div class="news-item-cat"><?= htmlspecialchars($n['categoria_es']) ?></div>
                 <div class="news-item-title"><?= htmlspecialchars($n['titulo_es']) ?></div>
-                <div class="news-item-meta"><?= htmlspecialchars($n['fecha_es']) ?></div>
+                <div class="news-item-meta"><?= htmlspecialchars($n['fecha_es']) ?> · <?= $n['publicado'] ? '<span style="color:var(--verde)">Publicado</span>' : '<span style="color:var(--muted)">Borrador</span>' ?></div>
               </div>
-              <a href="?eliminar=<?= $n['id'] ?>"
-                 class="btn-del"
-                 onclick="return confirm('¿Eliminar esta noticia?')">✕</a>
+              <div class="news-item-actions">
+                <a href="?editar=<?= $n['id'] ?>" class="btn-edit" title="Editar">✏️</a>
+                <a href="?toggle=<?= $n['id'] ?>" class="btn-toggle" title="<?= $n['publicado'] ? 'Pasar a borrador' : 'Publicar' ?>">
+                  <?= $n['publicado'] ? '📝' : '✅' ?>
+                </a>
+                <a href="?eliminar=<?= $n['id'] ?>"
+                   class="btn-del" title="Eliminar"
+                   onclick="return confirm('¿Eliminar esta noticia?')">✕</a>
+              </div>
             </div>
           <?php endforeach; ?>
         </div>
@@ -525,9 +634,17 @@ if (isset($_GET['ok'])) {
       };
       reader.readAsDataURL(file);
     } else {
-      preview.style.display = 'none';
+      // Si hay imagen guardada, no la ocultar
+      if (!preview.dataset.existing) {
+        preview.style.display = 'none';
+      }
     }
   });
+
+  // Scroll al formulario si estamos editando
+  if (window.location.search.includes('editar=')) {
+    document.querySelector('.card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 </script>
 </body>
 </html>
