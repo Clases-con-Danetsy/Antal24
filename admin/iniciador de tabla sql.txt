@@ -1,0 +1,21 @@
+-- ============================================
+-- Ejecuta esto en phpMyAdmin > SQL
+-- en tu panel de Hostinger
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS `noticias` (
+  `id`            INT AUTO_INCREMENT PRIMARY KEY,
+  `categoria_es`  VARCHAR(100)  NOT NULL,
+  `categoria_en`  VARCHAR(100)  NOT NULL,
+  `titulo_es`     VARCHAR(300)  NOT NULL,
+  `titulo_en`     VARCHAR(300)  NOT NULL,
+  `contenido_es`  TEXT          NOT NULL,  -- párrafos separados por |||
+  `contenido_en`  TEXT          NOT NULL,  -- párrafos separados por |||
+  `tags_es`       VARCHAR(300)  NOT NULL,  -- tags separados por coma
+  `tags_en`       VARCHAR(300)  NOT NULL,
+  `imagen`        VARCHAR(300)  DEFAULT NULL, -- ruta relativa ej: uploads/foto.jpg
+  `publicado`     TINYINT(1)    DEFAULT 1,
+  `fecha_es`      VARCHAR(80)   NOT NULL,  -- ej: "12 de abril de 2026"
+  `fecha_en`      VARCHAR(80)   NOT NULL,  -- ej: "April 12, 2026"
+  `creado_en`     TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
