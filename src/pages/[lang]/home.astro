@@ -18,7 +18,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
 
   <!-- HERO — azul -->
   <section
-    class="relative min-h-[700px] md:min-h-[80vh] flex items-center justify-center bg-secondary-color overflow-hidden"
+    class="relative min-h-[525px] md:min-h-[80vh] flex items-center justify-center bg-secondary-color overflow-hidden"
   >
     <div class="absolute inset-0 overflow-hidden">
       <video
@@ -26,18 +26,18 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         muted
         loop
         playsinline
-        class="absolute"
-        style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; min-width: max(100vw, 177.78vh); min-height: max(100vh, 56.25vw); pointer-events: none; object-fit: cover;"
+        class="absolute hero-video"
+        style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: max(100%, 177.78vh); height: max(100%, 56.25vw); pointer-events: none; object-fit: cover;"
       >
         <source src="/videos/final.mp4" type="video/mp4" />
       </video>
       <div
-        class="absolute inset-0"
+        class="absolute inset-0 hidden md:block"
         style="background: linear-gradient(to top, rgba(6,45,118,0.8) 0%, transparent 50%);"
       >
       </div>
       <div
-        class="absolute inset-0"
+        class="absolute inset-0 hidden md:block"
         style="background: linear-gradient(to bottom, rgba(6,45,118,0.5) 0%, transparent 50%);"
       >
       </div>
@@ -161,6 +161,28 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       </div>
     </div>
     <div class="max-w-5xl mx-auto px-6 relative">
+      <!-- Flecha prev fuera — doble -->
+      <button
+        id="srv-prev"
+        class="hidden md:block absolute left-[-52px] top-1/2 -translate-y-1/2 z-10 opacity-90 hover:opacity-100 transition-opacity bg-transparent border-none cursor-pointer"
+        aria-label="Anterior"
+      >
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <path
+            d="M28 8l-12 14 12 14"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="M34 8l-12 14 12 14"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+
       <div class="swiper swiper-servicios">
         <div class="swiper-wrapper">
           {
@@ -194,9 +216,32 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
             )
           }
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
+      </div>
+
+      <!-- Flecha next fuera — doble -->
+      <button
+        id="srv-next"
+        class="hidden md:block absolute right-[-52px] top-1/2 -translate-y-1/2 z-10 opacity-90 hover:opacity-100 transition-opacity bg-transparent border-none cursor-pointer"
+        aria-label="Siguiente"
+      >
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <path
+            d="M16 8l12 14-12 14"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="M10 8l12 14-12 14"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+
+      <!-- Bolitas blancas fuera -->
+      <div class="swiper-pagination-servicios flex justify-center gap-2 mt-5">
       </div>
     </div>
   </section>
@@ -278,6 +323,28 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       >
       </div>
       <div class="relative">
+        <!-- Flecha prev fuera — doble azul -->
+        <button
+          id="news-prev"
+          class="hidden md:block absolute left-[-52px] top-[45%] -translate-y-1/2 z-10 opacity-80 hover:opacity-100 transition-opacity bg-transparent border-none cursor-pointer"
+          aria-label="Anterior"
+        >
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <path
+              d="M28 8l-12 14 12 14"
+              stroke="#062d76"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M34 8l-12 14 12 14"
+              stroke="#062d76"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
         <div class="swiper swiper-noticias">
           <div class="swiper-wrapper py-4">
             {
@@ -312,11 +379,35 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
               ))
             }
           </div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Flecha next fuera — doble azul -->
+        <button
+          id="news-next"
+          class="hidden md:block absolute right-[-52px] top-[45%] -translate-y-1/2 z-10 opacity-80 hover:opacity-100 transition-opacity bg-transparent border-none cursor-pointer"
+          aria-label="Siguiente"
+        >
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <path
+              d="M16 8l12 14-12 14"
+              stroke="#062d76"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M10 8l12 14-12 14"
+              stroke="#062d76"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <!-- Bolitas azules fuera -->
+        <div class="swiper-pagination-noticias flex justify-center gap-2 mt-5">
         </div>
       </div>
+
       <div data-aos="fade-up" class="text-center mt-16">
         <a
           href={`/${lang}/news`}
@@ -329,6 +420,42 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
   </section>
 
   <Footer lang={lang} />
+
+  <style is:global>
+    /* Elimina franjas negras del video solo en mobile */
+    @media (max-width: 767px) {
+      .hero-video {
+        transform: translate(-50%, -65%) scale(1.55) !important;
+      }
+    }
+
+    .swiper-pagination-servicios .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background: white !important;
+      opacity: 0.5;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .swiper-pagination-servicios .swiper-pagination-bullet-active {
+      opacity: 1 !important;
+    }
+    .swiper-pagination-noticias .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background: #062d76 !important;
+      opacity: 0.4;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .swiper-pagination-noticias .swiper-pagination-bullet-active {
+      opacity: 1 !important;
+    }
+  </style>
 
   <script>
     import Swiper from "swiper";
@@ -344,11 +471,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       loop: true,
       autoplay: { delay: 3000, disableOnInteraction: false },
       navigation: {
-        nextEl: ".swiper-servicios .swiper-button-next",
-        prevEl: ".swiper-servicios .swiper-button-prev",
+        nextEl: "#srv-next",
+        prevEl: "#srv-prev",
       },
       pagination: {
-        el: ".swiper-servicios .swiper-pagination",
+        el: ".swiper-pagination-servicios",
         clickable: true,
       },
       breakpoints: {
@@ -364,11 +491,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       loop: true,
       autoplay: { delay: 3500, disableOnInteraction: false },
       navigation: {
-        nextEl: ".swiper-noticias .swiper-button-next",
-        prevEl: ".swiper-noticias .swiper-button-prev",
+        nextEl: "#news-next",
+        prevEl: "#news-prev",
       },
       pagination: {
-        el: ".swiper-noticias .swiper-pagination",
+        el: ".swiper-pagination-noticias",
         clickable: true,
       },
       breakpoints: {
