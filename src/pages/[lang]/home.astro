@@ -275,39 +275,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       </div>
       <div class="relative">
         <div class="swiper swiper-noticias">
-          <div class="swiper-wrapper py-4">
-            {
-              [1, 2, 3, 1, 2, 3].map((n) => (
-                <div class="swiper-slide">
-                  <div
-                    class="bg-white rounded-xl shadow-lg transition-all duration-500 group hover:scale-105 hover:shadow-2xl hover:border-2"
-                    style="border-top: 4px solid #7dc5b5;"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600"
-                      alt="noticia"
-                      class="w-full h-48 object-cover rounded-t-xl"
-                    />
-                    <div class="p-6">
-                      <span
-                        class="text-xs font-bold uppercase"
-                        style="color: #7dc5b5;"
-                      >
-                        Abril 2026
-                      </span>
-                      <h3 class="text-secondary-color font-bold text-lg mt-2 mb-3">
-                        Título de noticia placeholder {n}
-                      </h3>
-                      <p class="text-gray-500 text-sm">
-                        Descripción breve de la noticia. Este contenido será
-                        actualizado desde el sistema de gestión.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
+          <div id="home-news-wrapper" class="swiper-wrapper py-4"></div>
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
           <div class="swiper-pagination"></div>
@@ -333,6 +301,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     import "swiper/css/navigation";
     import "swiper/css/pagination";
 
+    // ── Servicios (datos estáticos, se inicializa de inmediato) ──
     new Swiper(".swiper-servicios", {
       modules: [Navigation, Pagination, Autoplay],
       slidesPerView: 1.2,
@@ -353,25 +322,80 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       },
     });
 
-    new Swiper(".swiper-noticias", {
-      modules: [Navigation, Pagination, Autoplay],
-      slidesPerView: 1.2,
-      spaceBetween: 20,
-      loop: true,
-      autoplay: { delay: 3500, disableOnInteraction: false },
-      navigation: {
-        nextEl: ".swiper-noticias .swiper-button-next",
-        prevEl: ".swiper-noticias .swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-noticias .swiper-pagination",
-        clickable: true,
-      },
-      breakpoints: {
-        640: { slidesPerView: 1.5, spaceBetween: 20 },
-        1024: { slidesPerView: 2.2, spaceBetween: 24 },
-      },
-    });
+    // ── Noticias: se inicializa DESPUÉS de cargar los slides desde la API ──
+    window.__initHomeNews = function (Swiper, Navigation, Pagination, Autoplay) {
+      const wrapper = document.getElementById("home-news-wrapper");
+      if (!wrapper) return;
+      const currentLang = document.documentElement.lang || "es";
+      const base = window.location.hostname === "localhost" ? "http://localhost/antal24" : "";
+
+      const gradients = [
+        "linear-gradient(135deg, #062d76 50%, #39a08b)",
+        "linear-gradient(135deg, #062d76 40%, #0a3d8f)",
+        "linear-gradient(135deg, #062d76 50%, #2d7a5e)",
+      ];
+
+      fetch(`${base}/admin/noticias.php`)
+        .then((r) => r.json())
+        .then((data) => {
+          if (!data.ok || !Array.isArray(data.noticias) || data.noticias.length === 0) {
+            wrapper.closest(".swiper").style.display = "none";
+            return;
+          }
+
+          wrapper.innerHTML = data.noticias
+            .map((n, i) => {
+              const fecha    = currentLang === "es" ? n.fecha_es    : n.fecha_en;
+              const titulo   = currentLang === "es" ? n.titulo_es   : n.titulo_en;
+              const contenido = currentLang === "es" ? n.contenido_es : n.contenido_en;
+              const resumen  = Array.isArray(contenido) && contenido.length > 0
+                ? contenido[0]
+                : (typeof contenido === "string" ? contenido : "");
+              const imgTag = n.imagen
+                ? `<img src="${n.imagen}" alt="${titulo}" class="w-full h-48 object-cover rounded-t-xl" />`
+                : `<div class="w-full h-48 rounded-t-xl" style="background:${gradients[i % gradients.length]};"></div>`;
+
+              return `<div class="swiper-slide">
+                <div class="bg-white rounded-xl shadow-lg transition-all duration-500 group hover:scale-105 hover:shadow-2xl" style="border-top:4px solid #7dc5b5;">
+                  ${imgTag}
+                  <div class="p-6">
+                    <span class="text-xs font-bold uppercase" style="color:#7dc5b5;">${fecha}</span>
+                    <h3 class="font-bold text-lg mt-2 mb-3" style="color:#062d76;">${titulo}</h3>
+                    <p class="text-gray-500 text-sm" style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">${resumen}</p>
+                  </div>
+                </div>
+              </div>`;
+            })
+            .join("");
+
+          // Inicializar Swiper AHORA que los slides ya están en el DOM
+          new Swiper(".swiper-noticias", {
+            modules: [Navigation, Pagination, Autoplay],
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+            loop: data.noticias.length > 2,
+            autoplay: { delay: 3500, disableOnInteraction: false },
+            navigation: {
+              nextEl: ".swiper-noticias .swiper-button-next",
+              prevEl: ".swiper-noticias .swiper-button-prev",
+            },
+            pagination: {
+              el: ".swiper-noticias .swiper-pagination",
+              clickable: true,
+            },
+            breakpoints: {
+              640: { slidesPerView: 1.5, spaceBetween: 20 },
+              1024: { slidesPerView: 2.2, spaceBetween: 24 },
+            },
+          });
+        })
+        .catch((err) => {
+          console.error("Error cargando noticias en home:", err);
+          wrapper.closest(".swiper").style.display = "none";
+        });
+    };
+
+    window.__initHomeNews(Swiper, Navigation, Pagination, Autoplay);
   </script>
 
   <script>
