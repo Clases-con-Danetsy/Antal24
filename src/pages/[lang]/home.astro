@@ -21,12 +21,16 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     class="relative min-h-[700px] md:min-h-[80vh] flex items-center justify-center bg-secondary-color overflow-hidden"
   >
     <div class="absolute inset-0 overflow-hidden">
-      <iframe
-        src="https://www.youtube.com/embed/v5lhMsxCb94?autoplay=1&mute=1&loop=1&playlist=v5lhMsxCb94&controls=0&showinfo=0&rel=0&modestbranding=1"
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
         class="absolute"
-        style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; min-width: max(100vw, 177.78vh); min-height: max(100vh, 56.25vw); pointer-events: none;"
-        allow="autoplay; encrypted-media"
-        frameborder="0"></iframe>
+        style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; min-width: max(100vw, 177.78vh); min-height: max(100vh, 56.25vw); pointer-events: none; object-fit: cover;"
+      >
+        <source src="/videos/final.mp4" type="video/mp4" />
+      </video>
       <div
         class="absolute inset-0"
         style="background: linear-gradient(to top, rgba(6,45,118,0.8) 0%, transparent 50%);"
