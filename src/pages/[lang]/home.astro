@@ -11,6 +11,24 @@ export function getStaticPaths() {
 const lang = Astro.params.lang || "es";
 import { translations } from "../../locales.js";
 const t = translations[lang as keyof typeof translations] ?? translations["es"];
+
+const serviceImages = [
+  "/imagenes/importaciones_exportaciones.jpg",
+  "/imagenes/asesoria_aduanal.png",
+  "/imagenes/cuaderno-ata.jpg",
+  "/imagenes/trailer-logo-banjercito.png",
+  "/imagenes/cumplimiento_de_NOMs_de_Etiquetado.png",
+  "/imagenes/noms_etiquetado.jpg",
+  "/imagenes/patron_sectorial.png",
+  "/imagenes/deposito_fiscal.jpeg",
+];
+
+const logisticsImages = [
+  "/imagenes/flete_terrestre.jpg",
+  "/imagenes/logistica_internacional.jpg",
+  "/imagenes/flete_maritimo.jpg",
+  "/imagenes/flete_aereo.jpg",
+];
 ---
 
 <Layout lang={lang}>
@@ -34,13 +52,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       <div
         class="absolute inset-0 hidden md:block"
         style="background: linear-gradient(to top, rgba(6,45,118,0.8) 0%, transparent 50%);"
-      >
-      </div>
+      ></div>
       <div
         class="absolute inset-0 hidden md:block"
         style="background: linear-gradient(to bottom, rgba(6,45,118,0.5) 0%, transparent 50%);"
-      >
-      </div>
+      ></div>
     </div>
 
     <div class="relative z-10 text-center px-6 md:pt-72 max-w-4xl mx-auto">
@@ -78,8 +94,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         <div
           class="absolute inset-0"
           style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
-        >
-        </div>
+        ></div>
         <div></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <div class="text-5xl mb-4"></div>
@@ -87,8 +102,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
           <div
             class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             style="background-color: #7dc5b5;"
-          >
-          </div>
+          ></div>
         </div>
       </div>
 
@@ -103,8 +117,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         <div
           class="absolute inset-0"
           style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
-        >
-        </div>
+        ></div>
         <div></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <div class="text-5xl mb-4"></div>
@@ -112,8 +125,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
           <div
             class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             style="background-color: #7dc5b5;"
-          >
-          </div>
+          ></div>
         </div>
       </div>
 
@@ -128,8 +140,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         <div
           class="absolute inset-0"
           style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
-        >
-        </div>
+        ></div>
         <div></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <div class="text-5xl mb-4"></div>
@@ -137,8 +148,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
           <div
             class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             style="background-color: #7dc5b5;"
-          >
-          </div>
+          ></div>
         </div>
       </div>
     </div>
@@ -157,29 +167,17 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         data-aos="fade-up"
         data-aos-delay="100"
         class="w-24 h-1 bg-secondary-color mx-auto mb-14"
-      >
-      </div>
+      ></div>
     </div>
     <div class="max-w-5xl mx-auto px-6 relative">
-      <!-- Flecha prev fuera — doble -->
       <button
         id="srv-prev"
         class="hidden md:block absolute left-[-52px] top-1/2 -translate-y-1/2 z-10 opacity-90 hover:opacity-100 transition-opacity bg-transparent border-none cursor-pointer"
         aria-label="Anterior"
       >
         <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-          <path
-            d="M28 8l-12 14 12 14"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-          <path
-            d="M34 8l-12 14 12 14"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
+          <path d="M28 8l-12 14 12 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M34 8l-12 14 12 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       </button>
 
@@ -191,9 +189,9 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                 <div class="swiper-slide">
                   <div class="relative rounded-xl overflow-hidden shadow-lg group h-72">
                     <img
-                      src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1504711434969-e33886168f5c", "1521737852567-6949f3f9f2b5", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c", "1494412574643-ff11b0a5c1c3"][i % 7]}?w=600`}
+                      src={serviceImages[i % serviceImages.length]}
                       alt={service.title}
-                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
+                      class={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-125 ${i === 3 ? "object-right" : ""}`}
                     />
                     <div
                       class="absolute inset-0 transition-opacity duration-500"
@@ -218,31 +216,18 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         </div>
       </div>
 
-      <!-- Flecha next fuera — doble -->
       <button
         id="srv-next"
         class="hidden md:block absolute right-[-52px] top-1/2 -translate-y-1/2 z-10 opacity-90 hover:opacity-100 transition-opacity bg-transparent border-none cursor-pointer"
         aria-label="Siguiente"
       >
         <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-          <path
-            d="M16 8l12 14-12 14"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-          <path
-            d="M10 8l12 14-12 14"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
+          <path d="M16 8l12 14-12 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M10 8l12 14-12 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       </button>
 
-      <!-- Bolitas blancas fuera -->
-      <div class="swiper-pagination-servicios flex justify-center gap-2 mt-5">
-      </div>
+      <div class="swiper-pagination-servicios flex justify-center gap-2 mt-5"></div>
     </div>
   </section>
 
@@ -270,8 +255,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         data-aos-delay="100"
         class="w-24 h-1 mx-auto mb-14"
         style="background-color: #7dc5b5;"
-      >
-      </div>
+      ></div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {
           t.services.logistics.map(
@@ -282,7 +266,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
                 class="relative rounded-xl overflow-hidden shadow-lg group h-64"
               >
                 <img
-                  src={`https://images.unsplash.com/photo-${["1577705998148-6da4f3963bc8", "1494412574643-ff11b0a5c1c3", "1578575437130-527eed3abbec", "1504711434969-e33886168f5c"][i % 4]}?w=600`}
+                  src={logisticsImages[i % logisticsImages.length]}
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
                 />
                 <div
@@ -303,7 +287,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     </div>
   </section>
 
-  <!-- MAPA SOCIOS — reemplaza cobertura -->
+  <!-- MAPA SOCIOS -->
   <MapaSocios lang={lang} />
 
   <!-- NOTICIAS — blanco -->
@@ -320,28 +304,16 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         data-aos-delay="100"
         class="w-24 h-1 mx-auto mb-14"
         style="background-color: #7dc5b5;"
-      >
-      </div>
+      ></div>
       <div class="relative">
-        <!-- Flecha prev fuera — doble azul -->
         <button
           id="news-prev"
           class="hidden md:block absolute left-[-52px] top-[45%] -translate-y-1/2 z-10 opacity-80 hover:opacity-100 transition-opacity bg-transparent border-none cursor-pointer"
           aria-label="Anterior"
         >
           <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-            <path
-              d="M28 8l-12 14 12 14"
-              stroke="#062d76"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M34 8l-12 14 12 14"
-              stroke="#062d76"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
+            <path d="M28 8l-12 14 12 14" stroke="#062d76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M34 8l-12 14 12 14" stroke="#062d76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </button>
 
@@ -389,16 +361,13 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
   <Footer lang={lang} />
 
   <style is:global>
-    /* Elimina franjas negras del video solo en mobile */
     @media (max-width: 767px) {
       .hero-video {
         transform: translate(-50%, -65%) scale(1.55) !important;
       }
     }
-
     .swiper-pagination-servicios .swiper-pagination-bullet {
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       background: white !important;
       opacity: 0.5;
       border-radius: 50%;
@@ -410,8 +379,7 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       opacity: 1 !important;
     }
     .swiper-pagination-noticias .swiper-pagination-bullet {
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       background: #062d76 !important;
       opacity: 0.4;
       border-radius: 50%;
@@ -431,7 +399,6 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
     import "swiper/css/navigation";
     import "swiper/css/pagination";
 
-    // ── Servicios (datos estáticos, se inicializa de inmediato) ──
     new Swiper(".swiper-servicios", {
       modules: [Navigation, Pagination, Autoplay],
       slidesPerView: 1.2,
@@ -514,7 +481,6 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
             })
             .join("");
 
-          // Inicializar Swiper AHORA que los slides ya están en el DOM
           new Swiper(".swiper-noticias", {
             modules: [Navigation, Pagination, Autoplay],
             slidesPerView: 1.2,
@@ -547,19 +513,11 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-        } else {
-          entry.target.classList.remove("in-view");
-        }
+        if (entry.isIntersecting) { entry.target.classList.add("in-view"); }
+        else { entry.target.classList.remove("in-view"); }
       });
     });
-    document
-      .querySelectorAll(
-        ".animate-on-load, .animate-on-load-delay-1, .animate-on-load-delay-2",
-      )
-      .forEach((el) => {
-        observer.observe(el);
-      });
+    document.querySelectorAll(".animate-on-load, .animate-on-load-delay-1, .animate-on-load-delay-2")
+      .forEach((el) => { observer.observe(el); });
   </script>
 </Layout>
