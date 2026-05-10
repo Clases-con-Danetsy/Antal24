@@ -319,22 +319,31 @@ const logisticsImages = [
 
         <div class="swiper swiper-noticias">
           <div id="home-news-wrapper" class="swiper-wrapper py-4"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-pagination"></div>
         </div>
 
+        <!-- Flecha next fuera — doble azul -->
         <button
           id="news-next"
           class="hidden md:block absolute right-[-52px] top-[45%] -translate-y-1/2 z-10 opacity-80 hover:opacity-100 transition-opacity bg-transparent border-none cursor-pointer"
           aria-label="Siguiente"
         >
           <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-            <path d="M16 8l12 14-12 14" stroke="#062d76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M10 8l12 14-12 14" stroke="#062d76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path
+              d="M16 8l12 14-12 14"
+              stroke="#062d76"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M10 8l12 14-12 14"
+              stroke="#062d76"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
           </svg>
         </button>
 
+        <!-- Bullets externos -->
         <div class="swiper-pagination-noticias flex justify-center gap-2 mt-5"></div>
       </div>
 
@@ -410,11 +419,20 @@ const logisticsImages = [
       },
     });
 
-    window.__initHomeNews = function (Swiper, Navigation, Pagination, Autoplay) {
+    // ── Noticias: se inicializa DESPUÉS de cargar los slides desde la API ──
+    window.__initHomeNews = function (
+      Swiper,
+      Navigation,
+      Pagination,
+      Autoplay,
+    ) {
       const wrapper = document.getElementById("home-news-wrapper");
       if (!wrapper) return;
       const currentLang = document.documentElement.lang || "es";
-      const base = window.location.hostname === "localhost" ? "http://localhost/antal24" : "";
+      const base =
+        window.location.hostname === "localhost"
+          ? "http://localhost/antal24"
+          : "";
 
       const gradients = [
         "linear-gradient(135deg, #062d76 50%, #39a08b)",
@@ -425,7 +443,11 @@ const logisticsImages = [
       fetch(`${base}/admin/noticias.php`)
         .then((r) => r.json())
         .then((data) => {
-          if (!data.ok || !Array.isArray(data.noticias) || data.noticias.length === 0) {
+          if (
+            !data.ok ||
+            !Array.isArray(data.noticias) ||
+            data.noticias.length === 0
+          ) {
             wrapper.closest(".swiper").style.display = "none";
             return;
           }
@@ -434,10 +456,14 @@ const logisticsImages = [
             .map((n, i) => {
               const fecha = currentLang === "es" ? n.fecha_es : n.fecha_en;
               const titulo = currentLang === "es" ? n.titulo_es : n.titulo_en;
-              const contenido = currentLang === "es" ? n.contenido_es : n.contenido_en;
-              const resumen = Array.isArray(contenido) && contenido.length > 0
-                ? contenido[0]
-                : (typeof contenido === "string" ? contenido : "");
+              const contenido =
+                currentLang === "es" ? n.contenido_es : n.contenido_en;
+              const resumen =
+                Array.isArray(contenido) && contenido.length > 0
+                  ? contenido[0]
+                  : typeof contenido === "string"
+                    ? contenido
+                    : "";
               const imgTag = n.imagen
                 ? `<img src="${n.imagen}" alt="${titulo}" class="w-full h-48 object-cover rounded-t-xl" />`
                 : `<div class="w-full h-48 rounded-t-xl" style="background:${gradients[i % gradients.length]};"></div>`;
