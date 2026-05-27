@@ -27,6 +27,7 @@ Antal24/
 │   ├── guardar.php         # Script para insertar noticias en BD e imágenes en disco
 │   ├── actualizar.php      # Script para actualizar noticias e imágenes
 │   ├── noticias.php        # API pública (JSON) que sirve las noticias al frontend
+│   ├── indicadores.php     # Proxy público para consultar el tipo de cambio del dólar en el DOF
 │   └── iniciador de tabla sql.txt   # Script SQL para inicializar la base de datos
 │
 ├── public/                 # Recursos estáticos servidos directamente (ej: favicon, videos)
@@ -79,7 +80,9 @@ Antal24/
 
 ### 3.3 Consumo de Datos Dinámicos
 
-A pesar de ser un sitio estático pre-renderizado, la visualización de noticias es dinámica. El frontend (en `news.astro` y en el carrusel de noticias en `home.astro`) ejecuta peticiones `fetch` en el cliente hacia el backend en PHP (`/admin/noticias.php`) para renderizar el listado en tiempo real sin necesidad de reconstruir todo el sitio de Astro ante cada publicación.
+A pesar de ser un sitio estático pre-renderizado, el contenido interactivo y dinámico se consulta mediante peticiones `fetch` client-side hacia los endpoints en PHP:
+- **Noticias**: Tanto la página de noticias (`news.astro`) como el carrusel en `home.astro` obtienen los artículos en tiempo real desde `/admin/noticias.php` sin necesidad de reconstruir todo el sitio estático ante cada publicación.
+- **Tipo de Cambio (Dólar)**: El buscador histórico de dólares en la sección de noticias de `home.astro` consulta de forma directa a `/admin/indicadores.php?fechaInicio=YYYY-MM-DD&fechaFin=YYYY-MM-DD`, que a su vez actúa como proxy de la API del Diario Oficial de la Federación (DOF), previniendo problemas de CORS en el navegador y entregando los datos formateados a un modal responsivo.
 
 ---
 
