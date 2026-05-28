@@ -29,6 +29,11 @@ const logisticsImages = [
   "/imagenes/flete_maritimo.jpg",
   "/imagenes/flete_aereo.jpg",
 ];
+
+const descText =
+  lang === "en"
+    ? "We are passionate about foreign trade, we work with you to simplify processes, optimize times and take your business further, for us obstacles become solutions."
+    : "Somos apasionados en el comercio exterior, trabajamos contigo para simplificar procesos, optimizar tiempos y llevar tu negocio más lejos, para nosotros los obstáculos se convierten en soluciones.";
 ---
 
 <Layout lang={lang}>
@@ -77,6 +82,24 @@ const logisticsImages = [
   </section>
 
   <div class="w-full h-1" style="background-color: #7dc5b5;"></div>
+
+  <!-- DESCRIPCIÓN ANIMADA -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <div class="desc-line w-0 h-1 bg-primary-color mx-auto mb-8 rounded-full">
+      </div>
+      <p
+        id="desc-text"
+        class="text-secondary-color text-xl md:text-2xl leading-relaxed font-semibold"
+        style="font-family: 'Trebuchet MS', sans-serif; min-height: 5rem;"
+      >
+      </p>
+      <div
+        class="desc-line-bottom w-0 h-1 bg-primary-color mx-auto mt-8 rounded-full"
+      >
+      </div>
+    </div>
+  </section>
 
   <!-- 3 PILARES — blanco -->
   <section class="py-16 bg-white">
@@ -156,7 +179,7 @@ const logisticsImages = [
     </div>
   </section>
 
-  <!-- SERVICIOS — verde suave — título original -->
+  <!-- SERVICIOS — verde suave -->
   <section class="py-20" style="background-color: #7dc5b5;">
     <div class="max-w-7xl mx-auto px-6">
       <h2
@@ -254,7 +277,6 @@ const logisticsImages = [
     </div>
   </section>
 
-  <!-- Botón Ver todos los servicios -->
   <div class="text-center py-10" style="background-color: #7dc5b5;">
     <a
       href={`/${lang}/services`}
@@ -407,6 +429,37 @@ const logisticsImages = [
         transform: translateY(0);
       }
     }
+    @keyframes expandLine {
+      from {
+        width: 0;
+      }
+      to {
+        width: 60px;
+      }
+    }
+    @keyframes wordPop {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .desc-line {
+      animation: expandLine 1s ease forwards 0.3s;
+    }
+    .desc-line-bottom {
+      animation: expandLine 1s ease forwards 0.5s;
+    }
+    #desc-text span {
+      opacity: 0;
+      display: inline;
+    }
+    #desc-text span.visible {
+      animation: wordPop 0.4s ease forwards;
+    }
     @keyframes bounce-left {
       0%,
       100% {
@@ -465,6 +518,18 @@ const logisticsImages = [
       opacity: 1 !important;
     }
   </style>
+
+  <script define:vars={{ descText }}>
+    const container = document.getElementById("desc-text");
+    if (container) {
+      descText.split(" ").forEach((word, i) => {
+        const span = document.createElement("span");
+        span.textContent = word + " ";
+        container.appendChild(span);
+        setTimeout(() => span.classList.add("visible"), 300 + i * 120);
+      });
+    }
+  </script>
 
   <script>
     import Swiper from "swiper";
