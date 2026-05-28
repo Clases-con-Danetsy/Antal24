@@ -15,7 +15,7 @@ const partners = {
       name: "Estados Unidos",
       flag: "🇺🇸",
       city: ["New York", "Los Angeles", "Miami", "Houston"],
-      desc: "Socio estratégico en importaciones y exportaciones con gestión integral de aduanas y logística terrestre e internacional.",
+      services: ["Fletes internacionales", "Previos en origen", "Almacenaje"],
       coords: [-98, 38],
     },
     {
@@ -23,15 +23,15 @@ const partners = {
       name: "Alemania",
       flag: "🇩🇪",
       city: ["Berlín", "Hamburgo", "Frankfurt"],
-      desc: "Alianza en logística internacional y certificaciones NOMs. Principal puerta de entrada al mercado europeo.",
-      coords: [10, 51],
+      services: ["Fletes internacionales", "Almacenaje"],
+      coords: [13, 52],
     },
     {
       id: "es",
       name: "España",
       flag: "🇪🇸",
       city: ["Madrid", "Barcelona", "Valencia"],
-      desc: "Socio en comercio exterior y despacho aduanal con conexión directa a la Unión Europea y América Latina.",
+      services: ["Fletes internacionales", "Almacén", "Previo en origen"],
       coords: [-3, 40],
     },
     {
@@ -39,8 +39,20 @@ const partners = {
       name: "China",
       flag: "🇨🇳",
       city: ["Shanghai", "Beijing", "Guangzhou"],
-      desc: "Principal socio en importación de mercancía y gestión de cuadernos ATA y certificaciones.",
+      services: [
+        "Fletes internacionales",
+        "Previos en origen",
+        "Inspección de proveedores",
+      ],
       coords: [104, 35],
+    },
+    {
+      id: "eu",
+      name: "Europa",
+      flag: "🇪🇺",
+      city: ["Unión Europea"],
+      services: ["Fletes internacionales"],
+      coords: [20, 60],
     },
   ],
   en: [
@@ -49,7 +61,7 @@ const partners = {
       name: "United States",
       flag: "🇺🇸",
       city: ["New York", "Los Angeles", "Miami", "Houston"],
-      desc: "Strategic partner in imports and exports with full customs management and international logistics.",
+      services: ["International freight", "Origin inspections", "Warehousing"],
       coords: [-98, 38],
     },
     {
@@ -57,15 +69,15 @@ const partners = {
       name: "Germany",
       flag: "🇩🇪",
       city: ["Berlin", "Hamburg", "Frankfurt"],
-      desc: "Commercial alliance in international logistics and NOM certifications. Gateway to the European market.",
-      coords: [10, 51],
+      services: ["International freight", "Warehousing"],
+      coords: [13, 52],
     },
     {
       id: "es",
       name: "Spain",
       flag: "🇪🇸",
       city: ["Madrid", "Barcelona", "Valencia"],
-      desc: "Partner in foreign trade and customs clearance with direct connection to the European Union.",
+      services: ["International freight", "Warehousing", "Origin inspections"],
       coords: [-3, 40],
     },
     {
@@ -73,8 +85,20 @@ const partners = {
       name: "China",
       flag: "🇨🇳",
       city: ["Shanghai", "Beijing", "Guangzhou"],
-      desc: "Main partner for merchandise imports and ATA carnet management and certifications.",
+      services: [
+        "International freight",
+        "Origin inspections",
+        "Supplier inspection",
+      ],
       coords: [104, 35],
+    },
+    {
+      id: "eu",
+      name: "Europe",
+      flag: "🇪🇺",
+      city: ["European Union"],
+      services: ["International freight"],
+      coords: [20, 60],
     },
   ],
 };
@@ -86,7 +110,6 @@ const partnerData = JSON.stringify(currentPartners);
 
 <section class="py-20 bg-secondary-color">
   <div class="max-w-7xl mx-auto px-6">
-    <!-- Título en amarillo -->
     <h2
       data-aos="fade-up"
       class="text-4xl font-bold text-center mb-4"
@@ -102,12 +125,10 @@ const partnerData = JSON.stringify(currentPartners);
     >
     </div>
 
-    <!-- Mapa -->
     <div data-aos="zoom-in" data-aos-delay="200">
-      <div id="antal-map" class="w-full"></div>
+      <div id="antal-map" class="w-full" style="overflow: hidden;"></div>
     </div>
 
-    <!-- Países con pin SVG en amarillo -->
     <div class="flex flex-wrap justify-center gap-8 mt-1">
       {
         currentPartners.map((p) => (
@@ -135,41 +156,65 @@ const partnerData = JSON.stringify(currentPartners);
   </div>
 </section>
 
-<!-- Modal -->
+<!-- Modal estilo 4 -->
 <div
   id="mapa-modal"
   style="display:none; position:fixed; inset:0; z-index:50; align-items:center; justify-content:center; background:rgba(6,45,118,0.88);"
 >
   <div
-    style="position:relative; border-radius:16px; padding:2rem; max-width:380px; width:90%; background:#0a3d6e; border:1.5px solid #ffc000;"
+    style="position:relative; border-radius:16px; max-width:340px; width:90%; background:#062d76; border:1.5px solid #ffc000; overflow:hidden;"
   >
     <button
       id="modal-close"
-      style="position:absolute; top:1rem; right:1rem; background:none; border:none; color:#ffc000; cursor:pointer; font-size:1.2rem;"
+      style="position:absolute; top:1rem; right:1rem; background:none; border:none; color:#ffc000; cursor:pointer; font-size:1.2rem; z-index:2;"
       >✕</button
     >
-    <div id="modal-flag" style="font-size:2.5rem; margin-bottom:0.5rem;"></div>
     <div
-      id="modal-title"
-      style="color:white; font-size:1.3rem; font-weight:bold; margin-bottom:0.25rem;"
+      style="background:linear-gradient(135deg, #0a3d6e, #062d76); padding:1.25rem; display:flex; justify-content:space-between; align-items:flex-start;"
     >
+      <div>
+        <div id="modal-flag" style="font-size:2rem; margin-bottom:4px;"></div>
+        <div
+          id="modal-title"
+          style="color:white; font-size:1.1rem; font-weight:700;"
+        >
+        </div>
+        <div id="modal-city" style="color:#7dc5b5; font-size:0.75rem;"></div>
+      </div>
+      <span
+        style="background:#ffc000; color:#062d76; font-size:0.65rem; font-weight:700; padding:3px 8px; border-radius:20px; white-space:nowrap; margin-top:4px;"
+        >Socio</span
+      >
     </div>
     <div
-      id="modal-city"
-      style="color:#ffc000; font-size:0.85rem; margin-bottom:0.75rem;"
+      style="padding:1rem 1.25rem; border-top:1px solid rgba(255,192,0,0.3);"
     >
-    </div>
-    <div
-      style="width:40px; height:3px; background:#ffc000; border-radius:2px; margin-bottom:0.75rem;"
-    >
-    </div>
-    <div
-      id="modal-desc"
-      style="color:rgba(255,255,255,0.82); font-size:0.9rem; line-height:1.6;"
-    >
+      <div
+        id="modal-services"
+        style="display:flex; flex-direction:column; gap:8px;"
+      >
+      </div>
     </div>
   </div>
 </div>
+
+<style is:global>
+  @keyframes pin-bounce {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    70% {
+      transform: translateY(-4px);
+    }
+  }
+  .antal-pin {
+    animation: pin-bounce 1.8s ease-in-out infinite;
+  }
+</style>
 
 <script define:vars={{ partnerData }}>
   const partners = JSON.parse(partnerData);
@@ -183,8 +228,8 @@ const partnerData = JSON.stringify(currentPartners);
     ]);
 
     const d3 = d3Module;
-    const W = 960,
-      H = 480;
+    const W = 1400,
+      H = 700;
     const container = document.getElementById("antal-map");
     if (!container) return;
 
@@ -192,12 +237,14 @@ const partnerData = JSON.stringify(currentPartners);
       .select(container)
       .append("svg")
       .attr("viewBox", `0 0 ${W} ${H}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .style("width", "100%")
+      .style("height", "auto")
       .style("display", "block");
 
     const proj = d3
       .geoNaturalEarth1()
-      .scale(153)
+      .scale(255)
       .translate([W / 2, H / 2]);
     const pathGen = d3.geoPath().projection(proj);
 
@@ -243,10 +290,12 @@ const partnerData = JSON.stringify(currentPartners);
 
       const g = svg
         .append("g")
+        .attr("class", "antal-pin")
+        .attr("id", `pin-${p.id}`)
         .style("cursor", "pointer")
+        .style("animation-delay", `${i * 0.5}s`)
         .on("click", () => openModal(p));
 
-      // Pulso en amarillo
       const pulse = g
         .append("circle")
         .attr("cx", pos[0])
@@ -270,7 +319,6 @@ const partnerData = JSON.stringify(currentPartners);
       }
       requestAnimationFrame(animatePulse);
 
-      // Pin en amarillo
       g.append("path")
         .attr("d", pinPath)
         .attr("transform", `translate(${pos[0]}, ${pos[1]})`)
@@ -279,7 +327,6 @@ const partnerData = JSON.stringify(currentPartners);
         .style("stroke-width", "1.2")
         .style("filter", "drop-shadow(0px 2px 4px rgba(0,0,0,0.5))");
 
-      // Punto blanco interior
       g.append("circle")
         .attr("cx", pos[0])
         .attr("cy", pos[1] - 6)
@@ -287,7 +334,6 @@ const partnerData = JSON.stringify(currentPartners);
         .style("fill", "white")
         .style("opacity", "0.9");
 
-      // Etiqueta en amarillo
       g.append("text")
         .attr("x", pos[0])
         .attr("y", pos[1] + 28)
@@ -307,7 +353,27 @@ const partnerData = JSON.stringify(currentPartners);
     document.getElementById("modal-city").textContent = Array.isArray(p.city)
       ? p.city.join(" · ")
       : p.city;
-    document.getElementById("modal-desc").textContent = p.desc;
+
+    const servicesEl = document.getElementById("modal-services");
+    servicesEl.innerHTML = "";
+    (p.services || []).forEach((s, i) => {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex; align-items:center; gap:10px;";
+
+      const num = document.createElement("span");
+      num.textContent = i + 1;
+      num.style.cssText =
+        "font-size:0.65rem; font-weight:700; color:#062d76; background:#ffc000; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;";
+
+      const text = document.createElement("span");
+      text.textContent = s;
+      text.style.cssText = "font-size:0.82rem; color:rgba(255,255,255,0.85);";
+
+      row.appendChild(num);
+      row.appendChild(text);
+      servicesEl.appendChild(row);
+    });
+
     document.getElementById("mapa-modal").style.display = "flex";
   }
 
