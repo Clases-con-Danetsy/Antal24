@@ -400,6 +400,18 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
       </form>
     </div>
 
+    <!-- DÓLAR HOY -->
+    <div
+      data-aos="fade-up"
+      data-aos-delay="200"
+      id="dolar-hoy-container"
+      class="max-w-xs mx-auto mb-12 p-4 bg-primary-color/5 border border-primary-color/10 rounded-xl shadow-sm text-center opacity-0 transition-all duration-500"
+    >
+      <span class="text-xs font-semibold text-secondary-color uppercase tracking-wider">{t.indicators.todayRate}</span>
+      <span id="dolar-hoy-val" class="ml-2 text-xl font-bold text-primary-color">...</span>
+      <span class="ml-1 text-xs font-semibold text-gray-400">MXN</span>
+    </div>
+
     <!-- MODAL INDICADORES -->
     <div
       id="indicators-modal"
@@ -820,6 +832,46 @@ const t = translations[lang as keyof typeof translations] ?? translations["es"];
         const parts = dStr.split('-');
         return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
       };
+
+      // --- Cargar Dólar Hoy de forma automática al iniciar ---
+      const loadDolarHoy = async function () {
+        const container = document.getElementById("dolar-hoy-container");
+        const valSpan = document.getElementById("dolar-hoy-val");
+        if (!container || !valSpan) return;
+
+        const formatDateStr = function (d) {
+          const yyyy = d.getFullYear();
+          const mm = String(d.getMonth() + 1).padStart(2, '0');
+          const dd = String(d.getDate()).padStart(2, '0');
+          return yyyy + "-" + mm + "-" + dd;
+        };
+
+        const dateEnd = new Date();
+        const dateStart = new Date();
+        // Restar 4 días para cubrir fin de semana o días festivos
+        dateStart.setDate(dateEnd.getDate() - 4);
+
+        try {
+          const base = window.location.hostname === "localhost" ? "http://localhost/antal24" : "";
+          const response = await fetch(base + "/admin/indicadores.php?fechaInicio=" + formatDateStr(dateStart) + "&fechaFin=" + formatDateStr(dateEnd));
+          if (!response.ok) return;
+
+          const data = await response.json();
+          if (data.messageCode === 200 && Array.isArray(data.ListaIndicadores) && data.ListaIndicadores.length > 0) {
+            const sorted = data.ListaIndicadores.sort(function (a, b) {
+              return parseDateStr(b.fecha).getTime() - parseDateStr(a.fecha).getTime();
+            });
+            const latest = sorted[0];
+            valSpan.textContent = "$" + parseFloat(latest.valor).toFixed(4);
+            container.classList.remove("opacity-0");
+            container.classList.add("opacity-100");
+          }
+        } catch (err) {
+          console.error("Error al cargar tipo de cambio del día:", err);
+        }
+      };
+
+      loadDolarHoy();
 
       indForm.addEventListener("submit", async function (e) {
         e.preventDefault();

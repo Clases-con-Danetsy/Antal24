@@ -5,7 +5,8 @@
 
 // Detectar entorno automáticamente
 $isLocal = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1'])
-        || str_starts_with($_SERVER['SERVER_ADDR'] ?? '', '192.168.');
+        || str_starts_with($_SERVER['SERVER_ADDR'] ?? '', '192.168.')
+        || (php_sapi_name() === 'cli' && PHP_OS_FAMILY === 'Windows');
 
 if ($isLocal) {
     // Base de datos local XAMPP

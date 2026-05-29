@@ -58,6 +58,7 @@ export const translations = {
       noData: "No se encontraron datos para el periodo seleccionado.",
       error: "Ocurrió un error al obtener la información desde el DOF.",
       validationError: "Por favor, seleccione un rango de fechas válido.",
+      todayRate: "Dólar hoy:",
     },
     contact: {
       title: "¿Tienes alguna duda?",
@@ -124,6 +125,7 @@ export const translations = {
       noData: "No exchange rate data was found for the selected period.",
       error: "An error occurred while fetching information from the DOF.",
       validationError: "Please select a valid date range.",
+      todayRate: "USD today:",
     },
     contact: {
       title: "Have a question?",
