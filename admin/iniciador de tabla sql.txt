@@ -19,3 +19,12 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `fecha_en`      VARCHAR(80)   NOT NULL,  -- ej: "April 12, 2026"
   `creado_en`     TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ============================================
+-- Tabla para Respaldo de Tipo de Cambio (Dólar DOF)
+-- ============================================
+CREATE TABLE IF NOT EXISTS `tipo_cambio` (
+  `fecha` DATE PRIMARY KEY,
+  `valor` DECIMAL(10, 4) NOT NULL,
+  `creado_en` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -340,21 +340,230 @@ const descText =
 
   <!-- NOTICIAS — blanco -->
   <section class="py-20 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2
-        data-aos="fade-up"
-        class="text-4xl font-bold text-center mb-4"
-        style="color: #ffc000;"
+    <h2
+      data-aos="fade-up"
+      class="text-4xl font-bold text-secondary-color text-center mb-4"
+    >
+      {t.news.title}
+    </h2>
+    <div
+      data-aos="fade-up"
+      data-aos-delay="100"
+      class="w-24 h-1 mx-auto mb-14"
+      style="background-color: #7dc5b5;"
+    >
+    </div>
+    <!-- TIPO DE CAMBIO WIDGET -->
+    <div
+      data-aos="fade-up"
+      data-aos-delay="150"
+      class="max-w-xl mx-auto mb-12 p-6 bg-gray-50 border border-gray-100 rounded-2xl shadow-sm"
+    >
+      <h3
+        class="text-lg font-bold text-secondary-color text-center mb-4 flex items-center justify-center gap-2"
       >
-        {t.news.title}
-      </h2>
+        <svg
+          class="w-5 h-5 text-primary-color"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        {t.indicators.title}
+      </h3>
+
+      <form
+        id="indicators-form"
+        class="flex flex-col sm:flex-row items-end justify-center gap-4"
+        data-lang={lang}
+        data-loading-text={t.indicators.loading}
+        data-error-text={t.indicators.error}
+        data-no-data-text={t.indicators.noData}
+        data-validation-text={t.indicators.validationError}
+      >
+        <div class="flex flex-col gap-1 w-full sm:w-auto">
+          <label
+            class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+            >{t.indicators.startDate}</label
+          >
+          <input
+            type="date"
+            id="ind-start-date"
+            required
+            class="w-full sm:w-44 px-3 py-2 text-sm border border-gray-200 rounded-lg text-secondary-color bg-white focus:outline-none focus:border-primary-color focus:ring-2 focus:ring-primary-color/10 transition-all"
+          />
+        </div>
+        <div class="flex flex-col gap-1 w-full sm:w-auto">
+          <label
+            class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+            >{t.indicators.endDate}</label
+          >
+          <input
+            type="date"
+            id="ind-end-date"
+            required
+            class="w-full sm:w-44 px-3 py-2 text-sm border border-gray-200 rounded-lg text-secondary-color bg-white focus:outline-none focus:border-primary-color focus:ring-2 focus:ring-primary-color/10 transition-all"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full sm:w-auto px-6 py-2 text-sm font-semibold text-white bg-secondary-color hover:bg-secondary-color/90 border border-transparent rounded-lg shadow-sm transition-all hover:shadow cursor-pointer flex items-center justify-center gap-2 group"
+        >
+          {t.indicators.button}
+          <svg
+            class="w-4 h-4 text-white/80 group-hover:translate-x-0.5 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- DÓLAR HOY -->
+    <div
+      data-aos="fade-up"
+      data-aos-delay="200"
+      id="dolar-hoy-container"
+      class="max-w-xs mx-auto mb-12 p-4 bg-primary-color/5 border border-primary-color/10 rounded-xl shadow-sm text-center opacity-0 transition-all duration-500"
+    >
+      <span class="text-xs font-semibold text-secondary-color uppercase tracking-wider">{t.indicators.todayRate}</span>
+      <span id="dolar-hoy-val" class="ml-2 text-xl font-bold text-primary-color">...</span>
+      <span class="ml-1 text-xs font-semibold text-gray-400">MXN</span>
+    </div>
+
+    <!-- MODAL INDICADORES -->
+    <div
+      id="indicators-modal"
+      style="display:none;"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-secondary-color/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"
+    >
       <div
-        data-aos="fade-up"
-        data-aos-delay="100"
-        class="w-24 h-1 mx-auto mb-14"
-        style="background-color: #ffc000;"
+        class="relative w-full max-w-md bg-white border border-gray-100 rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300"
+        id="indicators-modal-card"
       >
+        <!-- Header -->
+        <div
+          class="px-6 py-4 border-b border-gray-100 flex items-center justify-between bg-gray-50"
+        >
+          <h4
+            class="text-lg font-bold text-secondary-color flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5 text-primary-color"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+              ></path>
+            </svg>
+            {t.indicators.modalTitle}
+          </h4>
+          <button
+            id="indicators-modal-close-btn"
+            class="text-gray-400 hover:text-gray-600 transition-colors bg-none border-none p-1 cursor-pointer"
+            aria-label="Cerrar"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6">
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">
+            {t.indicators.modalDesc}
+          </p>
+
+          <!-- Loading spinner -->
+          <div
+            id="ind-modal-loading"
+            class="hidden py-8 flex flex-col items-center justify-center gap-3"
+          >
+            <div
+              class="w-8 h-8 border-4 border-primary-color border-t-transparent rounded-full animate-spin"
+            >
+            </div>
+            <span class="text-sm font-medium text-secondary-color"
+              >{t.indicators.loading}</span
+            >
+          </div>
+
+          <!-- Error message -->
+          <div
+            id="ind-modal-error"
+            class="hidden p-4 text-sm text-red-700 bg-red-50 border border-red-100 rounded-lg text-center font-medium"
+          >
+            {t.indicators.error}
+          </div>
+
+          <!-- Data table wrapper -->
+          <div id="ind-modal-data-wrapper" class="hidden">
+            <div
+              class="max-h-[300px] overflow-y-auto border border-gray-100 rounded-xl"
+            >
+              <table class="w-full text-sm text-left text-gray-500">
+                <thead
+                  class="text-xs text-secondary-color uppercase bg-gray-50 border-b border-gray-100 sticky top-0"
+                >
+                  <tr>
+                    <th scope="col" class="px-6 py-3 font-semibold"
+                      >{t.indicators.dateCol}</th
+                    >
+                    <th scope="col" class="px-6 py-3 font-semibold"
+                      >{t.indicators.valueCol}</th
+                    >
+                  </tr>
+                </thead>
+                <tbody id="ind-table-body">
+                  <!-- Dynamic rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex justify-end"
+        >
+          <button
+            id="indicators-modal-close-footer"
+            class="px-5 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 rounded-lg shadow-sm transition-colors cursor-pointer"
+          >
+            {lang === "es" ? "Cerrar" : "Close"}
+          </button>
+        </div>
       </div>
+    </div>
+    <div class="max-w-5xl mx-auto px-6">
       <div class="relative">
         <button
           id="news-prev"
@@ -660,5 +869,175 @@ const descText =
       .forEach((el) => {
         observer.observe(el);
       });
+
+    // --- Tipo de Cambio (Dólar DOF) ---
+    const indForm = document.getElementById("indicators-form");
+    const indModal = document.getElementById("indicators-modal");
+    const indModalCard = document.getElementById("indicators-modal-card");
+    const indCloseBtn = document.getElementById("indicators-modal-close-btn");
+    const indCloseFooter = document.getElementById("indicators-modal-close-footer");
+
+    if (indForm && indModal && indModalCard) {
+      const inputStart = document.getElementById("ind-start-date");
+      const inputEnd = document.getElementById("ind-end-date");
+
+      const today = new Date();
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(today.getDate() - 7);
+
+      const formatDateInput = function (d) {
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        return yyyy + "-" + mm + "-" + dd;
+      };
+
+      if (inputStart && inputEnd) {
+        inputStart.value = formatDateInput(sevenDaysAgo);
+        inputEnd.value = formatDateInput(today);
+        inputStart.max = formatDateInput(today);
+        inputEnd.max = formatDateInput(today);
+      }
+
+      const openIndModal = function () {
+        indModal.style.display = "flex";
+        setTimeout(function () {
+          indModal.classList.remove("opacity-0");
+          indModal.classList.add("opacity-100");
+          indModalCard.classList.remove("scale-95");
+          indModalCard.classList.add("scale-100");
+        }, 10);
+      };
+
+      const closeIndModal = function () {
+        indModal.classList.remove("opacity-100");
+        indModal.classList.add("opacity-0");
+        indModalCard.classList.remove("scale-100");
+        indModalCard.classList.add("scale-95");
+        setTimeout(function () {
+          indModal.style.display = "none";
+        }, 300);
+      };
+
+      indCloseBtn?.addEventListener("click", closeIndModal);
+      indCloseFooter?.addEventListener("click", closeIndModal);
+      indModal.addEventListener("click", function (e) {
+        if (e.target === indModal) closeIndModal();
+      });
+
+      const parseDateStr = function (dStr) {
+        const parts = dStr.split('-');
+        return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+      };
+
+      // --- Cargar Dólar Hoy de forma automática al iniciar ---
+      const loadDolarHoy = async function () {
+        const container = document.getElementById("dolar-hoy-container");
+        const valSpan = document.getElementById("dolar-hoy-val");
+        if (!container || !valSpan) return;
+
+        const formatDateStr = function (d) {
+          const yyyy = d.getFullYear();
+          const mm = String(d.getMonth() + 1).padStart(2, '0');
+          const dd = String(d.getDate()).padStart(2, '0');
+          return yyyy + "-" + mm + "-" + dd;
+        };
+
+        const dateEnd = new Date();
+        const dateStart = new Date();
+        // Restar 4 días para cubrir fin de semana o días festivos
+        dateStart.setDate(dateEnd.getDate() - 4);
+
+        try {
+          const base = window.location.hostname === "localhost" ? "http://localhost/antal24" : "";
+          const response = await fetch(base + "/admin/indicadores.php?fechaInicio=" + formatDateStr(dateStart) + "&fechaFin=" + formatDateStr(dateEnd));
+          if (!response.ok) return;
+
+          const data = await response.json();
+          if (data.messageCode === 200 && Array.isArray(data.ListaIndicadores) && data.ListaIndicadores.length > 0) {
+            const sorted = data.ListaIndicadores.sort(function (a, b) {
+              return parseDateStr(b.fecha).getTime() - parseDateStr(a.fecha).getTime();
+            });
+            const latest = sorted[0];
+            valSpan.textContent = "$" + parseFloat(latest.valor).toFixed(4);
+            container.classList.remove("opacity-0");
+            container.classList.add("opacity-100");
+          }
+        } catch (err) {
+          console.error("Error al cargar tipo de cambio del día:", err);
+        }
+      };
+
+      loadDolarHoy();
+
+      indForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const startDate = inputStart.value;
+        const endDate = inputEnd.value;
+
+        if (new Date(startDate) > new Date(endDate)) {
+          alert(indForm.dataset.validationText || "Rango de fechas no válido");
+          return;
+        }
+
+        openIndModal();
+
+        const loader = document.getElementById("ind-modal-loading");
+        const errorDiv = document.getElementById("ind-modal-error");
+        const dataWrapper = document.getElementById("ind-modal-data-wrapper");
+        const tableBody = document.getElementById("ind-table-body");
+
+        loader?.classList.remove("hidden");
+        errorDiv?.classList.add("hidden");
+        dataWrapper?.classList.add("hidden");
+
+        try {
+          const base = window.location.hostname === "localhost" ? "http://localhost/antal24" : "";
+          const response = await fetch(base + "/admin/indicadores.php?fechaInicio=" + startDate + "&fechaFin=" + endDate);
+
+          if (!response.ok) throw new Error("HTTP Error");
+
+          const data = await response.json();
+
+          if (data.messageCode !== 200 || !Array.isArray(data.ListaIndicadores)) {
+            throw new Error("Invalid response structure");
+          }
+
+          if (data.ListaIndicadores.length === 0) {
+            if (errorDiv) {
+              errorDiv.textContent = indForm.dataset.noDataText || "No data";
+              errorDiv.classList.remove("hidden");
+            }
+            loader?.classList.add("hidden");
+            return;
+          }
+
+          const sorted = data.ListaIndicadores.sort(function (a, b) {
+            return parseDateStr(b.fecha).getTime() - parseDateStr(a.fecha).getTime();
+          });
+
+          if (tableBody) {
+            tableBody.innerHTML = sorted.map(function (item) {
+              return '<tr class="bg-white border-b border-gray-100 hover:bg-gray-50/50 transition-colors">' +
+                '<td class="px-6 py-3.5 font-medium text-secondary-color">' + item.fecha + '</td>' +
+                '<td class="px-6 py-3.5 font-bold text-primary-color">$' + parseFloat(item.valor).toFixed(4) + ' <span class="text-xs font-normal text-gray-400">MXN</span></td>' +
+                '</tr>';
+            }).join('');
+          }
+
+          loader?.classList.add("hidden");
+          dataWrapper?.classList.remove("hidden");
+
+        } catch (err) {
+          console.error("Error al consultar el tipo de cambio:", err);
+          if (errorDiv) {
+            errorDiv.textContent = indForm.dataset.errorText || "Error";
+            errorDiv.classList.remove("hidden");
+          }
+          loader?.classList.add("hidden");
+        }
+      });
+    }
   </script>
 </Layout>
