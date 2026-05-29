@@ -16,7 +16,7 @@ const serviceImages = [
   "/imagenes/importaciones_exportaciones.jpg",
   "/imagenes/asesoria_aduanal.png",
   "/imagenes/cuaderno-ata.jpg",
-  "/imagenes/trailer-logo-banjercito.png",
+  "/imagenes/tres_vehiculos.png",
   "/imagenes/cumplimiento_de_NOMs_de_Etiquetado.png",
   "/imagenes/noms_etiquetado.jpg",
   "/imagenes/patron_sectorial.png",
@@ -29,6 +29,11 @@ const logisticsImages = [
   "/imagenes/flete_maritimo.jpg",
   "/imagenes/flete_aereo.jpg",
 ];
+
+const descText =
+  lang === "en"
+    ? "We are passionate about foreign trade, we work with you to simplify processes, optimize times and take your business further, for us obstacles become solutions."
+    : "Somos apasionados en el comercio exterior, trabajamos contigo para simplificar procesos, optimizar tiempos y llevar tu negocio más lejos, para nosotros los obstáculos se convierten en soluciones.";
 ---
 
 <Layout lang={lang}>
@@ -52,26 +57,24 @@ const logisticsImages = [
       <div
         class="absolute inset-0 hidden md:block"
         style="background: linear-gradient(to top, rgba(6,45,118,0.8) 0%, transparent 50%);"
-      ></div>
+      >
+      </div>
       <div
         class="absolute inset-0 hidden md:block"
         style="background: linear-gradient(to bottom, rgba(6,45,118,0.5) 0%, transparent 50%);"
-      ></div>
+      >
+      </div>
     </div>
-
     <div class="relative z-10 text-center px-6 md:pt-72 max-w-4xl mx-auto">
       <h1
-        data-aos="fade-down"
-        data-aos-duration="1000"
-        class="text-3xl md:text-7xl font-bold text-white mb-6 leading-tight"
-        style="font-family: 'Trebuchet MS', sans-serif;"
+        class="text-3xl md:text-7xl font-bold text-white mb-6 leading-tight hero-title"
+        style="font-family: 'Trebuchet MS', sans-serif; opacity: 0; animation: fadeUp 1s ease forwards 6s;"
       >
         Get it easy, <span style="color: #7dc5b5;">get it safe!</span>
       </h1>
       <p
-        data-aos="fade-up"
-        data-aos-delay="300"
-        class="text-xl md:text-2xl text-white mb-10 opacity-90"
+        class="text-xl md:text-2xl text-white mb-10 opacity-90 hero-subtitle"
+        style="opacity: 0; animation: fadeUp 1s ease forwards 6.5s;"
       >
         {t.hero.subtitle}
       </p>
@@ -79,6 +82,24 @@ const logisticsImages = [
   </section>
 
   <div class="w-full h-1" style="background-color: #7dc5b5;"></div>
+
+  <!-- DESCRIPCIÓN ANIMADA -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <div class="desc-line w-0 h-1 bg-primary-color mx-auto mb-8 rounded-full">
+      </div>
+      <p
+        id="desc-text"
+        class="text-secondary-color text-xl md:text-2xl leading-relaxed font-semibold"
+        style="font-family: 'Trebuchet MS', sans-serif; min-height: 5rem;"
+      >
+      </p>
+      <div
+        class="desc-line-bottom w-0 h-1 bg-primary-color mx-auto mt-8 rounded-full"
+      >
+      </div>
+    </div>
+  </section>
 
   <!-- 3 PILARES — blanco -->
   <section class="py-16 bg-white">
@@ -94,7 +115,8 @@ const logisticsImages = [
         <div
           class="absolute inset-0"
           style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
-        ></div>
+        >
+        </div>
         <div></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <div class="text-5xl mb-4"></div>
@@ -102,10 +124,10 @@ const logisticsImages = [
           <div
             class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             style="background-color: #7dc5b5;"
-          ></div>
+          >
+          </div>
         </div>
       </div>
-
       <div
         class="animate-on-load-delay-1 relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
@@ -117,7 +139,8 @@ const logisticsImages = [
         <div
           class="absolute inset-0"
           style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
-        ></div>
+        >
+        </div>
         <div></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <div class="text-5xl mb-4"></div>
@@ -125,10 +148,10 @@ const logisticsImages = [
           <div
             class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             style="background-color: #7dc5b5;"
-          ></div>
+          >
+          </div>
         </div>
       </div>
-
       <div
         class="animate-on-load-delay-2 relative text-white rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform h-48 group"
       >
@@ -140,7 +163,8 @@ const logisticsImages = [
         <div
           class="absolute inset-0"
           style="background: linear-gradient(to top, rgba(6,45,118,0.9) 0%, rgba(6,45,118,0.3) 60%, transparent 100%);"
-        ></div>
+        >
+        </div>
         <div></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
           <div class="text-5xl mb-4"></div>
@@ -148,7 +172,8 @@ const logisticsImages = [
           <div
             class="w-10 h-0.5 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             style="background-color: #7dc5b5;"
-          ></div>
+          >
+          </div>
         </div>
       </div>
     </div>
@@ -167,7 +192,8 @@ const logisticsImages = [
         data-aos="fade-up"
         data-aos-delay="100"
         class="w-24 h-1 bg-secondary-color mx-auto mb-14"
-      ></div>
+      >
+      </div>
     </div>
     <div class="max-w-5xl mx-auto px-6 relative">
       <button
@@ -176,11 +202,20 @@ const logisticsImages = [
         aria-label="Anterior"
       >
         <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-          <path d="M28 8l-12 14 12 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path d="M34 8l-12 14 12 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path
+            d="M28 8l-12 14 12 14"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="M34 8l-12 14 12 14"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
         </svg>
       </button>
-
       <div class="swiper swiper-servicios">
         <div class="swiper-wrapper">
           {
@@ -222,12 +257,23 @@ const logisticsImages = [
         aria-label="Siguiente"
       >
         <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-          <path d="M16 8l12 14-12 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path d="M10 8l12 14-12 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path
+            d="M16 8l12 14-12 14"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="M10 8l12 14-12 14"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
         </svg>
       </button>
 
-      <div class="swiper-pagination-servicios flex justify-center gap-2 mt-5"></div>
+      <div class="swiper-pagination-servicios flex justify-center gap-2 mt-5">
+      </div>
     </div>
   </section>
 
@@ -246,7 +292,8 @@ const logisticsImages = [
     <div class="max-w-3xl mx-auto px-6">
       <h2
         data-aos="fade-up"
-        class="text-4xl font-bold text-white text-center mb-4"
+        class="text-4xl font-bold text-center mb-4"
+        style="color: #ffc000;"
       >
         {t.services.logisticsTitle}
       </h2>
@@ -254,8 +301,9 @@ const logisticsImages = [
         data-aos="fade-up"
         data-aos-delay="100"
         class="w-24 h-1 mx-auto mb-14"
-        style="background-color: #7dc5b5;"
-      ></div>
+        style="background-color: #ffc000;"
+      >
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {
           t.services.logistics.map(
@@ -295,7 +343,8 @@ const logisticsImages = [
     <div class="max-w-5xl mx-auto px-6">
       <h2
         data-aos="fade-up"
-        class="text-4xl font-bold text-secondary-color text-center mb-4"
+        class="text-4xl font-bold text-center mb-4"
+        style="color: #ffc000;"
       >
         {t.news.title}
       </h2>
@@ -303,8 +352,9 @@ const logisticsImages = [
         data-aos="fade-up"
         data-aos-delay="100"
         class="w-24 h-1 mx-auto mb-14"
-        style="background-color: #7dc5b5;"
-      ></div>
+        style="background-color: #ffc000;"
+      >
+      </div>
       <div class="relative">
         <button
           id="news-prev"
@@ -312,16 +362,23 @@ const logisticsImages = [
           aria-label="Anterior"
         >
           <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-            <path d="M28 8l-12 14 12 14" stroke="#062d76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M34 8l-12 14 12 14" stroke="#062d76" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path
+              d="M28 8l-12 14 12 14"
+              stroke="#062d76"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M34 8l-12 14 12 14"
+              stroke="#062d76"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
           </svg>
         </button>
-
         <div class="swiper swiper-noticias">
           <div id="home-news-wrapper" class="swiper-wrapper py-4"></div>
         </div>
-
-        <!-- Flecha next fuera — doble azul -->
         <button
           id="news-next"
           class="hidden md:block absolute right-[-52px] top-[45%] -translate-y-1/2 z-10 opacity-80 hover:opacity-100 transition-opacity bg-transparent border-none cursor-pointer"
@@ -344,13 +401,14 @@ const logisticsImages = [
         </button>
 
         <!-- Bullets externos -->
-        <div class="swiper-pagination-noticias flex justify-center gap-2 mt-5"></div>
+        <div class="swiper-pagination-noticias flex justify-center gap-2 mt-5">
+        </div>
       </div>
-
       <div data-aos="fade-up" class="text-center mt-16">
         <a
           href={`/${lang}/news`}
-          class="text-secondary-color font-semibold border-2 border-secondary-color px-7 py-2 rounded-full hover:bg-secondary-color hover:text-white transition-colors"
+          class="font-semibold border-2 px-7 py-2 rounded-full transition-colors"
+          style="color: #ffc000; border-color: #ffc000;"
         >
           {t.news.viewAll}
         </a>
@@ -361,13 +419,81 @@ const logisticsImages = [
   <Footer lang={lang} />
 
   <style is:global>
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes expandLine {
+      from {
+        width: 0;
+      }
+      to {
+        width: 60px;
+      }
+    }
+    @keyframes wordPop {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .desc-line {
+      animation: expandLine 1s ease forwards 0.3s;
+    }
+    .desc-line-bottom {
+      animation: expandLine 1s ease forwards 0.5s;
+    }
+    #desc-text span {
+      opacity: 0;
+      display: inline;
+    }
+    #desc-text span.visible {
+      animation: wordPop 0.4s ease forwards;
+    }
+    @keyframes bounce-left {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(-6px);
+      }
+    }
+    @keyframes bounce-right {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(6px);
+      }
+    }
+    #srv-prev,
+    #news-prev {
+      animation: bounce-left 1s ease-in-out infinite;
+    }
+    #srv-next,
+    #news-next {
+      animation: bounce-right 1s ease-in-out infinite;
+    }
     @media (max-width: 767px) {
       .hero-video {
         transform: translate(-50%, -65%) scale(1.55) !important;
       }
     }
     .swiper-pagination-servicios .swiper-pagination-bullet {
-      width: 10px; height: 10px;
+      width: 10px;
+      height: 10px;
       background: white !important;
       opacity: 0.5;
       border-radius: 50%;
@@ -379,7 +505,8 @@ const logisticsImages = [
       opacity: 1 !important;
     }
     .swiper-pagination-noticias .swiper-pagination-bullet {
-      width: 10px; height: 10px;
+      width: 10px;
+      height: 10px;
       background: #062d76 !important;
       opacity: 0.4;
       border-radius: 50%;
@@ -391,6 +518,18 @@ const logisticsImages = [
       opacity: 1 !important;
     }
   </style>
+
+  <script define:vars={{ descText }}>
+    const container = document.getElementById("desc-text");
+    if (container) {
+      descText.split(" ").forEach((word, i) => {
+        const span = document.createElement("span");
+        span.textContent = word + " ";
+        container.appendChild(span);
+        setTimeout(() => span.classList.add("visible"), 300 + i * 120);
+      });
+    }
+  </script>
 
   <script>
     import Swiper from "swiper";
@@ -405,14 +544,8 @@ const logisticsImages = [
       spaceBetween: 20,
       loop: true,
       autoplay: { delay: 3000, disableOnInteraction: false },
-      navigation: {
-        nextEl: "#srv-next",
-        prevEl: "#srv-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination-servicios",
-        clickable: true,
-      },
+      navigation: { nextEl: "#srv-next", prevEl: "#srv-prev" },
+      pagination: { el: ".swiper-pagination-servicios", clickable: true },
       breakpoints: {
         640: { slidesPerView: 2, spaceBetween: 20 },
         1024: { slidesPerView: 3, spaceBetween: 24 },
@@ -513,11 +646,19 @@ const logisticsImages = [
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) { entry.target.classList.add("in-view"); }
-        else { entry.target.classList.remove("in-view"); }
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        } else {
+          entry.target.classList.remove("in-view");
+        }
       });
     });
-    document.querySelectorAll(".animate-on-load, .animate-on-load-delay-1, .animate-on-load-delay-2")
-      .forEach((el) => { observer.observe(el); });
+    document
+      .querySelectorAll(
+        ".animate-on-load, .animate-on-load-delay-1, .animate-on-load-delay-2",
+      )
+      .forEach((el) => {
+        observer.observe(el);
+      });
   </script>
 </Layout>
