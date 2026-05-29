@@ -17,13 +17,15 @@ const services =
                   num: "01",
                   id: "importaciones-y-exportaciones",
                   title: "Importaciones y Exportaciones",
-                  desc: "Gestionamos el tránsito de mercancía nacional e internacional, asegurando que tus productos lleguen a su destino de forma segura y eficiente cumpliendo todas las normativas vigentes.",
+                  desc: "Gestionamos tus Operaciones de Comercio Exterior, asegurando que tus productos lleguen a su destino de forma segura y eficiente cumpliendo todas las normativas vigentes.",
                   items: [
                       "Importación y exportación de todo tipo de mercancía",
                       "Tránsito internacional de productos",
                       "Cumplimiento de normativas aduaneras",
                   ],
-                  img: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800",
+                  img: "/imagenes/importaciones_exportaciones.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "02",
@@ -35,43 +37,51 @@ const services =
                       "Gestión de documentación legal",
                       "Cumplimiento de regulaciones fiscales",
                   ],
-                  img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800",
+                  img: "/imagenes/asesoria_aduanal.png",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "03",
                   id: "cuaderno-ata",
                   title: "Cuaderno ATA",
-                  desc: "Gestionamos carnés ATA para la importación temporal de mercancía, facilitando la participación en ferias, exposiciones y eventos internacionales sin pago de aranceles.",
+                  desc: "Te apoyamos a gestionar tus operaciones con cuaderno ATA para la importación temporal de mercancía, facilitando la participación en ferias, exposiciones y eventos internacionales sin pago de aranceles.",
                   items: [
                       "Gestión completa del carné ATA",
                       "Importación temporal sin pago de aranceles",
                       "Ideal para eventos y exposiciones internacionales",
                   ],
-                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
+                  img: "/imagenes/cuaderno-ata.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "04",
                   id: "tramites-ante-banjercito",
                   title: "Trámites ante BANJERCITO",
-                  desc: "Realizamos todos los trámites necesarios ante BANJERCITO para la importación temporal de vehículos y mercancías, asegurando el cumplimiento de los requisitos legales.",
+                  desc: "Realizamos todos los trámites necesarios ante BANJERCITO para la importación temporal de vehículos, embarcaciones y casas rodantes. Asegurando el cumplimiento de los requisitos legales.",
                   items: [
                       "Gestión de permisos de importación temporal",
                       "Trámites de vehículos extranjeros",
                       "Asesoría en requisitos BANJERCITO",
                   ],
-                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+                  img: "/imagenes/tres_vehiculos.png",
+                  imgClass:
+                      "w-full object-contain bg-white transition-transform duration-500",
               },
               {
                   num: "05",
                   id: "certificaciones-noms-de-seguridad",
                   title: "Certificaciones de NOMs de Seguridad",
-                  desc: "Gestionamos las certificaciones de Normas Oficiales Mexicanas de seguridad requeridas para la importación de productos, garantizando el cumplimiento normativo.",
+                  desc: "Te apoyamos en la gestión para el cumplimiento las Normas Oficiales Mexicanas de seguridad y calidad, requeridas para la importación de productos, garantizando el cumplimiento normativo.",
                   items: [
                       "Certificación de productos de importación",
-                      "Gestión ante organismos certificadores",
-                      "Cumplimiento de NOMs de seguridad",
+                      "Gestion de Cartas Muestras",
+                      "Emision de dictamenes de Mercancias Altamente Especializadas",
                   ],
-                  img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800",
+                  img: "/imagenes/cumplimiento_de_NOMs_de_Etiquetado.png",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "06",
@@ -81,33 +91,35 @@ const services =
                   items: [
                       "Revisión de etiquetado de productos",
                       "Adecuación a NOMs de etiquetado",
-                      "Asesoría en información al consumidor",
+                      "Tramite con Unidades de Verificacion para cumplir con el etiquetado",
                   ],
-                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+                  img: "/imagenes/noms_etiquetado.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "07",
                   id: "padron-sectorial",
                   title: "Padrón Sectorial Textil, Calzado y Siderúrgico",
-                  desc: "Gestionamos la inscripción y renovación en el Padrón Sectorial de los sectores Textil, Calzado y Siderúrgico, requisito indispensable para importar productos de estos sectores.",
-                  items: [
-                      "Inscripción al Padrón Sectorial",
-                      "Renovación de registros",
-                      "Asesoría en requisitos sectoriales",
-                  ],
-                  img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800",
+                  desc: "Los padrones sectoriales representan un candado para controlar sectores de riesgo para la economía nacional, por lo que contamos con los padrones sectoriales necesarios para la importación de tus productos.",
+                  items: ["Textil", "Calzado", "Siderúrgico"],
+                  img: "/imagenes/patron_sectorial.png",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "08",
                   id: "almacen-deposito-fiscal",
                   title: "Almacén / Depósito Fiscal",
-                  desc: "Gestionamos y administramos almacenes y depósitos fiscales, garantizando el resguardo seguro de tu mercancía bajo los lineamientos fiscales vigentes.",
+                  desc: "Administra tu flujo de caja utilizando un Deposito Fiscal para diferir el pago de tus contribuciones a la importación de forma segura bajo los lineamientos fiscales vigentes.",
                   items: [
                       "Almacenaje de mercancía nacional e internacional",
                       "Depósito fiscal bajo normativas del SAT",
                       "Control y seguimiento de inventarios",
                   ],
-                  img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800",
+                  img: "/imagenes/deposito_fiscal.jpeg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
           ]
         : [
@@ -115,13 +127,15 @@ const services =
                   num: "01",
                   id: "imports-exports",
                   title: "Imports & Exports",
-                  desc: "We manage national and international merchandise transit, ensuring your products reach their destination safely and efficiently while complying with all current regulations.",
+                  desc: "We manage your Foreign Trade Operations, ensuring your products reach their destination safely and efficiently while complying with all current regulations.",
                   items: [
                       "Import and export of all types of merchandise",
                       "International product transit",
                       "Compliance with customs regulations",
                   ],
-                  img: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800",
+                  img: "/imagenes/importaciones_exportaciones.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "02",
@@ -133,43 +147,51 @@ const services =
                       "Legal documentation management",
                       "Tax regulation compliance",
                   ],
-                  img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800",
+                  img: "/imagenes/asesoria_aduanal.png",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "03",
                   id: "ata-carnet",
                   title: "ATA Carnet",
-                  desc: "We manage ATA carnets for the temporary import of merchandise, facilitating participation in fairs, exhibitions and international events without paying customs duties.",
+                  desc: "We support you in managing your ATA carnet operations for the temporary import of merchandise, facilitating participation in fairs, exhibitions and international events without paying customs duties.",
                   items: [
                       "Complete ATA carnet management",
                       "Temporary import without customs duties",
                       "Ideal for international events and exhibitions",
                   ],
-                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
+                  img: "/imagenes/cuaderno-ata.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "04",
                   id: "banjercito-procedures",
                   title: "BANJERCITO Procedures",
-                  desc: "We carry out all necessary procedures before BANJERCITO for the temporary import of vehicles and merchandise, ensuring compliance with legal requirements.",
+                  desc: "We carry out all necessary procedures before BANJERCITO for the temporary import of vehicles, boats and motorhomes, ensuring compliance with legal requirements.",
                   items: [
                       "Temporary import permit management",
                       "Foreign vehicle procedures",
                       "BANJERCITO requirements advisory",
                   ],
-                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+                  img: "/imagenes/tres_vehiculos.png",
+                  imgClass:
+                      "w-full h-96 object-cover object-right scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "05",
                   id: "safety-nom-certifications",
                   title: "Safety NOM Certifications",
-                  desc: "We manage the certifications of Mexican Official Standards required for the import of products, guaranteeing regulatory compliance.",
+                  desc: "We support you in managing compliance with Mexican Official Standards for safety and quality, required for the import of products, guaranteeing regulatory compliance.",
                   items: [
                       "Import product certification",
-                      "Management before certifying bodies",
-                      "Safety NOM compliance",
+                      "Sample Letter management",
+                      "Issuance of opinions for Highly Specialized Merchandise",
                   ],
-                  img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800",
+                  img: "/imagenes/cumplimiento_de_NOMs_de_Etiquetado.png",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "06",
@@ -179,33 +201,35 @@ const services =
                   items: [
                       "Product labeling review",
                       "Adaptation to labeling NOMs",
-                      "Consumer information advisory",
+                      "Procedure with Verification Units to comply with labeling",
                   ],
-                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+                  img: "/imagenes/noms_etiquetado.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "07",
                   id: "sectoral-registry",
                   title: "Textile, Footwear and Steel Sectoral Registry",
-                  desc: "We manage registration and renewal in the Sectoral Registry for the Textile, Footwear and Steel sectors, an essential requirement for importing products in these sectors.",
-                  items: [
-                      "Sectoral Registry registration",
-                      "Record renewal",
-                      "Sector requirements advisory",
-                  ],
-                  img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=800",
+                  desc: "Sectoral registries represent a lock to control sectors at risk for the national economy. We have the necessary sectoral registries for importing your products.",
+                  items: ["Textile", "Footwear", "Steel"],
+                  img: "/imagenes/patron_sectorial.png",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "08",
                   id: "warehouse-fiscal-deposit",
                   title: "Warehouse / Fiscal Deposit",
-                  desc: "We manage and administer warehouses and fiscal deposits, guaranteeing the secure storage of your merchandise under current fiscal regulations.",
+                  desc: "Manage your cash flow using a Fiscal Deposit to defer payment of your import contributions safely under current fiscal regulations.",
                   items: [
                       "Storage of national and international merchandise",
                       "Fiscal deposit under SAT regulations",
                       "Inventory control and tracking",
                   ],
-                  img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800",
+                  img: "/imagenes/deposito_fiscal.jpeg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
           ];
 
@@ -234,9 +258,11 @@ const logistics =
                   items: [
                       "Cobertura nacional",
                       "Rastreo en tiempo real",
-                      "Seguro de carga incluido",
+                      "Gestionamos seguro para tu mercancía",
                   ],
-                  img: "https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=800",
+                  img: "/imagenes/flete_terrestre.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "02",
@@ -247,7 +273,9 @@ const logistics =
                       "Coordinación multimodal",
                       "Seguimiento de embarques",
                   ],
-                  img: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800",
+                  img: "/imagenes/logistica_internacional.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "03",
@@ -258,7 +286,9 @@ const logistics =
                       "Gestión de documentación",
                       "Seguimiento de embarques",
                   ],
-                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+                  img: "/imagenes/flete_maritimo.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "04",
@@ -269,7 +299,9 @@ const logistics =
                       "Gestión de carga aérea",
                       "Coordinación con aerolíneas",
                   ],
-                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
+                  img: "/imagenes/flete_aereo.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover object-left-top scale-110 group-hover:scale-100 transition-transform duration-500",
               },
           ]
         : [
@@ -280,9 +312,11 @@ const logistics =
                   items: [
                       "National coverage",
                       "Real-time tracking",
-                      "Cargo insurance included",
+                      "We manage insurance for your merchandise",
                   ],
-                  img: "https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=800",
+                  img: "/imagenes/flete_terrestre.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "02",
@@ -293,7 +327,9 @@ const logistics =
                       "Multimodal coordination",
                       "Shipment tracking",
                   ],
-                  img: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800",
+                  img: "/imagenes/logistica_internacional.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "03",
@@ -304,7 +340,9 @@ const logistics =
                       "Documentation management",
                       "Shipment tracking",
                   ],
-                  img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800",
+                  img: "/imagenes/flete_maritimo.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500",
               },
               {
                   num: "04",
@@ -315,7 +353,9 @@ const logistics =
                       "Air cargo management",
                       "Airline coordination",
                   ],
-                  img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
+                  img: "/imagenes/flete_aereo.jpg",
+                  imgClass:
+                      "w-full h-96 object-cover object-top scale-110 group-hover:scale-100 transition-transform duration-500",
               },
           ];
 ---
@@ -329,9 +369,9 @@ const logistics =
     >
         <div class="absolute inset-0">
             <img
-                src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600"
+                src="/imagenes/hero_servicios1.jpeg"
                 alt="servicios"
-                class="w-full h-full object-cover opacity-30"
+                class="w-full h-full object-cover object-center opacity-30"
             />
         </div>
         <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
@@ -391,7 +431,7 @@ const logistics =
                                 <img
                                     src={service.img}
                                     alt={service.title}
-                                    class="w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
+                                    class={service.imgClass}
                                 />
                             </div>
                             <div class="w-full md:w-1/2">
@@ -452,7 +492,7 @@ const logistics =
                                 <img
                                     src={service.img}
                                     alt={service.title}
-                                    class="w-full h-96 object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
+                                    class={service.imgClass}
                                 />
                             </div>
                             <div class="w-full md:w-1/2">
@@ -498,7 +538,6 @@ const logistics =
                 }
             });
         });
-
         document
             .querySelectorAll(
                 ".animate-service-0, .animate-service-1, .animate-service-2, .animate-service-3, .animate-service-4, .animate-service-5, .animate-service-6, .animate-service-7, .animate-logistics-0, .animate-logistics-1, .animate-logistics-2, .animate-logistics-3",

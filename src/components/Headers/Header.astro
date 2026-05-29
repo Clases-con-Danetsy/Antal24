@@ -3,7 +3,6 @@ import { translations } from "../../locales.js";
 const lang = Astro.props?.lang ?? "es";
 const t = translations[lang as keyof typeof translations] ?? translations["es"];
 const otherLang = lang === "es" ? "en" : "es";
-const otherLangLabel = lang === "es" ? "EN" : "ES";
 const currentPath = Astro.url.pathname;
 const otherLangPath = currentPath.replace(`/${lang}/`, `/${otherLang}/`);
 
@@ -72,7 +71,7 @@ const logisticsLinks =
   class="fixed top-0 left-0 w-full z-50 bg-transparent shadow-none transition-transform duration-300"
 >
   <div class="w-full px-6 flex items-center justify-between h-20">
-    <!-- Logo que sobresale -->
+    <!-- Logo -->
     <a
       href={`/${lang}/home`}
       class="relative z-10 bg-white rounded-b-2xl px-4 pb-2 md:pb-16 pt-2 md:pt-6 shadow-md mt-4 md:mt-36 ml-0 md:ml-40"
@@ -84,16 +83,13 @@ const logisticsLinks =
       />
     </a>
 
-    <!-- Nav centrado -->
+    <!-- Nav desktop -->
     <nav class="hidden md:flex items-center gap-8 ml-auto">
       <a
         href={`/${lang}/home`}
         class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.home}</a
       >
-        {t.header.home}
-      </a>
-
-      <!-- Servicios con dropdown -->
       <div class="relative group">
         <a
           href={`/${lang}/services`}
@@ -116,7 +112,6 @@ const logisticsLinks =
         <div
           class="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2"
         >
-          <!-- Servicios -->
           <p
             class="px-4 pt-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#adacb1]"
           >
@@ -132,11 +127,7 @@ const logisticsLinks =
               </a>
             ))
           }
-
-          <!-- Separador -->
           <div class="my-2 mx-4 border-t border-gray-100"></div>
-
-          <!-- Logística -->
           <p
             class="px-4 pt-1 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#adacb1]"
           >
@@ -154,22 +145,19 @@ const logisticsLinks =
           }
         </div>
       </div>
-
       <a
         href={`/${lang}/about`}
         class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.about}</a
       >
-        {t.header.about}
-      </a>
       <a
         href={`/${lang}/news`}
         class="text-white font-bold hover:text-primary-color transition-colors"
+        >{t.header.news}</a
       >
-        {t.header.news}
-      </a>
     </nav>
 
-    <!-- Lang switcher + CTA desktop -->
+    <!-- Lang + CTA desktop -->
     <div class="hidden md:flex items-center gap-6">
       <a
         href={otherLangPath}
@@ -186,9 +174,8 @@ const logisticsLinks =
       <a
         href={`/${lang}/contact`}
         class="bg-primary-color text-white px-5 py-2 rounded font-bold hover:opacity-90 transition-opacity"
+        >{t.header.contact}</a
       >
-        {t.header.contact}
-      </a>
     </div>
 
     <!-- Hamburger mobile -->
@@ -235,109 +222,104 @@ const logisticsLinks =
     </button>
 
     <!-- Logo -->
-    <div class="mb-8">
+    <div id="mobile-logo" class="mb-8">
       <img src="/logos/Antal-Blanco.svg" alt="Antal 24" class="h-40 w-auto" />
     </div>
 
-    <!-- Links -->
-    <a
-      href={`/${lang}/home`}
-      class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
-    >
-      {t.header.home}
-    </a>
-
-    <!-- Servicios mobile -->
-    <div class="flex flex-col items-center w-full">
-      <button
-        id="mobile-services-btn"
-        class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-3 flex items-center gap-2"
+    <!-- Links principales -->
+    <div id="mobile-main-links" class="flex flex-col items-center w-full">
+      <a
+        href={`/${lang}/home`}
+        class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
+        >{t.header.home}</a
       >
-        {t.header.services}
-        <svg
-          id="mobile-services-arrow"
-          class="w-5 h-5 transition-transform duration-200"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
-      <div
-        id="mobile-services-list"
-        class="hidden flex-col items-center gap-3 mb-5 w-full px-8"
-      >
-        <!-- Servicios -->
-        <p
-          class="text-[#adacb1] text-xs font-bold uppercase tracking-widest mt-1"
-        >
-          {lang === "es" ? "Servicios" : "Services"}
-        </p>
-        {
-          serviceLinks.map((item) => (
-            <a
-              href={`/${lang}/services#${item.anchor}`}
-              class="text-white font-semibold hover:text-primary-color transition-colors text-lg text-center"
-            >
-              {item.label}
-            </a>
-          ))
-        }
 
-        <!-- Logística -->
-        <p
-          class="text-[#adacb1] text-xs font-bold uppercase tracking-widest mt-3"
+      <!-- Servicios — flecha izquierda oculta inicialmente, aparece al abrir -->
+      <div class="flex items-center gap-3 mb-5">
+        <button
+          id="back-btn"
+          class="hidden text-white hover:text-primary-color transition-colors focus:outline-none"
         >
-          {lang === "es" ? "Logística" : "Logistics"}
-        </p>
-        {
-          logisticsLinks.map((item) => (
-            <a
-              href={`/${lang}/services#${item.anchor}`}
-              class="text-white font-semibold hover:text-primary-color transition-colors text-lg text-center"
-            >
-              {item.label}
-            </a>
-          ))
-        }
+          <svg
+            class="w-7 h-7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button
+          id="mobile-services-btn"
+          class="text-white font-bold hover:text-primary-color transition-colors text-2xl focus:outline-none"
+        >
+          {t.header.services}
+        </button>
+      </div>
+
+      <a
+        href={`/${lang}/about`}
+        class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
+        >{t.header.about}</a
+      >
+      <a
+        href={`/${lang}/news`}
+        class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
+        >{t.header.news}</a
+      >
+      <a
+        href={`/${lang}/contact`}
+        class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
+        >{t.header.contact}</a
+      >
+
+      <div class="mt-4">
+        <a href={otherLangPath} class="text-white font-bold text-xl">
+          <span class={lang === "es" ? "text-primary-color" : "text-white"}
+            >ES</span
+          >
+          <span class="text-white mx-1">|</span>
+          <span class={lang === "en" ? "text-primary-color" : "text-white"}
+            >EN</span
+          >
+        </a>
       </div>
     </div>
 
-    <a
-      href={`/${lang}/about`}
-      class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
+    <!-- Lista de servicios -->
+    <div
+      id="mobile-services-list"
+      class="hidden flex-col items-center w-full px-8"
     >
-      {t.header.about}
-    </a>
-    <a
-      href={`/${lang}/news`}
-      class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
-    >
-      {t.header.news}
-    </a>
-    <a
-      href={`/${lang}/contact`}
-      class="text-white font-bold hover:text-primary-color transition-colors text-2xl mb-5"
-    >
-      {t.header.contact}
-    </a>
-
-    <!-- Lang switcher -->
-    <div class="mt-4">
-      <a href={otherLangPath} class="text-white font-bold text-xl">
-        <span class={lang === "es" ? "text-primary-color" : "text-white"}
-          >ES</span
-        >
-        <span class="text-white mx-1">|</span>
-        <span class={lang === "en" ? "text-primary-color" : "text-white"}
-          >EN</span
-        >
-      </a>
+      {
+        serviceLinks.map((item) => (
+          <a
+            href={`/${lang}/services#${item.anchor}`}
+            class="text-white font-semibold hover:text-primary-color transition-colors text-lg text-center mb-3"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <p
+        class="text-[#adacb1] text-xs font-bold uppercase tracking-widest mt-4 mb-3"
+      >
+        {lang === "es" ? "Logística" : "Logistics"}
+      </p>
+      {
+        logisticsLinks.map((item) => (
+          <a
+            href={`/${lang}/services#${item.anchor}`}
+            class="text-white font-semibold hover:text-primary-color transition-colors text-lg text-center mb-3"
+          >
+            {item.label}
+          </a>
+        ))
+      }
     </div>
 
     <!-- Línea decorativa -->
@@ -349,31 +331,51 @@ const logisticsLinks =
 <script>
   const btn = document.getElementById("menu-btn");
   const closeBtn = document.getElementById("close-btn");
+  const backBtn = document.getElementById("back-btn");
   const menu = document.getElementById("mobile-menu");
+  const mainLinks = document.getElementById("mobile-main-links");
+  const servicesList = document.getElementById("mobile-services-list");
+  const mobileLogo = document.getElementById("mobile-logo");
+  const mobileServicesBtn = document.getElementById("mobile-services-btn");
 
-  btn?.addEventListener("click", () => {
-    menu?.classList.toggle("hidden");
-    menu?.classList.toggle("flex");
-    const logo = document.querySelector("#main-header a");
-    logo?.classList.toggle("invisible");
-  });
+  const showMainLinks = () => {
+    servicesList?.classList.add("hidden");
+    servicesList?.classList.remove("flex");
+    mainLinks
+      ?.querySelectorAll("a")
+      .forEach((el) => el.classList.remove("hidden"));
+    mobileLogo?.classList.remove("hidden");
+    backBtn?.classList.add("hidden");
+  };
 
-  closeBtn?.addEventListener("click", () => {
+  const closeMenu = () => {
     menu?.classList.add("hidden");
     menu?.classList.remove("flex");
     const logo = document.querySelector("#main-header a");
     logo?.classList.remove("invisible");
+    showMainLinks();
+  };
+
+  btn?.addEventListener("click", () => {
+    menu?.classList.remove("hidden");
+    menu?.classList.add("flex");
+    const logo = document.querySelector("#main-header a");
+    logo?.classList.add("invisible");
   });
 
-  const mobileServicesBtn = document.getElementById("mobile-services-btn");
-  const mobileServicesList = document.getElementById("mobile-services-list");
-  const mobileServicesArrow = document.getElementById("mobile-services-arrow");
+  closeBtn?.addEventListener("click", closeMenu);
 
   mobileServicesBtn?.addEventListener("click", () => {
-    mobileServicesList?.classList.toggle("hidden");
-    mobileServicesList?.classList.toggle("flex");
-    mobileServicesArrow?.classList.toggle("rotate-180");
+    mainLinks
+      ?.querySelectorAll("a")
+      .forEach((el) => el.classList.add("hidden"));
+    mobileLogo?.classList.add("hidden");
+    backBtn?.classList.remove("hidden");
+    servicesList?.classList.remove("hidden");
+    servicesList?.classList.add("flex");
   });
+
+  backBtn?.addEventListener("click", showMainLinks);
 
   const header = document.getElementById("main-header");
   window.addEventListener("scroll", () => {
@@ -386,13 +388,7 @@ const logisticsLinks =
     }
   });
 
-  // Cerrar menu al hacer clic en cualquier enlace
   document.querySelectorAll("#mobile-menu a").forEach((link) => {
-    link.addEventListener("click", () => {
-      menu?.classList.add("hidden");
-      menu?.classList.remove("flex");
-      const logo = document.querySelector("#main-header a");
-      logo?.classList.remove("invisible");
-    });
+    link.addEventListener("click", closeMenu);
   });
 </script>

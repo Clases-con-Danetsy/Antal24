@@ -21,7 +21,7 @@ export const translations = {
       title: "Servicios que ofrecemos",
       items: [
         { title: "Importaciones y Exportaciones", desc: "Tránsito de mercancía nacional e internacional." },
-        { title: "Asesoría Legal Aduanal", desc: "Asesoría especializada para el despacho aduanal." },
+        { title: "Asesoría Legal Aduanal", desc: "Analizamos y damos solución eficaz a tus operaciones de Comercio Exterior." },
         { title: "Cuaderno ATA", desc: "Gestión de carnés ATA para mercancía temporal." },
         { title: "Trámites BANJERCITO", desc: "Gestión de trámites ante BANJERCITO." },
         { title: "Certificaciones NOMs de Seguridad", desc: "Certificaciones de NOMs de seguridad para tu mercancía." },
@@ -76,7 +76,7 @@ export const translations = {
     },
     hero: {
       title: "Get it easy, get it safe!",
-      subtitle: "What's stopping you? We solve it.",
+      subtitle: "We analyze and provide effective solutions for your Foreign Trade operations.",
       cta: "Contact Us",
     },
     pillars: {
@@ -88,7 +88,7 @@ export const translations = {
       title: "Our Services",
       items: [
         { title: "Imports & Exports", desc: "National and international merchandise transit." },
-        { title: "Legal Customs Advisory", desc: "Specialized advice for customs clearance." },
+        { title: "Legal Customs Advisory", desc: "We analyze and provide effective solutions for your Foreign Trade operations." },
         { title: "ATA Carnet", desc: "ATA carnet management for temporary goods." },
         { title: "BANJERCITO Procedures", desc: "Processing procedures before BANJERCITO." },
         { title: "Safety NOM Certifications", desc: "Safety NOM certifications for your merchandise." },
